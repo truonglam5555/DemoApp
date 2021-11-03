@@ -7,12 +7,12 @@
             <Style TargetType="Button" x:Key="ButtonStyle">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="TextTransform" Value="None"/>
-                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontSize" Value="20"/>
                 <Setter Property="TextColor" Value="White"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <Grid ColumnDefinitions="350,*" ColumnSpacing="10" Margin="0,0,0,0"
+    <Grid ColumnDefinitions="350,*" ColumnSpacing="5" Margin="0,0,0,0"
           BackgroundColor="White" HorizontalOptions="Fill" VerticalOptions="Fill">
         <Grid RowDefinitions="Auto,*" RowSpacing="0" BackgroundColor="Blue">
             <Image Source="{markupextension:EmbeddedImageResource thuonghieugogihouse.png}" HeightRequest="240"
@@ -40,13 +40,16 @@
             <Grid VerticalOptions="End" ColumnSpacing="0" HorizontalOptions="End" ColumnDefinitions="*,1,*"
                   Grid.Row="1" WidthRequest="500" Margin="0,20" BackgroundColor="Orange">
                 <Label VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="Transparent" HorizontalTextAlignment="Center"
-                       VerticalTextAlignment="Center" TextColor="White" Grid.Column="0">
+                       VerticalTextAlignment="Center" TextColor="White" Grid.Column="0" FontSize="20">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="Bàn "/>
                             <Span Text="115"/>
                         </FormattedString>
                     </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Label.GestureRecognizers>
                 </Label>
                 <BoxView VerticalOptions="Center" Grid.Column="1" Color="White" Margin="0,15" CornerRadius="1"/>
                 <Button Text="^_^" Style="{StaticResource ButtonStyle}" Grid.Column="2"/>

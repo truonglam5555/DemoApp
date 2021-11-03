@@ -6,6 +6,9 @@ namespace DemoApp
 {
     public partial class App : Application
     {
+        public static int ScreenHeight;
+        public static int ScreenWidth;
+
         public App()
         {
             InitializeComponent();

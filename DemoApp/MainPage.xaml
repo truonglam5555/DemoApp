@@ -2,13 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:markupextension="clr-namespace:DemoApp.Common.MarkupExtension" 
              xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit" xmlns:demoapp="clr-namespace:DemoApp"
-             x:Class="DemoApp.MainPage" x:Name="currentPage">
+             x:Class="DemoApp.MainPage" x:Name="currentPage" BackgroundColor="Black">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Button" x:Key="ButtonStyle">
-                <Setter Property="BackgroundColor" Value="Orange"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="TextTransform" Value="None"/>
-                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontSize" Value="20"/>
                 <Setter Property="TextColor" Value="White"/>
             </Style>
 
@@ -19,6 +19,15 @@
 
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <Grid ColumnDefinitions="350,*" ColumnSpacing="5" Margin="0,0,0,0"
+          BackgroundColor="White" HorizontalOptions="Fill" VerticalOptions="Fill">
+        <Grid RowDefinitions="Auto,*" RowSpacing="0" BackgroundColor="Blue">
+            <Image Source="{markupextension:EmbeddedImageResource thuonghieugogihouse.png}" HeightRequest="240"
+                   HorizontalOptions="Fill" VerticalOptions="Start" BackgroundColor="Black"/>
+            <ScrollView Grid.Column="0" x:Name="controlScroll" VerticalOptions="Fill" BackgroundColor="Blue" Grid.Row="1">
+                 <StackLayout VerticalOptions="Fill">
+
 
     <ContentPage.Content>
         <Grid ColumnDefinitions="350,*" ColumnSpacing="10"
@@ -49,28 +58,33 @@
                 <StackLayout HorizontalOptions="Fill" BackgroundColor="Black" HeightRequest="80" Padding="20">
                     <Frame HorizontalOptions="Start" VerticalOptions="Center" Padding="20,10"
                        BackgroundColor="Aqua" CornerRadius="10">
-                        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-                            <BoxView HeightRequest="50" WidthRequest="50" CornerRadius="25" Color="Yellow"/>
-                            <Label Text="Nhan vien abcef" VerticalOptions="Center"/>
-                        </StackLayout>
-                    </Frame>
-                </StackLayout>
-                <CollectionView BackgroundColor="Aqua" Grid.Row="1">
 
-                </CollectionView>
-                <Grid VerticalOptions="End" ColumnSpacing="0" HorizontalOptions="End" 
-                  Grid.Row="1" WidthRequest="400" Margin="0,20">
-                    <Label VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="Orange" HorizontalTextAlignment="Center"
-                       VerticalTextAlignment="Center" TextColor="White" Grid.Column="0">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Bàn "/>
-                                <Span Text="115"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Button Text="^_^" Style="{StaticResource ButtonStyle}" Grid.Column="1"/>
-                </Grid>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <BoxView HeightRequest="50" WidthRequest="50" CornerRadius="25" Color="Yellow"/>
+                        <Label Text="Nhan vien abcef" VerticalOptions="Center"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+            <CollectionView BackgroundColor="Aqua" Grid.Row="1" ItemsLayout="VerticalGrid, 2">
+                
+            </CollectionView>
+            <Grid VerticalOptions="End" ColumnSpacing="0" HorizontalOptions="End" ColumnDefinitions="*,1,*"
+                  Grid.Row="1" WidthRequest="500" Margin="0,20" BackgroundColor="Orange">
+                <Label VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="Transparent" HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center" TextColor="White" Grid.Column="0" FontSize="20">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Bàn "/>
+                            <Span Text="115"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <BoxView VerticalOptions="Center" Grid.Column="1" Color="White" Margin="0,15" CornerRadius="1"/>
+                <Button Text="^_^" Style="{StaticResource ButtonStyle}" Grid.Column="2"/>
+
             </Grid>
         </Grid>
     </ContentPage.Content>

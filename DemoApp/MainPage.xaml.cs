@@ -20,6 +20,12 @@ namespace DemoApp
             vm = new VMMain();
             this.BindingContext = vm;
         }
+
+        async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
+        {
+            var popupOrder = new Views.Popup.OderPage();
+            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popupOrder);
+        }
     }
 
     public class VMMain : ObservableObject

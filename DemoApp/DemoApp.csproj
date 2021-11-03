@@ -9,26 +9,6 @@
     <DebugType>portable</DebugType>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.14" />
-    <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="1.3.0" />
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.3.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Resources\" />
-    <None Remove="Resources\Images\" />
-    <None Remove="Common\" />
-    <None Remove="Common\MarkupExtension\" />
-    <None Remove="Resources\Images\thuonghieugogihouse.png" />
-    <None Remove="Rg.Plugins.Popup" />
-    <None Remove="Popup\" />
-    <None Remove="Views\Popup\" />
-    <None Remove="Xamarin.CommunityToolkit.Markup" />
-    <None Remove="Xamarin.CommunityToolkit" />
-  </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
     <Folder Include="Resources\Images\" />
@@ -39,5 +19,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Images\thuonghieugogihouse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.14" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.3.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="1.3.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
   </ItemGroup>
 </Project>

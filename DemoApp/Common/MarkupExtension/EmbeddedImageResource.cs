@@ -17,7 +17,7 @@ namespace DemoApp.Common.MarkupExtension
         {
             if (SourceImage == null)
                 return null;
-            SourceImage = "Vitaorga.Resources.Images." + SourceImage;
+            SourceImage = "DemoApp.Resources.Images." + SourceImage;
             // Do your translation lookup here, using whatever method you require
             var imageSource = ImageSource.FromResource(SourceImage, typeof(EmbeddedImageResource).GetTypeInfo().Assembly);
 
@@ -29,7 +29,7 @@ namespace DemoApp.Common.MarkupExtension
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var Source = "Vitaorga.Resources.Images." + value.ToString();
+            var Source = "DemoApp.Resources.Images." + value.ToString();
             return ImageSource.FromResource(Source, typeof(EmbeddedImageResource).GetTypeInfo().Assembly);
         }
 

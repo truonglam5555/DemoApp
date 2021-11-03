@@ -1,6 +1,7 @@
 DemoApp/DemoApp/obj
-DemoApp//DemoApp/bin
+DemoApp/DemoApp/bin
 DemoApp/DemoApp.iOS/obj
-DemoApp//DemoApp.iOS/bin
+DemoApp/DemoApp.iOS/bin
 DemoApp/DemoApp.Anroid/obj
-DemoApp//DemoApp.Android/bin
+DemoApp/DemoApp.Android/bin
+.vs/DemoApp/v16/.suo

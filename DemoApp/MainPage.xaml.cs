@@ -23,16 +23,19 @@ namespace DemoApp
             await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popupOrder);
         }
 
-        private void CollectionView_Scrolled(object sender, ItemsViewScrolledEventArgs e)
-        {
-            Debug.WriteLine(e.FirstVisibleItemIndex);
-            Debug.WriteLine(e.LastVisibleItemIndex);
-            Debug.WriteLine("------------------");
-        }
+
+
 
         private void Action(MonAnChiTiet item)
         {
-            cvMonAn.ScrollTo(item, null, ScrollToPosition.Start, false);
+		cvMonAn.ScrollTo(item, null, ScrollToPosition.Start, false);
+		}
+
+        void CollectionView_Scrolled(System.Object sender, Xamarin.Forms.ItemsViewScrolledEventArgs e)
+        {
+            var item = vm.MMonAn[e.LastVisibleItemIndex];
+            vm.ScrollChangedSelect(item.IDGroup);
+
         }
     }
 }

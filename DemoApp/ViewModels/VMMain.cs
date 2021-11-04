@@ -29,7 +29,7 @@ namespace DemoApp.ViewModels
         #endregion
 
         #region Acts
-        private void DetailAct(Detail obj)
+        public void DetailAct(Detail obj)
         {
             foreach (var header in MMain)
             {
@@ -39,6 +39,7 @@ namespace DemoApp.ViewModels
                     item.BgItem = Color.Transparent;
                 }
             }
+
             obj.isSelected = true;
             obj.BgItem = Color.LightGoldenrodYellow;
             var selectedItem = MonAnList.Where(x => x.IDGroup.Equals(obj.ID)).FirstOrDefault();
@@ -249,6 +250,30 @@ namespace DemoApp.ViewModels
             //        IDGroup = "003"
             //    },
             //}));
+        }
+
+        public void ScrollChangedSelect(string ID)
+        {
+            foreach (var header in MMain)
+            {
+                foreach (var item in header.Details)
+                {
+                    item.isSelected = false;
+                    item.BgItem = Color.Transparent;
+                }
+            }
+
+            foreach (var header in MMain)
+            {
+                foreach (var item in header.Details)
+                {
+                    if (item.ID == ID)
+                    {
+                        item.isSelected = true;
+                        item.BgItem = Color.LightGoldenrodYellow;
+                    }
+                }
+            }
         }
         #endregion
     }

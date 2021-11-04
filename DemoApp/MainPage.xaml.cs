@@ -34,7 +34,7 @@ namespace DemoApp
                     Label label = new Label
                     {
                         Text = Title.detail,
-                        Padding = new Thickness(20,10),
+                        Padding = new Thickness(20,50),
                         BackgroundColor = Color.White,
                     };
                     ele.Add(label);

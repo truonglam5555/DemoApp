@@ -57,15 +57,16 @@ namespace DemoApp.ViewModels
         {
             var buffet = new MMain();
             buffet.Name = "BUFFET";
-            buffet.Details.Add(new Detail { detail = "BF. Thịt bò", ID = "001" });
-            buffet.Details.Add(new Detail { detail = "BF. Thịt heo", ID = "002" });
-            buffet.Details.Add(new Detail { detail = "BF. Salad", ID = "003" });
             buffet.Details.Add(new Detail { detail = "BF. Cơm", ID = "004" });
             buffet.Details.Add(new Detail { detail = "BF. Món truyền thông", ID = "005" });
             buffet.Details.Add(new Detail { detail = "BF. Canh", ID = "006" });
             buffet.Details.Add(new Detail { detail = "BF. Lẩu", ID = "007" });
             buffet.Details.Add(new Detail { detail = "BF. Rau mì", ID = "008" });
             buffet.Details.Add(new Detail { detail = "BF. Tráng miệng", ID = "009" });
+
+            buffet.Details.Add(new Detail { detail = "BF. Thịt bò", ID = "001" });
+            buffet.Details.Add(new Detail { detail = "BF. Thịt heo", ID = "002" });
+            buffet.Details.Add(new Detail { detail = "BF. Salad", ID = "003" });
 
             var alacarte = new MMain();
             alacarte.Name = "ALACARTE";

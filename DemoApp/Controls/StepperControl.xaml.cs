@@ -19,7 +19,10 @@ namespace DemoApp.Controls
             Color.FromHex("#27AE60"), BindingMode.TwoWay); 
 
         public static readonly BindableProperty TextColorValueProperty = BindableProperty.Create(nameof(TextColorValue), typeof(Color), typeof(StepperControl),
-            Color.FromHex("#4F4F4F"), BindingMode.TwoWay); 
+            Color.FromHex("#4F4F4F"), BindingMode.TwoWay);  
+
+        public static readonly BindableProperty FontSizeValueProperty = BindableProperty.Create(nameof(FontSizeValue), typeof(double), typeof(StepperControl),
+            14, BindingMode.TwoWay); 
 
         public event EventHandler<EvenStepper> TapEvent;
 
@@ -69,6 +72,11 @@ namespace DemoApp.Controls
         {
             get => (Color)GetValue(TextColorValueProperty);
             set => SetValue(TextColorValueProperty, value);
+        }
+        public double FontSizeValue
+        {
+            get => (double)GetValue(TextColorValueProperty);
+            set => SetValue(FontSizeValueProperty, value);
         }
 
         public class EvenStepper : EventArgs
@@ -130,6 +138,11 @@ namespace DemoApp.Controls
             if(propertyName == nameof(TextColorValue))
             {
                 txtValue.TextColor = TextColorValue;
+            }
+
+            if(propertyName == nameof(FontSizeValue))
+            {
+                txtValue.FontSize = FontSizeValue;
             }
 
             if (propertyName == nameof(Value))

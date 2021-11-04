@@ -1,24 +1,27 @@
 ﻿using DemoApp.Models;
+using System;
 using System.Collections.ObjectModel;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace DemoApp.ViewModels
 {
     public class VMMain : ObservableObject
     {
+        public Action<MonAnChiTiet> Action;
         public VMMain()
         {
             _mMain = new ObservableCollection<MMain>();
-            _monAn = new ObservableCollection<MonAn>();
+            _monAnList = new ObservableCollection<MonAnChiTiet>();
             GhostData();
         }
 
         #region Props
         private ObservableCollection<MMain> _mMain;
         public ObservableCollection<MMain> MMain { get => _mMain; set { SetProperty(ref _mMain, value); } }
-        private ObservableCollection<MonAn> _monAn;
-        public ObservableCollection<MonAn> MMonAn { get => _monAn; set { SetProperty(ref _monAn, value); } }
+        private ObservableCollection<MonAnChiTiet> _monAnList;
+        public ObservableCollection<MonAnChiTiet> MonAnList { get => _monAnList; set { SetProperty(ref _monAnList, value); } }
         #endregion
 
         #region Cmds
@@ -38,6 +41,8 @@ namespace DemoApp.ViewModels
             }
             obj.isSelected = true;
             obj.BgItem = Color.LightGoldenrodYellow;
+            var selectedItem = MonAnList.Where(x => x.IDGroup.Equals(obj.ID)).FirstOrDefault();
+            Action.Invoke(selectedItem);
         }
         #endregion
 
@@ -65,13 +70,185 @@ namespace DemoApp.ViewModels
             _mMain.Add(buffet);
             _mMain.Add(alacarte);
 
-            var thitbo = new MonAn { Tittle = "Thịt bò", Price = "109.000", IDGroup = "001" }; _monAn.Add(thitbo); _monAn.Add(thitbo); _monAn.Add(thitbo); _monAn.Add(thitbo);
-            var thitheo = new MonAn { Tittle = "Thịt heo", Price = "109.000", IDGroup = "002" }; _monAn.Add(thitheo); _monAn.Add(thitheo); _monAn.Add(thitheo); _monAn.Add(thitheo);
-            var Salad = new MonAn { Tittle = "Salad", Price = "109.000", IDGroup = "003" }; _monAn.Add(Salad); _monAn.Add(Salad); _monAn.Add(Salad); _monAn.Add(Salad);
-
             DetailCmd = new Command<Detail>(DetailAct);
 
-
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Thịt bò 1",
+                Price = "109",
+                IDGroup = "001"
+            });
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Thịt bò 2",
+                Price = "109",
+                IDGroup = "001"
+            });
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Thịt bò 3",
+                Price = "109",
+                IDGroup = "001"
+            });
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Thịt bò 4",
+                Price = "109",
+                IDGroup = "001"
+            });
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Thịt bò 5",
+                Price = "109",
+                IDGroup = "001"
+            });
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Thịt heo 1",
+                Price = "109",
+                IDGroup = "002"
+            });
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Thịt heo 2",
+                Price = "109",
+                IDGroup = "002"
+            });
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Thịt heo 3",
+                Price = "109",
+                IDGroup = "002"
+            });
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Thịt heo 4",
+                Price = "109",
+                IDGroup = "002"
+            });
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Thịt heo 5",
+                Price = "109",
+                IDGroup = "002"
+            });
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Salad 1",
+                Price = "109",
+                IDGroup = "003"
+            });
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Salad 2",
+                Price = "109",
+                IDGroup = "003"
+            });
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Salad 3",
+                Price = "109",
+                IDGroup = "003"
+            });
+            MonAnList.Add(new MonAnChiTiet
+            {
+                Tittle = "Salad 4",
+                Price = "109",
+                IDGroup = "003"
+            });
+            //MonAnList.Add(new MonAnGroup("Thịt bò", new List<MonAnChiTiet>
+            //{
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Thịt bò 1",            
+            //        Price = "109",               
+            //        IDGroup = "001"
+            //    },
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Thịt bò 2",            
+            //        Price = "109",               
+            //        IDGroup = "001"
+            //    },
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Thịt bò 3",            
+            //        Price = "109",               
+            //        IDGroup = "001"
+            //    },
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Thịt bò 4",            
+            //        Price = "109",               
+            //        IDGroup = "001"
+            //    },
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Thịt bò 5",            
+            //        Price = "109",               
+            //        IDGroup = "001"
+            //    },
+            //}));
+            //MonAnList.Add(new MonAnGroup("Thịt heo", new List<MonAnChiTiet>
+            //{
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Thịt heo 1",            
+            //        Price = "109",               
+            //        IDGroup = "002"
+            //    },
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Thịt heo 2",            
+            //        Price = "109",               
+            //        IDGroup = "002"
+            //    },
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Thịt heo 3",            
+            //        Price = "109",               
+            //        IDGroup = "002"
+            //    },
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Thịt heo 4",            
+            //        Price = "109",               
+            //        IDGroup = "002"
+            //    },
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Thịt heo 5",            
+            //        Price = "109",               
+            //        IDGroup = "002"
+            //    },
+            //}));
+            //MonAnList.Add(new MonAnGroup("Salad", new List<MonAnChiTiet>
+            //{
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Salad 1",            
+            //        Price = "109",               
+            //        IDGroup = "003"
+            //    },
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Salad 2",            
+            //        Price = "109",               
+            //        IDGroup = "003"
+            //    },
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Salad 3",            
+            //        Price = "109",               
+            //        IDGroup = "003"
+            //    },
+            //    new MonAnChiTiet
+            //    {              
+            //        Tittle = "Salad 4",            
+            //        Price = "109",               
+            //        IDGroup = "003"
+            //    },
+            //}));
         }
         #endregion
     }

@@ -19,13 +19,15 @@
             </DataTemplate>
 
             <DataTemplate x:Key="collection">
-                <Grid BackgroundColor="AliceBlue">
-                    <Image Source="{Binding HinhMonAn}" Aspect="AspectFit" HorizontalOptions="Fill" HeightRequest="500"/>
-                    <StackLayout Grid.Column="1">
-                        <Label Text="{Binding Tittle}"/>
-                        <Label Text="{Binding Price}"/>
-                    </StackLayout>
-                </Grid>
+                <StackLayout Padding="5" VerticalOptions="Fill" HorizontalOptions="Fill">
+                    <Grid BackgroundColor="Gray" >
+                        <Image Grid.Column="0" Source="{Binding HinhMonAn}" Aspect="AspectFit" HorizontalOptions="Fill" HeightRequest="400"/>
+                        <StackLayout Grid.Column="1">
+                            <Label Text="{Binding Tittle}"/>
+                            <Label Text="{Binding Price}"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
             </DataTemplate>
 
         </ResourceDictionary>
@@ -56,6 +58,7 @@
             </Grid>
 
             <Grid Grid.Column="1" RowDefinitions="Auto,*" RowSpacing="0">
+                
                 <StackLayout HorizontalOptions="Fill" BackgroundColor="Black" HeightRequest="80" Padding="20">
                     <Frame HorizontalOptions="Start" VerticalOptions="Center" Padding="20,10"
                        BackgroundColor="Aqua" CornerRadius="10">
@@ -66,8 +69,9 @@
                         </StackLayout>
                     </Frame>
                 </StackLayout>
-                <CollectionView BackgroundColor="Aqua" Grid.Row="1" ItemsLayout="VerticalGrid, 2" ItemTemplate="{StaticResource collection}" ItemsSource="{Binding MMonAn}" 
-                                RemainingItemsThresholdReached="CollectionView_RemainingItemsThresholdReached" RemainingItemsThreshold="1"/>
+                
+                <CollectionView x:Name="cvMonAn" BackgroundColor="Aqua" Grid.Row="1" ItemsLayout="VerticalGrid, 2" IsGrouped="False" ItemTemplate="{StaticResource collection}" ItemsSource="{Binding MonAnList}"
+                                Scrolled="CollectionView_Scrolled"/>
                 <Grid VerticalOptions="End" ColumnSpacing="0" HorizontalOptions="End" ColumnDefinitions="*,1,*"
                   Grid.Row="1" WidthRequest="500" Margin="0,20" BackgroundColor="Orange">
                     <Label VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="Transparent" HorizontalTextAlignment="Center"

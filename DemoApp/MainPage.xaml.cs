@@ -3,6 +3,8 @@ using Xamarin.Forms;
 using System.Linq;
 using Xamarin.CommunityToolkit.UI.Views;
 using System.Collections.Generic;
+using DemoApp.Models;
+using System.Threading.Tasks;
 
 namespace DemoApp
 {
@@ -31,22 +33,25 @@ namespace DemoApp
                 {
                     Label label = new Label
                     {
-                        Text = header.Name,
+                        Text = Title.detail,
                         Padding = new Thickness(20,10),
                         BackgroundColor = Color.White,
-                        BindingContext = Title
                     };
+                    ele.Add(label);
                     label.BindingContext = Title;
                     label.SetBinding(Label.BackgroundColorProperty, nameof(Title.BgItem));
                     var tapGestureRecognizer = new TapGestureRecognizer();
-                    tapGestureRecognizer.Tapped += (s,e) =>
+                    tapGestureRecognizer.Tapped += (s, e) =>
                     {
                         var item = (s as Label).BindingContext as Models.Detail;
-                        vm.DetailAct(item);
+                        Device.BeginInvokeOnMainThread(() => {
+                            var selectedItem = vm.MonAnList.Where(x => x.IDGroup.Equals(item.ID)).FirstOrDefault();
+                            Action(selectedItem);
+                            vm.ScrollChangedSelect(item.ID);
+                        });
                     };
                     label.GestureRecognizers.Add(tapGestureRecognizer);
                     content.Children.Add(label);
-                    ele.Add(label);
                 }
                 expander.Content = content;
                 NameMenu.Children.Add(expander);
@@ -65,13 +70,28 @@ namespace DemoApp
             await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popupOrder);
         }
 
-        void CollectionView_Scrolled(System.Object sender, Xamarin.Forms.ItemsViewScrolledEventArgs e)
+        private void Action(MonAnChiTiet item)
         {
-            var item = vm.MMonAn[e.LastVisibleItemIndex];
-            var rs = vm.ScrollChangedSelect(item.IDGroup);
-            if(rs != null)
+            cvMonAn.ScrollTo(item, null, ScrollToPosition.Start, false);
+        }
+
+        async void CollectionView_Scrolled(System.Object sender, Xamarin.Forms.ItemsViewScrolledEventArgs e)
+        {
+            var item = vm.MonAnList[e.LastVisibleItemIndex];
+            vm.ScrollChangedSelect(item.IDGroup);
+            if(menuItems != null)
             {
-                //await controlScroll.ScrollToAsync(VisualElement, ScrollToPosition.MakeVisible, false);
+                foreach (var itemM in menuItems)
+                {
+                    foreach (Label ci in itemM.Menu)
+                    {
+                        if ((ci.BindingContext as Detail).ID == item.IDGroup)
+                        {
+                            (itemM.ExpandItem as Expander).IsExpanded = true;
+                            await controlScroll.ScrollToAsync(ci, ScrollToPosition.MakeVisible, true);
+                        }
+                    }
+                }
             }
         }
     }

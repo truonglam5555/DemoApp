@@ -65,7 +65,7 @@
                         </StackLayout>
                     </Frame>
                 </StackLayout>
-                <CollectionView BackgroundColor="Aqua" Grid.Row="1" ItemsLayout="VerticalGrid, 2" ItemTemplate="{StaticResource collection}" ItemsSource="{Binding MMonAn}" 
+                <CollectionView x:Name="cvMonAn" BackgroundColor="Aqua" Grid.Row="1" ItemsLayout="VerticalGrid, 2" ItemTemplate="{StaticResource collection}" ItemsSource="{Binding MonAnList}" 
                                 Scrolled="CollectionView_Scrolled" />
                 <Grid VerticalOptions="End" ColumnSpacing="0" HorizontalOptions="End" ColumnDefinitions="*,1,*"
                   Grid.Row="1" WidthRequest="500" Margin="0,20" BackgroundColor="Orange">

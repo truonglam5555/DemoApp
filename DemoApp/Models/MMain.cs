@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using SQLite;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
@@ -26,12 +27,25 @@ namespace DemoApp.Models
     {
         public string ID { get; set; }
         public string IDGroup { get; set; }
-        public ImageSource HinhMonAn { get; set; }
+        public string HinhMonAn { get; set; }
         public string Price { get; set; }
         public string Tittle { get; set; }
     }
-    public class OrderList : MonAnChiTiet
+
+    public class MMonDat
     {
+        [PrimaryKey, AutoIncrement]
+        public long PK { get; set; }
+        public string ID { get; set; }
+        public string IDGroup { get; set; }
+        public string HinhMonAn { get; set; }
+        public string Price { get; set; }
+        public string Tittle { get; set; }
         public int SoLuong { get; set; }
+        public bool isOrder { get; set; }
+        public MMonDat()
+        {
+            isOrder = false;
+        }
     }
 }

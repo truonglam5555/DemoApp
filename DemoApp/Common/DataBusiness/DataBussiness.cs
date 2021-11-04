@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using DemoApp.Common.Bussiness;
+using DemoApp.Models;
 using SQLite;
-using Vitaorga.Models.Card;
 
 namespace Vitaorga.Common.Bussiness
 {
@@ -16,7 +17,7 @@ namespace Vitaorga.Common.Bussiness
 
         public void CreatTables()
         {
-            localDB.Database.CreateTable<MCard>();
+            localDB.Database.CreateTable<MMonDat>();
         }
 
         public Object GetLastRow<T>()
@@ -45,30 +46,30 @@ namespace Vitaorga.Common.Bussiness
             return default(T);
         }
 
-        public List<MCard> GetAllRowCard()
+        public List<MMonDat> GetAllRowMonDat()
         {
-            if (localDB.TableExist(typeof(MCard).Name))
+            if (localDB.TableExist(typeof(MMonDat).Name))
             {
                 try
                 {
-                    string query = string.Format("SELECT * FROM '{0}' ;", typeof(MCard).Name);
+                    string query = string.Format("SELECT * FROM '{0}' ;", typeof(MMonDat).Name);
                     SQLiteCommand cmd = localDB.Database.CreateCommand(query);
-                    var item = localDB.Database.Query<MCard>(query);
+                    var item = localDB.Database.Query<MMonDat>(query);
                     if (item.Count > 0)
                     {
                         return item;
                     }
                     else
                     {
-                        return new List<MCard>();
+                        return new List<MMonDat>();
                     }
                 }
                 catch
                 {
-                    return new List<MCard>();
+                    return new List<MMonDat>();
                 }
             }
-            return new List<MCard>();
+            return new List<MMonDat>();
         }
 
         /// <summary>

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 using System.Linq;
+using Vitaorga.Common.Bussiness;
 
 namespace DemoApp.ViewModels
 {
@@ -14,8 +15,9 @@ namespace DemoApp.ViewModels
         {
             _mMain = new ObservableCollection<MMain>();
             _monAnList = new ObservableCollection<MonAnChiTiet>();
-            OrderedList = new ObservableCollection<OrderList>();
-            OrderingList = new ObservableCollection<OrderList>();
+            //OrderedList = new ObservableCollection<OrderList>();
+            //OrderingList = new ObservableCollection<OrderList>();
+            ThemMonGoiCmd = new Command<MonAnChiTiet>(ThemVaoMonDangGoi);
             GhostData();
         }
 
@@ -25,30 +27,55 @@ namespace DemoApp.ViewModels
         private ObservableCollection<MonAnChiTiet> _monAnList;
         public ObservableCollection<MonAnChiTiet> MonAnList { get => _monAnList; set { SetProperty(ref _monAnList, value); } }
 
-        public ObservableCollection<OrderList> OrderedList;
-        public ObservableCollection<OrderList> OrderingList;
+        //public ObservableCollection<OrderList> OrderedList;
+        //public ObservableCollection<OrderList> OrderingList;
         #endregion
 
         #region Cmds
-        public Command DetailCmd { get; set; }
+        public Command ThemMonGoiCmd { get; set; }
         #endregion
 
         #region Acts
-        public void DetailAct(Detail obj)
+        //public void DetailAct(Detail obj)
+        //{
+        //    foreach (var header in MMain)
+        //    {
+        //        foreach (var item in header.Details)
+        //        {
+        //            item.isSelected = false;
+        //            item.BgItem = Color.Transparent;
+        //        }
+        //    }
+
+        //    obj.isSelected = true;
+        //    obj.BgItem = Color.LightGoldenrodYellow;
+        //    var selectedItem = MonAnList.Where(x => x.IDGroup.Equals(obj.ID)).FirstOrDefault();
+        //    Action.Invoke(selectedItem);
+        //}
+
+        void ThemVaoMonDangGoi(MonAnChiTiet monAn)
         {
-            foreach (var header in MMain)
+            if(monAn!= null)
             {
-                foreach (var item in header.Details)
+                if (App.dataBussiness == null)
+                    App.dataBussiness = new DataBussiness();
+                var item = App.dataBussiness.GetAllRowMonDat().Where(x=>x.ID == monAn.ID).FirstOrDefault();
+                if(item == null)
                 {
-                    item.isSelected = false;
-                    item.BgItem = Color.Transparent;
+                    App.dataBussiness.AddRow(new MMonDat
+                    {
+                        ID = monAn.ID,
+                        IDGroup = monAn.IDGroup,
+                        Tittle = monAn.Tittle,
+                        SoLuong = 1,
+                    });
+                }
+                else
+                {
+                    item.SoLuong = item.SoLuong++;
+                    App.dataBussiness.UpdateRow(item);
                 }
             }
-
-            obj.isSelected = true;
-            obj.BgItem = Color.LightGoldenrodYellow;
-            var selectedItem = MonAnList.Where(x => x.IDGroup.Equals(obj.ID)).FirstOrDefault();
-            Action.Invoke(selectedItem);
         }
         #endregion
 
@@ -77,7 +104,7 @@ namespace DemoApp.ViewModels
             _mMain.Add(buffet);
             _mMain.Add(alacarte);
 
-            DetailCmd = new Command<Detail>(DetailAct);
+            //DetailCmd = new Command<Detail>(DetailAct);
 
             MonAnList.Add(new MonAnChiTiet
             {
@@ -164,34 +191,7 @@ namespace DemoApp.ViewModels
                 IDGroup = "003"
             });
 
-            OrderedList.Add(new OrderList
-            {
-                Tittle = "Thịt bò 5",
-                Price = "109",
-                IDGroup = "001",
-                SoLuong = 5
-            }); 
-            OrderedList.Add(new OrderList
-            {
-                Tittle = "Thịt heo 3",
-                Price = "109",
-                IDGroup = "002",
-                SoLuong = 5
-            });
-            OrderingList.Add(new OrderList
-            {
-                Tittle = "Thịt bò 4",
-                Price = "109",
-                IDGroup = "001",
-                SoLuong = 5
-            }); 
-            OrderingList.Add(new OrderList
-            {
-                Tittle = "Salad 3",
-                Price = "109",
-                IDGroup = "003",
-                SoLuong = 5
-            });
+            
 
             //MonAnList.Add(new MonAnGroup("Thịt bò", new List<MonAnChiTiet>
             //{

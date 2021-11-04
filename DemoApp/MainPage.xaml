@@ -12,18 +12,25 @@
                 <Setter Property="TextColor" Value="White"/>
             </Style>
 
-            <DataTemplate x:Key="detail">
+            <!--<DataTemplate x:Key="detail">
                 <Label Text="{Binding detail}" FontAttributes="Italic" Padding="20,10" BackgroundColor="{Binding BgItem}"
                            behaviors:TouchEffect.Command="{Binding BindingContext.DetailCmd,Source={Reference currentPage}}" behaviors:TouchEffect.CommandParameter="{Binding .}"/>
-            </DataTemplate>
+            </DataTemplate>-->
 
             <DataTemplate x:Key="collection">
-                <Grid BackgroundColor="AliceBlue">
-                    <Image Source="{Binding HinhMonAn}" Aspect="AspectFit" HorizontalOptions="Fill" HeightRequest="500"/>
-                    <StackLayout Grid.Column="1">
-                        <Label Text="{Binding Tittle}"/>
-                        <Label Text="{Binding Price}"/>
+                <Grid BackgroundColor="Black">
+                    <!--<Image Source="{Binding HinhMonAn}" Aspect="AspectFit" HorizontalOptions="Fill" HeightRequest="300"/>-->
+                    <StackLayout HeightRequest="300" HorizontalOptions="Fill" VerticalOptions="Start">
+                        <Label TextColor="White" FontSize="20" Text="Chua Co Hinh" FontAttributes="Bold" VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
                     </StackLayout>
+                    <StackLayout Grid.Column="1">
+                        <Label Text="{Binding Tittle}" TextColor="White"/>
+                        <Label Text="{Binding Price}" TextColor="White"/>
+                    </StackLayout>
+                    <Button Text="+" HeightRequest="50" WidthRequest="50" VerticalOptions="End" HorizontalOptions="End" Grid.Column="1" Margin="20"
+                            CornerRadius="25" BackgroundColor="#eaeaea" TextColor="White" Command="{Binding Source={Reference currentPage},Path=BindingContext.ThemMonGoiCmd}"
+                            CommandParameter="{Binding .}"/>
                 </Grid>
             </DataTemplate>
 
@@ -57,16 +64,19 @@
             <Grid Grid.Column="1" RowDefinitions="Auto,*" RowSpacing="0">
                 <StackLayout HorizontalOptions="Fill" BackgroundColor="Black" HeightRequest="80" Padding="20">
                     <Frame HorizontalOptions="Start" VerticalOptions="Center" Padding="20,10"
-                       BackgroundColor="Aqua" CornerRadius="10">
-
+                       BackgroundColor="#eaeaea" CornerRadius="10">
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                             <BoxView HeightRequest="50" WidthRequest="50" CornerRadius="25" Color="Yellow"/>
                             <Label Text="Nhan vien abcef" VerticalOptions="Center"/>
                         </StackLayout>
                     </Frame>
                 </StackLayout>
-                <CollectionView x:Name="cvMonAn" BackgroundColor="Aqua" Grid.Row="1" ItemsLayout="VerticalGrid, 2" ItemTemplate="{StaticResource collection}" ItemsSource="{Binding MonAnList}" 
-                                Scrolled="CollectionView_Scrolled" />
+                <CollectionView x:Name="cvMonAn" BackgroundColor="White" Grid.Row="1"  ItemTemplate="{StaticResource collection}" ItemsSource="{Binding MonAnList}" 
+                                Scrolled="CollectionView_Scrolled" >
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="5" VerticalItemSpacing="5"/>
+                    </CollectionView.ItemsLayout>
+                </CollectionView>
                 <Grid VerticalOptions="End" ColumnSpacing="0" HorizontalOptions="End" ColumnDefinitions="*,1,*"
                   Grid.Row="1" WidthRequest="500" Margin="0,20" BackgroundColor="Orange">
                     <Label VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="Transparent" HorizontalTextAlignment="Center"

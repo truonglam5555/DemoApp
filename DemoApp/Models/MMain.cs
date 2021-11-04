@@ -22,12 +22,21 @@ namespace DemoApp.Models
 
         private Color _bgItem = Color.Transparent;
     }
-    public class MonAn: ObservableObject
+    public class MonAnChiTiet: ObservableObject
     {
         public string ID { get; set; }
         public string IDGroup { get; set; }
         public ImageSource HinhMonAn { get; set; }
         public string Price { get; set; }
         public string Tittle { get; set; }
+    }
+    public class MonAnGroup : List<MonAnChiTiet>
+    {
+        public string Name { get; private set; }
+
+        public MonAnGroup(string name, List<MonAnChiTiet> monAn) : base(monAn)
+        {
+            Name = name;
+        }
     }
 }

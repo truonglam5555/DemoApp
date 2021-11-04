@@ -17,6 +17,19 @@
                 </Label>
             </DataTemplate>
 
+            <DataTemplate x:Key="collection">
+                <Grid BackgroundColor="AliceBlue">
+                    
+                    <Image Source="{Binding HinhMonAn}" Aspect="AspectFit" HorizontalOptions="Fill" HeightRequest="100"  >
+
+                    </Image>
+                    <StackLayout Grid.Column="1">
+                        <Label Text="{Binding Tittle}"/>
+                        <Label Text="{Binding Price}"/>
+                    </StackLayout>
+                </Grid>
+            </DataTemplate>
+
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -55,7 +68,7 @@
                         </StackLayout>
                     </Frame>
                 </StackLayout>
-                <CollectionView BackgroundColor="Aqua" Grid.Row="1" ItemsLayout="VerticalGrid, 2">
+                <CollectionView BackgroundColor="Aqua" Grid.Row="1" ItemsLayout="VerticalGrid, 2" ItemTemplate="{StaticResource collection}" ItemsSource="{Binding MMonAn}">
 
                 </CollectionView>
                 <Grid VerticalOptions="End" ColumnSpacing="0" HorizontalOptions="End" ColumnDefinitions="*,1,*"

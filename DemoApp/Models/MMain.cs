@@ -21,4 +21,10 @@ namespace DemoApp.Models
 
         private Color _bgItem = Color.Transparent;
     }
+    public class MonAn: ObservableObject
+    {
+        public ImageSource HinhMonAn { get; set; }
+        public string Price { get; set; }
+        public string Tittle { get; set; }
+    }
 }

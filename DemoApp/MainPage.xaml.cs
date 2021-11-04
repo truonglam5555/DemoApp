@@ -33,12 +33,15 @@ namespace DemoApp
         public VMMain()
         {
             _mMain = new ObservableCollection<MMain>();
+            _monAn = new ObservableCollection<MonAn>();
             GhostData();
         }
 
         #region Props
         private ObservableCollection<MMain> _mMain;
         public ObservableCollection<MMain> MMain { get => _mMain; set { SetProperty(ref _mMain, value); } }
+        private ObservableCollection<MonAn> _monAn;
+        public ObservableCollection<MonAn> MMonAn { get => _monAn; set { SetProperty(ref _monAn, value); } }
         #endregion
 
         #region Cmds
@@ -82,10 +85,21 @@ namespace DemoApp
             alacarte.Details.Add(new Detail { detail = "ALC. SET" });
             alacarte.Details.Add(new Detail { detail = "ALC. Thịt bò"});
 
+
+            var MonAn = new MonAn { Tittle = "Ba chỉ bò", Price = "109.000" };
+            var MonAn1 = new MonAn { Tittle = "Ba chỉ bò", Price = "109.000" };
+            var MonAn2 = new MonAn { Tittle = "Ba chỉ bò", Price = "109.000" };
+            var MonAn3 = new MonAn { Tittle = "Ba chỉ bò", Price = "109.000" };
             _mMain.Add(buffet);
             _mMain.Add(alacarte);
+            _monAn.Add(MonAn);
+            _monAn.Add(MonAn1);
+            _monAn.Add(MonAn2);
+            _monAn.Add(MonAn3);
 
             DetailCmd = new Command<Detail>(DetailAct);
+
+
         }
         #endregion
     }

@@ -19,9 +19,14 @@ namespace DemoApp
             await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popupOrder);
         }
 
-        private void CollectionView_RemainingItemsThresholdReached(object sender, System.EventArgs e)
+        void CollectionView_Scrolled(System.Object sender, Xamarin.Forms.ItemsViewScrolledEventArgs e)
         {
-
+            var item = vm.MMonAn[e.LastVisibleItemIndex];
+            if(controlsStack != null)
+            {
+                var a = controlsStack.Children;
+                a.ToString();
+            }
         }
     }
 }

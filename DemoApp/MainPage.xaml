@@ -13,9 +13,8 @@
             </Style>
 
             <DataTemplate x:Key="detail">
-                <StackLayout BackgroundColor="{Binding BgItem}" behaviors:TouchEffect.Command="{Binding BindingContext.DetailCmd,Source={Reference currentPage}}" behaviors:TouchEffect.CommandParameter="{Binding .}">
-                    <Label Text="{Binding detail}" FontAttributes="Italic" Margin="20,0"/>
-                </StackLayout>
+                <Label Text="{Binding detail}" FontAttributes="Italic" Padding="20,10" BackgroundColor="{Binding BgItem}"
+                           behaviors:TouchEffect.Command="{Binding BindingContext.DetailCmd,Source={Reference currentPage}}" behaviors:TouchEffect.CommandParameter="{Binding .}"/>
             </DataTemplate>
 
             <DataTemplate x:Key="collection">
@@ -36,12 +35,12 @@
             <Grid RowDefinitions="Auto,*" RowSpacing="0" BackgroundColor="LightGoldenrodYellow">
                 <Image Grid.Row="0" Source="{markupextension:EmbeddedImageResource thuonghieugogihouse.png}" HeightRequest="100" HorizontalOptions="Fill" Aspect="AspectFill"/>
                 <ScrollView Grid.Row="1" x:Name="controlScroll" VerticalOptions="Fill" BackgroundColor="#aeaeae">
-                    <StackLayout VerticalOptions="Fill" BindableLayout.ItemsSource="{Binding MMain}">
+                    <StackLayout VerticalOptions="Fill" BindableLayout.ItemsSource="{Binding MMain}" x:Name="controlsStack">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <behaviors:Expander ExpandAnimationEasing="CubicIn" ExpandAnimationLength="500" CollapseAnimationEasing="CubicOut" CollapseAnimationLength="500" IsExpanded="True">
                                     <behaviors:Expander.Header>
-                                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium"/>
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" Padding="0,10"/>
                                     </behaviors:Expander.Header>
                                     <behaviors:Expander.ContentTemplate>
                                         <DataTemplate>
@@ -67,7 +66,7 @@
                     </Frame>
                 </StackLayout>
                 <CollectionView BackgroundColor="Aqua" Grid.Row="1" ItemsLayout="VerticalGrid, 2" ItemTemplate="{StaticResource collection}" ItemsSource="{Binding MMonAn}" 
-                                RemainingItemsThresholdReached="CollectionView_RemainingItemsThresholdReached" RemainingItemsThreshold="1"/>
+                                Scrolled="CollectionView_Scrolled" />
                 <Grid VerticalOptions="End" ColumnSpacing="0" HorizontalOptions="End" ColumnDefinitions="*,1,*"
                   Grid.Row="1" WidthRequest="500" Margin="0,20" BackgroundColor="Orange">
                     <Label VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="Transparent" HorizontalTextAlignment="Center"

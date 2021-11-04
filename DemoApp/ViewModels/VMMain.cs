@@ -14,6 +14,8 @@ namespace DemoApp.ViewModels
         {
             _mMain = new ObservableCollection<MMain>();
             _monAnList = new ObservableCollection<MonAnChiTiet>();
+            OrderedList = new ObservableCollection<OrderList>();
+            OrderingList = new ObservableCollection<OrderList>();
             GhostData();
         }
 
@@ -22,6 +24,9 @@ namespace DemoApp.ViewModels
         public ObservableCollection<MMain> MMain { get => _mMain; set { SetProperty(ref _mMain, value); } }
         private ObservableCollection<MonAnChiTiet> _monAnList;
         public ObservableCollection<MonAnChiTiet> MonAnList { get => _monAnList; set { SetProperty(ref _monAnList, value); } }
+
+        public ObservableCollection<OrderList> OrderedList;
+        public ObservableCollection<OrderList> OrderingList;
         #endregion
 
         #region Cmds
@@ -157,6 +162,36 @@ namespace DemoApp.ViewModels
                 Price = "109",
                 IDGroup = "003"
             });
+
+            OrderedList.Add(new OrderList
+            {
+                Tittle = "Thịt bò 5",
+                Price = "109",
+                IDGroup = "001",
+                SoLuong = 5
+            }); 
+            OrderedList.Add(new OrderList
+            {
+                Tittle = "Thịt heo 3",
+                Price = "109",
+                IDGroup = "002",
+                SoLuong = 5
+            });
+            OrderingList.Add(new OrderList
+            {
+                Tittle = "Thịt bò 4",
+                Price = "109",
+                IDGroup = "001",
+                SoLuong = 5
+            }); 
+            OrderingList.Add(new OrderList
+            {
+                Tittle = "Salad 3",
+                Price = "109",
+                IDGroup = "003",
+                SoLuong = 5
+            });
+
             //MonAnList.Add(new MonAnGroup("Thịt bò", new List<MonAnChiTiet>
             //{
             //    new MonAnChiTiet

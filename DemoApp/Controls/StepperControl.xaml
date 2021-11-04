@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:font="clr-namespace:DemoApp.Resources.Fonts"
+    xmlns:markkup="clr-namespace:DemoApp.Common.MarkupExtension"
+    x:Class="DemoApp.Controls.StepperControl">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="value">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="TextColor" Value="#4F4F4F"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid HorizontalOptions="Start" ColumnDefinitions="Auto,Auto,Auto" VerticalOptions="Start" ColumnSpacing="10" BackgroundColor="Transparent" RowDefinitions="Auto">
+            <Button x:Name="btnMinus" HeightRequest="30" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#DFF3E7" Text="{markkup:PlatformAwesomeFontFamilyMarkup Icon=Minus,Text='{0}'}"
+                    Padding="0" WidthRequest="30" CornerRadius="15" FontFamily="{x:Static font:FontAssembly.SolidStyle}" TextColor="#27AE60" Clicked="btnDecrease_Clicked" />
+            <Label x:Name="txtValue" Grid.Column="1" Style="{StaticResource value}" Text="0" />
+            <Button x:Name="btnPlus" HeightRequest="30" VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Text="{markkup:PlatformAwesomeFontFamilyMarkup Icon=Plus,Text='{0}'}"
+                    WidthRequest="30" CornerRadius="15" BackgroundColor="#DFF3E7" FontFamily="{x:Static font:FontAssembly.SolidStyle}" TextColor="#27AE60" Clicked="btnIncrease_Clicked"
+                    Grid.Column="2"/>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -30,13 +30,8 @@ namespace DemoApp.Models
         public string Price { get; set; }
         public string Tittle { get; set; }
     }
-    public class MonAnGroup : List<MonAnChiTiet>
+    public class OrderList : MonAnChiTiet
     {
-        public string Name { get; private set; }
-
-        public MonAnGroup(string name, List<MonAnChiTiet> monAn) : base(monAn)
-        {
-            Name = name;
-        }
+        public int SoLuong { get; set; }
     }
 }

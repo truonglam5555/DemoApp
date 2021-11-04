@@ -13,7 +13,8 @@
             </Style>
 
             <DataTemplate x:Key="detail">
-                <StackLayout BackgroundColor="{Binding BgItem}" behaviors:TouchEffect.Command="{Binding BindingContext.DetailCmd,Source={Reference currentPage}}" behaviors:TouchEffect.CommandParameter="{Binding .}">
+                <StackLayout BackgroundColor="{Binding BgItem}" Padding="0,50"
+                             behaviors:TouchEffect.Command="{Binding BindingContext.DetailCmd,Source={Reference currentPage}}" behaviors:TouchEffect.CommandParameter="{Binding .}">
                     <Label Text="{Binding detail}" FontAttributes="Italic" Margin="20,0"/>
                 </StackLayout>
             </DataTemplate>

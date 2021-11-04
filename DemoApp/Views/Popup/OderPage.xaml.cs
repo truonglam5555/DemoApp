@@ -1,4 +1,5 @@
-﻿using DemoApp.Models;
+﻿using DemoApp.Controls;
+using DemoApp.Models;
 using DemoApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,13 @@ namespace DemoApp.Views.Popup
 
         private void StepperControl_TapEvent(object sender, Controls.StepperControl.EvenStepper e)
         {
-
+            var item = (sender as StepperControl).BindingContext as OrderList;
+            item.SoLuong = e.Value;
+            if (item.SoLuong == 0)
+            {
+                //vm.DeleteOrderAction(item);
+            }
+            //App.DataBussiness.UpdateRow(item);
         }
     }
 }

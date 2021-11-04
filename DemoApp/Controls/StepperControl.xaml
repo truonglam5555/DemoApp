@@ -19,7 +19,7 @@
         <Grid HorizontalOptions="Start" ColumnDefinitions="Auto,Auto,Auto" VerticalOptions="Start" ColumnSpacing="10" BackgroundColor="Transparent" RowDefinitions="Auto">
             <Button x:Name="btnMinus" HeightRequest="30" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="#DFF3E7" Text="{markkup:PlatformAwesomeFontFamilyMarkup Icon=Minus,Text='{0}'}"
                     Padding="0" WidthRequest="30" CornerRadius="15" FontFamily="{x:Static font:FontAssembly.SolidStyle}" TextColor="#27AE60" Clicked="btnDecrease_Clicked" />
-            <Label x:Name="txtValue" Grid.Column="1" Style="{StaticResource value}" Text="0" />
+            <Label x:Name="txtValue" Grid.Column="1" Style="{StaticResource value}" Text="0"/>
             <Button x:Name="btnPlus" HeightRequest="30" VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Text="{markkup:PlatformAwesomeFontFamilyMarkup Icon=Plus,Text='{0}'}"
                     WidthRequest="30" CornerRadius="15" BackgroundColor="#DFF3E7" FontFamily="{x:Static font:FontAssembly.SolidStyle}" TextColor="#27AE60" Clicked="btnIncrease_Clicked"
                     Grid.Column="2"/>

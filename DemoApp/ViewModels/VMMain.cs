@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace DemoApp.ViewModels
 {
@@ -20,6 +21,7 @@ namespace DemoApp.ViewModels
         public ObservableCollection<MMain> MMain { get => _mMain; set { SetProperty(ref _mMain, value); } }
         private ObservableCollection<MonAn> _monAn;
         public ObservableCollection<MonAn> MMonAn { get => _monAn; set { SetProperty(ref _monAn, value); } }
+        
         #endregion
 
         #region Cmds
@@ -76,7 +78,7 @@ namespace DemoApp.ViewModels
 
         }
 
-        public void ScrollChangedSelect(string ID)
+        public Detail ScrollChangedSelect(string ID)
         {
             foreach (var header in MMain)
             {
@@ -95,9 +97,11 @@ namespace DemoApp.ViewModels
                     {
                         item.isSelected = true;
                         item.BgItem = Color.LightGoldenrodYellow;
+                        return item;
                     }
                 }
             }
+            return null;
         }
         #endregion
     }

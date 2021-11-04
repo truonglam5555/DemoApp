@@ -13,22 +13,18 @@
             </Style>
 
             <DataTemplate x:Key="detail">
-                <StackLayout BackgroundColor="{Binding BgItem}" Padding="0,50"
-                             behaviors:TouchEffect.Command="{Binding BindingContext.DetailCmd,Source={Reference currentPage}}" behaviors:TouchEffect.CommandParameter="{Binding .}">
-                    <Label Text="{Binding detail}" FontAttributes="Italic" Margin="20,0"/>
-                </StackLayout>
+                <Label Text="{Binding detail}" FontAttributes="Italic" Padding="20,10" BackgroundColor="{Binding BgItem}"
+                           behaviors:TouchEffect.Command="{Binding BindingContext.DetailCmd,Source={Reference currentPage}}" behaviors:TouchEffect.CommandParameter="{Binding .}"/>
             </DataTemplate>
 
             <DataTemplate x:Key="collection">
-                <StackLayout Padding="5" VerticalOptions="Fill" HorizontalOptions="Fill">
-                    <Grid BackgroundColor="Gray" >
-                        <Image Grid.Column="0" Source="{Binding HinhMonAn}" Aspect="AspectFit" HorizontalOptions="Fill" HeightRequest="400"/>
-                        <StackLayout Grid.Column="1">
-                            <Label Text="{Binding Tittle}"/>
-                            <Label Text="{Binding Price}"/>
-                        </StackLayout>
-                    </Grid>
-                </StackLayout>
+                <Grid BackgroundColor="AliceBlue">
+                    <Image Source="{Binding HinhMonAn}" Aspect="AspectFit" HorizontalOptions="Fill" HeightRequest="500"/>
+                    <StackLayout Grid.Column="1">
+                        <Label Text="{Binding Tittle}"/>
+                        <Label Text="{Binding Price}"/>
+                    </StackLayout>
+                </Grid>
             </DataTemplate>
 
         </ResourceDictionary>
@@ -39,12 +35,12 @@
             <Grid RowDefinitions="Auto,*" RowSpacing="0" BackgroundColor="LightGoldenrodYellow">
                 <Image Grid.Row="0" Source="{markupextension:EmbeddedImageResource thuonghieugogihouse.png}" HeightRequest="100" HorizontalOptions="Fill" Aspect="AspectFill"/>
                 <ScrollView Grid.Row="1" x:Name="controlScroll" VerticalOptions="Fill" BackgroundColor="#aeaeae">
-                    <StackLayout VerticalOptions="Fill" BindableLayout.ItemsSource="{Binding MMain}">
-                        <BindableLayout.ItemTemplate>
+                    <StackLayout x:Name="NameMenu" VerticalOptions="Fill" > <!--BindableLayout.ItemsSource="{Binding MMain}"-->
+                        <!--<BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <behaviors:Expander ExpandAnimationEasing="CubicIn" ExpandAnimationLength="500" CollapseAnimationEasing="CubicOut" CollapseAnimationLength="500" IsExpanded="True">
                                     <behaviors:Expander.Header>
-                                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium"/>
+                                        <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Medium" Padding="0,10"/>
                                     </behaviors:Expander.Header>
                                     <behaviors:Expander.ContentTemplate>
                                         <DataTemplate>
@@ -53,13 +49,12 @@
                                     </behaviors:Expander.ContentTemplate>
                                 </behaviors:Expander>
                             </DataTemplate>
-                        </BindableLayout.ItemTemplate>
+                        </BindableLayout.ItemTemplate>-->
                     </StackLayout>
                 </ScrollView>
             </Grid>
 
             <Grid Grid.Column="1" RowDefinitions="Auto,*" RowSpacing="0">
-                
                 <StackLayout HorizontalOptions="Fill" BackgroundColor="Black" HeightRequest="80" Padding="20">
                     <Frame HorizontalOptions="Start" VerticalOptions="Center" Padding="20,10"
                        BackgroundColor="Aqua" CornerRadius="10">
@@ -70,9 +65,8 @@
                         </StackLayout>
                     </Frame>
                 </StackLayout>
-                
-                <CollectionView x:Name="cvMonAn" BackgroundColor="Aqua" Grid.Row="1" ItemsLayout="VerticalGrid, 2" IsGrouped="False" ItemTemplate="{StaticResource collection}" ItemsSource="{Binding MonAnList}"
-                                Scrolled="CollectionView_Scrolled"/>
+                <CollectionView x:Name="cvMonAn" BackgroundColor="Aqua" Grid.Row="1" ItemsLayout="VerticalGrid, 2" ItemTemplate="{StaticResource collection}" ItemsSource="{Binding MonAnList}" 
+                                Scrolled="CollectionView_Scrolled" />
                 <Grid VerticalOptions="End" ColumnSpacing="0" HorizontalOptions="End" ColumnDefinitions="*,1,*"
                   Grid.Row="1" WidthRequest="500" Margin="0,20" BackgroundColor="Orange">
                     <Label VerticalOptions="Fill" HorizontalOptions="Fill" BackgroundColor="Transparent" HorizontalTextAlignment="Center"

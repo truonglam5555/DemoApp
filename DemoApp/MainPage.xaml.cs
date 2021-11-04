@@ -66,7 +66,7 @@ namespace DemoApp
 
         async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
         {
-            var popupOrder = new Views.Popup.OderPage(vm.OrderedList, vm.OrderingList);
+            var popupOrder = new Views.Popup.OderPage();
             await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popupOrder);
         }
 

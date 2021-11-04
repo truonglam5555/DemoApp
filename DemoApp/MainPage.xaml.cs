@@ -22,11 +22,7 @@ namespace DemoApp
         void CollectionView_Scrolled(System.Object sender, Xamarin.Forms.ItemsViewScrolledEventArgs e)
         {
             var item = vm.MMonAn[e.LastVisibleItemIndex];
-            if(controlsStack != null)
-            {
-                var a = controlsStack.Children;
-                a.ToString();
-            }
+            vm.ScrollChangedSelect(item.IDGroup);
         }
     }
 }

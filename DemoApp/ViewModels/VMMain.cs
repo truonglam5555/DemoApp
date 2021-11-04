@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace DemoApp.ViewModels
 {
@@ -26,7 +27,7 @@ namespace DemoApp.ViewModels
         #endregion
 
         #region Acts
-        private void DetailAct(Detail obj)
+        public void DetailAct(Detail obj)
         {
             foreach (var header in MMain)
             {
@@ -36,6 +37,7 @@ namespace DemoApp.ViewModels
                     item.BgItem = Color.Transparent;
                 }
             }
+
             obj.isSelected = true;
             obj.BgItem = Color.LightGoldenrodYellow;
         }
@@ -72,6 +74,30 @@ namespace DemoApp.ViewModels
             DetailCmd = new Command<Detail>(DetailAct);
 
 
+        }
+
+        public void ScrollChangedSelect(string ID)
+        {
+            foreach (var header in MMain)
+            {
+                foreach (var item in header.Details)
+                {
+                    item.isSelected = false;
+                    item.BgItem = Color.Transparent;
+                }
+            }
+
+            foreach (var header in MMain)
+            {
+                foreach (var item in header.Details)
+                {
+                    if (item.ID == ID)
+                    {
+                        item.isSelected = true;
+                        item.BgItem = Color.LightGoldenrodYellow;
+                    }
+                }
+            }
         }
         #endregion
     }

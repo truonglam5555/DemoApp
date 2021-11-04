@@ -35,7 +35,7 @@
             <Grid RowDefinitions="Auto,*" RowSpacing="0" BackgroundColor="LightGoldenrodYellow">
                 <Image Grid.Row="0" Source="{markupextension:EmbeddedImageResource thuonghieugogihouse.png}" HeightRequest="100" HorizontalOptions="Fill" Aspect="AspectFill"/>
                 <ScrollView Grid.Row="1" x:Name="controlScroll" VerticalOptions="Fill" BackgroundColor="#aeaeae">
-                    <StackLayout VerticalOptions="Fill" BindableLayout.ItemsSource="{Binding MMain}" x:Name="controlsStack">
+                    <StackLayout VerticalOptions="Fill" BindableLayout.ItemsSource="{Binding MMain}" >
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
                                 <behaviors:Expander ExpandAnimationEasing="CubicIn" ExpandAnimationLength="500" CollapseAnimationEasing="CubicOut" CollapseAnimationLength="500" IsExpanded="True">

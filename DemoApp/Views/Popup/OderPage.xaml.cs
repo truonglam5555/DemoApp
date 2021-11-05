@@ -3,6 +3,7 @@ using DemoApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 
 namespace DemoApp.Views.Popup
@@ -25,9 +26,15 @@ namespace DemoApp.Views.Popup
 
         void TabView_SelectionChanged(System.Object sender, Xamarin.CommunityToolkit.UI.Views.TabSelectionChangedEventArgs e)
         {
-            if(e.NewPosition == 1)
+            if (e.NewPosition == 1 && vm.isChanged)
             {
                 vm.LoadDataOeder();
+                vm.isChanged = false;
+            }
+
+            if(e.NewPosition == 0)
+            {
+                vm.isChanged = true;
             }
         }
     }

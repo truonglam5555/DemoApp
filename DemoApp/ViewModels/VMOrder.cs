@@ -10,6 +10,7 @@ namespace DemoApp.ViewModels
 {
     public class VMOrder : ObservableObject
     {
+        public bool isChanged = true;
         public VMOrder()
         {
             _ordered = new ObservableCollection<MMonDat>();
@@ -45,6 +46,7 @@ namespace DemoApp.ViewModels
                 item.isOrder = true;
                 App.dataBussiness.UpdateRow(item);
             }
+            Ordering.Clear();
         }
 
         #endregion

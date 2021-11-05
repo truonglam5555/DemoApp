@@ -68,6 +68,7 @@ namespace DemoApp.ViewModels
                         IDGroup = monAn.IDGroup,
                         Tittle = monAn.Tittle,
                         SoLuong = 1,
+                        isOrder = false,
                     });
                 }
                 else
@@ -110,85 +111,99 @@ namespace DemoApp.ViewModels
             {
                 Tittle = "Thịt bò 1",
                 Price = "109",
-                IDGroup = "001"
+                IDGroup = "001",
+                ID ="001",
             });
             MonAnList.Add(new MonAnChiTiet
             {
                 Tittle = "Thịt bò 2",
                 Price = "109",
-                IDGroup = "001"
+                IDGroup = "001",
+                ID = "002",
             });
             MonAnList.Add(new MonAnChiTiet
             {
                 Tittle = "Thịt bò 3",
                 Price = "109",
-                IDGroup = "001"
+                IDGroup = "001",
+                ID = "003",
             });
             MonAnList.Add(new MonAnChiTiet
             {
                 Tittle = "Thịt bò 4",
                 Price = "109",
-                IDGroup = "001"
+                IDGroup = "001",
+                ID = "004",
             });
             MonAnList.Add(new MonAnChiTiet
             {
                 Tittle = "Thịt bò 5",
                 Price = "109",
-                IDGroup = "001"
+                IDGroup = "001",
+                ID = "005",
             });
             MonAnList.Add(new MonAnChiTiet
             {
                 Tittle = "Thịt heo 1",
                 Price = "109",
-                IDGroup = "002"
+                IDGroup = "002",
+                ID = "006",
             });
             MonAnList.Add(new MonAnChiTiet
             {
                 Tittle = "Thịt heo 2",
                 Price = "109",
-                IDGroup = "002"
+                IDGroup = "002",
+                ID = "007",
             });
             MonAnList.Add(new MonAnChiTiet
             {
                 Tittle = "Thịt heo 3",
                 Price = "109",
-                IDGroup = "002"
+                IDGroup = "002",
+                ID = "008",
             });
             MonAnList.Add(new MonAnChiTiet
             {
                 Tittle = "Thịt heo 4",
                 Price = "109",
-                IDGroup = "002"
+                IDGroup = "002",
+                 ID = "009",
             });
             MonAnList.Add(new MonAnChiTiet
             {
                 Tittle = "Thịt heo 5",
                 Price = "109",
-                IDGroup = "002"
+                IDGroup = "002",
+                ID = "010",
             });
             MonAnList.Add(new MonAnChiTiet
             {
                 Tittle = "Salad 1",
                 Price = "109",
-                IDGroup = "003"
+                IDGroup = "003",
+                ID = "011",
             });
             MonAnList.Add(new MonAnChiTiet
             {
                 Tittle = "Salad 2",
                 Price = "109",
-                IDGroup = "003"
+                IDGroup = "003",
+                ID = "012",
             });
             MonAnList.Add(new MonAnChiTiet
             {
                 Tittle = "Salad 3",
                 Price = "109",
-                IDGroup = "003"
+                IDGroup = "003",
+                ID = "013",
             });
             MonAnList.Add(new MonAnChiTiet
             {
                 Tittle = "Salad 4",
                 Price = "109",
-                IDGroup = "003"
+                IDGroup = "003",
+                ID = "014",
             });
 
             

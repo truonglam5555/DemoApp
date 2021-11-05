@@ -18,19 +18,21 @@
             </DataTemplate>-->
 
             <DataTemplate x:Key="collection">
-                <Grid BackgroundColor="Black">
+                <Grid BackgroundColor="Black" HeightRequest="300" ColumnDefinitions="6*,4*">
                     <!--<Image Source="{Binding HinhMonAn}" Aspect="AspectFit" HorizontalOptions="Fill" HeightRequest="300"/>-->
-                    <StackLayout HeightRequest="300" HorizontalOptions="Fill" VerticalOptions="Start">
-                        <Label TextColor="White" FontSize="20" Text="Chua Co Hinh" FontAttributes="Bold" VerticalOptions="Center"
-                               HorizontalOptions="Center"/>
-                    </StackLayout>
-                    <StackLayout Grid.Column="1">
-                        <Label Text="{Binding Tittle}" TextColor="White"/>
-                        <Label Text="{Binding Price}" TextColor="White"/>
+                    <!--<StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Aqua">
+                        <Label TextColor="White" FontSize="30" Text="Chua Co Hinh" FontAttributes="Bold"
+                               VerticalOptions="Fill" BackgroundColor="Aquamarine"
+                               HorizontalOptions="Fill"/>
+                    </StackLayout>-->
+                    <Image Source="{markupextension:EmbeddedImageResource noproduct.png}" Aspect="AspectFill"/>
+                    <StackLayout Grid.Column="1" VerticalOptions="Fill" Padding="10">
+                        <Label Text="{Binding Tittle}" TextColor="White" FontSize="30" FontAttributes="Bold"/>
+                        <Label Text="{Binding Price}" TextColor="White" FontSize="20" FontAttributes="Bold"/>
                     </StackLayout>
                     <Button Text="+" HeightRequest="50" WidthRequest="50" VerticalOptions="End" HorizontalOptions="End" Grid.Column="1" Margin="20"
-                            CornerRadius="25" BackgroundColor="#eaeaea" TextColor="White" Command="{Binding Source={Reference currentPage},Path=BindingContext.ThemMonGoiCmd}"
-                            CommandParameter="{Binding .}"/>
+                            CornerRadius="25" BackgroundColor="#eaeaea" TextColor="Black" Command="{Binding Source={Reference currentPage},Path=BindingContext.ThemMonGoiCmd}"
+                            CommandParameter="{Binding .}" FontSize="30"/>
                 </Grid>
             </DataTemplate>
 

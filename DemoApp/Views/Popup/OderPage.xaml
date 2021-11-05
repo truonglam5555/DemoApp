@@ -37,20 +37,21 @@
                     TabIndicatorHeight="5" TabIndicatorColor="Orange" SelectionChanged="TabView_SelectionChanged">
             <xct:TabViewItem TabIndex="0" Text="Món đang gọi" TextColor="White" FontSize="20" TextColorSelected="Orange"
                             FontAttributes="Bold" FontAttributesSelected="Bold" FontSizeSelected="20">
-                <Grid RowDefinitions="Auto,*,Auto" Padding="0,48,0,0" BackgroundColor="White" RowSpacing="0">
+                <Grid RowDefinitions="Auto,*,Auto" Padding="0,48,0,0" BackgroundColor="Black" RowSpacing="0">
                     <Grid ColumnDefinitions="6*,1*,1.5*" BackgroundColor="Black" Padding="0,20" VerticalOptions="Start">
                         <Label Text="Tên món" Style="{StaticResource Title}"/>
                         <Label Text="S/L" Style="{StaticResource Title}"  Grid.Column="1"/>
                         <Label Text="Đơn giá" Style="{StaticResource Title}" Grid.Column="2"/>
                     </Grid>
-                    <CollectionView Grid.Row="1" ItemsSource="{Binding Ordering}">
+                    <CollectionView Grid.Row="1" ItemsSource="{Binding Ordering}" BackgroundColor="White">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Grid ColumnDefinitions="6*,1*,1.5*" BackgroundColor="Black" Padding="0,20"
                                       VerticalOptions="Start">
                                     <Label Text="{Binding Tittle}" Style="{StaticResource Title}"/>
-                                    <Label Grid.Column="1" Text="{Binding SoLuong}" Style="{StaticResource Title}"/>
-                                    <!--<controls:StepperControl Grid.Column="1" Value="{Binding SoLuong}" TapEvent="StepperControl_TapEvent" TextColorValue="AliceBlue"/>-->
+                                    <!--<Label Grid.Column="1" Text="{Binding SoLuong}" Style="{StaticResource Title}"/>-->
+                                    <controls:StepperControl Grid.Column="1" Value="{Binding SoLuong}" TapEvent="StepperControl_TapEvent"
+                                    TextColorValue="AliceBlue"/>
                                     <Label Text="{Binding Price}" Style="{StaticResource Title}" Grid.Column="2"/>
                                 </Grid>
                             </DataTemplate>

@@ -77,7 +77,7 @@ namespace DemoApp
 
         async void CollectionView_Scrolled(System.Object sender, Xamarin.Forms.ItemsViewScrolledEventArgs e)
         {
-            var item = vm.MonAnList[e.LastVisibleItemIndex];
+            var item = vm.MonAnList[e.FirstVisibleItemIndex];
             vm.ScrollChangedSelect(item.IDGroup);
             if(menuItems != null)
             {

@@ -16,6 +16,7 @@
     <None Remove="Resources\Fonts\fa-regular-400.ttf" />
     <None Remove="Resources\Fonts\fa-solid-900.ttf" />
     <None Remove="sqlite-net-pcl" />
+    <None Remove="Resources\Images\noproduct.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\" />
@@ -27,6 +28,7 @@
     <EmbeddedResource Include="Resources\Fonts\fa-regular-400.ttf" />
     <EmbeddedResource Include="Resources\Fonts\fa-solid-900.ttf" />
     <EmbeddedResource Include="Resources\Images\thuonghieugogihouse.png" />
+    <EmbeddedResource Include="Resources\Images\noproduct.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.14" />

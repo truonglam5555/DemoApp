@@ -4,6 +4,7 @@ using DemoApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 
@@ -11,7 +12,7 @@ namespace DemoApp.Views.Popup
 {
     public partial class OderPage : Rg.Plugins.Popup.Pages.PopupPage
     {
-        VMOrder vm; 
+        VMOrder vm;
         public OderPage()
         {
             InitializeComponent();
@@ -20,15 +21,31 @@ namespace DemoApp.Views.Popup
             BindingContext = vm;
         }
 
-        private void StepperControl_TapEvent(object sender, Controls.StepperControl.EvenStepper e)
+        private async void StepperControl_TapEventAsync(object sender, Controls.StepperControl.EvenStepper e)
         {
             var item = (sender as StepperControl).BindingContext as MMonDat;
             item.SoLuong = e.Value;
             if (item.SoLuong == 0)
             {
-                //vm.DeleteOrderAction(item);
+                var requestPopup = new Views.Popup.PopupAlertCancel();
+                await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(requestPopup);
+                requestPopup.EventDelete += (s, ev) => {
+                    if (ev)
+                    {
+                        vm.DeleteOrderAction(item);
+                    }
+                    else
+                    {
+                        item.SoLuong++;
+                        (sender as StepperControl).Value = item.SoLuong;
+                    }
+                };
+                
             }
-            //App.DataBussiness.UpdateRow(item);
+            else
+            {
+                App.dataBussiness.UpdateRow(item);
+            }
         }
 
         void TabView_SelectionChanged(System.Object sender, Xamarin.CommunityToolkit.UI.Views.TabSelectionChangedEventArgs e)
@@ -39,7 +56,7 @@ namespace DemoApp.Views.Popup
                 vm.isChanged = false;
             }
 
-            if(e.NewPosition == 0)
+            if (e.NewPosition == 0)
             {
                 vm.isChanged = true;
             }

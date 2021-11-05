@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:fonts="clr-namespace:DemoApp.Resources.Fonts"
+    x:Class="DemoApp.Views.Popup.PopupAlertCancel">
+    <pages:PopupPage.Animation>
+        <animations:FadeAnimation
+            HasBackgroundAnimation="True"
+            DurationIn="100" DurationOut="200"/>
+    </pages:PopupPage.Animation>
+    <pages:PopupPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="Title">
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="FontFamily" Value="{x:Static fonts:FontAssembly.NunitoSemiBold}"/>
+                <Setter Property="TextColor" Value="#63686E"/>
+            </Style>
+        </ResourceDictionary>
+    </pages:PopupPage.Resources>
+    <Frame VerticalOptions="CenterAndExpand" Padding="10" HasShadow="False" CornerRadius="10" WidthRequest="600" HorizontalOptions="CenterAndExpand">
+        <StackLayout VerticalOptions="FillAndExpand" Spacing="20">
+            <Label Text="Bạn có muốn hủy gọi món ăn này?" Style="{StaticResource Title}" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                <BoxView Color="#eaeaea" HorizontalOptions="FillAndExpand" Margin="-10,10" VerticalOptions="StartAndExpand" HeightRequest="1"/>
+            <Grid VerticalOptions="EndAndExpand" HeightRequest="40">
+                <Button x:Name="btnDel" Text="Đồng ý" BackgroundColor="Transparent" Clicked="Button_Clicked" TextTransform="None" FontSize="22"
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" TextColor="{OnPlatform Android=#2c98db}"/>
+                <Button x:Name="btnNon" Text="Không" BackgroundColor="Transparent" Clicked="Button_Clicked" Grid.Column="1" TextTransform="None" FontSize="22"
+                        VerticalOptions="CenterAndExpand" HorizontalOptions="FillAndExpand" TextColor="{OnPlatform Android=#2c98db}"/>
+            </Grid>
+            </StackLayout>
+        </Frame>
+</pages:PopupPage>

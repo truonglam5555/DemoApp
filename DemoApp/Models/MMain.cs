@@ -48,4 +48,21 @@ namespace DemoApp.Models
             isOrder = false;
         }
     }
+
+    public class MMonDaDat
+    {
+        [PrimaryKey, AutoIncrement]
+        public long PK { get; set; }
+        public string ID { get; set; }
+        public string IDGroup { get; set; }
+        public string HinhMonAn { get; set; }
+        public string Price { get; set; }
+        public string Tittle { get; set; }
+        public int SoLuong { get; set; }
+        public bool isOrder { get; set; }
+        public MMonDaDat()
+        {
+            isOrder = false;
+        }
+    }
 }

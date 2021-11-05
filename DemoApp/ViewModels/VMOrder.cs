@@ -52,6 +52,11 @@ namespace DemoApp.ViewModels
         #endregion
 
         #region Methods
+        internal void DeleteOrderAction(MMonDat item)
+        {
+            App.dataBussiness.DeleteOneRow(item);
+            Ordering.Remove(item);
+        }
         public void LoadDataOedering()
         {
             foreach(var item in App.dataBussiness.GetAllRowMonDat())

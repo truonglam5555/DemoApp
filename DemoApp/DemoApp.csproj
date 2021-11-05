@@ -15,18 +15,20 @@
     <None Remove="Resources\Fonts\fa-light-300.ttf" />
     <None Remove="Resources\Fonts\fa-regular-400.ttf" />
     <None Remove="Resources\Fonts\fa-solid-900.ttf" />
+    <None Remove="Resources\Fonts\Nunito-Regular.ttf" />
+    <None Remove="Resources\Fonts\Nunito-SemiBold.ttf" />
+    <None Remove="Resources\Fonts\Nunito-SemiBoldItalic.ttf" />
     <None Remove="sqlite-net-pcl" />
     <None Remove="Resources\Images\noproduct.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\" />
-    <Folder Include="Views\Popup\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\fa-duotone-900.ttf" />
     <EmbeddedResource Include="Resources\Fonts\fa-light-300.ttf" />
     <EmbeddedResource Include="Resources\Fonts\fa-regular-400.ttf" />
     <EmbeddedResource Include="Resources\Fonts\fa-solid-900.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Nunito-Regular.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Nunito-SemiBold.ttf" />
+    <EmbeddedResource Include="Resources\Fonts\Nunito-SemiBoldItalic.ttf" />
     <EmbeddedResource Include="Resources\Images\thuonghieugogihouse.png" />
     <EmbeddedResource Include="Resources\Images\noproduct.png" />
   </ItemGroup>
@@ -39,7 +41,15 @@
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\Popup\PopupAlertCancel.xaml.cs">
+      <DependentUpon>PopupAlertCancel.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Controls\StepperControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\PopupAlertCancel.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
   </ItemGroup>

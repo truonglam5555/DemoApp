@@ -49,8 +49,8 @@
                                 <Grid ColumnDefinitions="6*,1*,1.5*" BackgroundColor="Black" Padding="0,20"
                                       VerticalOptions="Start">
                                     <Label Text="{Binding Tittle}" Style="{StaticResource Title}"/>
-                                    <Label Grid.Column="1" Text="{Binding SoLuong}" Style="{StaticResource Title}"/>
-                                    <!--<controls:StepperControl Grid.Column="1" Value="{Binding SoLuong}" TapEvent="StepperControl_TapEvent" TextColorValue="AliceBlue"/>-->
+                                    <!--<Label Grid.Column="1" Text="{Binding SoLuong}" Style="{StaticResource Title}"/>-->
+                                    <controls:StepperControl Grid.Column="1" Value="{Binding SoLuong}" TapEvent="StepperControl_TapEvent" TextColorValue="AliceBlue"/>
                                     <Label Text="{Binding Price}" Style="{StaticResource Title}" Grid.Column="2"/>
                                 </Grid>
                             </DataTemplate>

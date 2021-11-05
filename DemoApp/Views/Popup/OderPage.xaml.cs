@@ -21,7 +21,7 @@ namespace DemoApp.Views.Popup
 
         private void StepperControl_TapEvent(object sender, Controls.StepperControl.EvenStepper e)
         {
-            var item = (sender as StepperControl).BindingContext as OrderList;
+            var item = (sender as StepperControl).BindingContext as MMonDat;
             item.SoLuong = e.Value;
             if (item.SoLuong == 0)
             {

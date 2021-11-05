@@ -18,7 +18,7 @@
             </DataTemplate>-->
 
             <DataTemplate x:Key="collection">
-                <Grid BackgroundColor="Black" HeightRequest="300" ColumnDefinitions="6*,4*">
+                <Grid BackgroundColor="Black" HeightRequest="500" ColumnDefinitions="6*,4*">
                     <!--<Image Source="{Binding HinhMonAn}" Aspect="AspectFit" HorizontalOptions="Fill" HeightRequest="300"/>-->
                     <!--<StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Aqua">
                         <Label TextColor="White" FontSize="30" Text="Chua Co Hinh" FontAttributes="Bold"

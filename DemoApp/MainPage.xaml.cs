@@ -25,7 +25,7 @@ namespace DemoApp
             foreach(var header in vm.MMain)
             {
                 Expander expander = new Expander() { IsExpanded = true };
-                expander.Header = new Label { Text = header.Name, FontSize = 20,Padding = new Thickness(0,10) };
+                expander.Header = new Label { Text = header.Name, FontSize = 30,Padding = new Thickness(0,10) };
 
                 List<VisualElement> ele = new List<VisualElement>();
                 StackLayout content = new StackLayout();
@@ -34,7 +34,8 @@ namespace DemoApp
                     Label label = new Label
                     {
                         Text = Title.detail,
-                        Padding = new Thickness(20,50),
+                        FontSize = 25,
+                        Padding = new Thickness(20,10),
                         BackgroundColor = Color.White,
                     };
                     ele.Add(label);

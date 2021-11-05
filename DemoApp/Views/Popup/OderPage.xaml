@@ -27,10 +27,8 @@
             <Style TargetType="Button" x:Key="ButtonStyle">
                 <Setter Property="BackgroundColor" Value="Transparent"/>
                 <Setter Property="TextTransform" Value="None"/>
-                <Setter Property="FontSize" Value="30"/>
+                <Setter Property="FontSize" Value="20"/>
                 <Setter Property="TextColor" Value="White"/>
-                <Setter Property="CornerRadius" Value="0"/>
-                <Setter Property="FontAttributes" Value="Bold"/>
             </Style>
         </ResourceDictionary>
     </pages:PopupPage.Resources>
@@ -52,16 +50,16 @@
                                       VerticalOptions="Start">
                                     <Label Text="{Binding Tittle}" Style="{StaticResource Title}"/>
                                     <!--<Label Grid.Column="1" Text="{Binding SoLuong}" Style="{StaticResource Title}"/>-->
-                                    <controls:StepperControl Grid.Column="1" Value="{Binding SoLuong}" TapEvent="StepperControl_TapEvent" FontSizeValue="30"
-                                                             TextColorValue="AliceBlue" HorizontalOptions="Center" BindingContext="{Binding .}"/>
+                                    <controls:StepperControl Grid.Column="1" Value="{Binding SoLuong}" TapEvent="StepperControl_TapEventAsync" FontSizeValue="30"
+                                                             TextColorValue="White" HorizontalOptions="Center"/>
                                     <Label Text="{Binding Price}" Style="{StaticResource Title}" Grid.Column="2"/>
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                    <Grid HeightRequest="80" VerticalOptions="End" Grid.Row="1" ColumnSpacing="0">
-                        <Button Style="{StaticResource ButtonStyle}" Text="Huỷ" BackgroundColor="Red" Command="{Binding HuyMonCmd}" />
-                        <Button Style="{StaticResource ButtonStyle}" Text="Xác nhận" BackgroundColor="Green" Command="{Binding XacNhanMonCmd}" Grid.Column="1"/>
+                    <Grid HeightRequest="80" VerticalOptions="End" Grid.Row="1">
+                        <Button Style="{StaticResource ButtonStyle}" Text="Huy" BackgroundColor="Red" Command="{Binding HuyMonCmd}"/>
+                        <Button Style="{StaticResource ButtonStyle}" Text="Xac Nhan" BackgroundColor="Green" Command="{Binding XacNhanMonCmd}" Grid.Column="1"/>
                     </Grid>
                 </Grid>
             </xct:TabViewItem>

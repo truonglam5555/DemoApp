@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 using System.Linq;
-using Vitaorga.Common.Bussiness;
+using DemoApp.Common.Bussiness;
 
 namespace DemoApp.ViewModels
 {
@@ -67,6 +67,7 @@ namespace DemoApp.ViewModels
                         ID = monAn.ID,
                         IDGroup = monAn.IDGroup,
                         Tittle = monAn.Tittle,
+                        Price = monAn.Price,
                         SoLuong = 1,
                         isOrder = false,
                     });

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Vitaorga.Common.Bussiness;
+using DemoApp.Common.Bussiness;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

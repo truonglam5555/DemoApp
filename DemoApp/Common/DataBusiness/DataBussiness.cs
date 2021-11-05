@@ -4,7 +4,7 @@ using DemoApp.Common.Bussiness;
 using DemoApp.Models;
 using SQLite;
 
-namespace Vitaorga.Common.Bussiness
+namespace DemoApp.Common.Bussiness
 {
     public class DataBussiness
     {
@@ -18,6 +18,7 @@ namespace Vitaorga.Common.Bussiness
         public void CreatTables()
         {
             localDB.Database.CreateTable<MMonDat>();
+            localDB.Database.CreateTable<MMonDaDat>();
         }
 
         public Object GetLastRow<T>()
@@ -70,6 +71,31 @@ namespace Vitaorga.Common.Bussiness
                 }
             }
             return new List<MMonDat>();
+        }
+        public List<MMonDaDat> GetAllRowMonDaDat()
+        {
+            if (localDB.TableExist(typeof(MMonDat).Name))
+            {
+                try
+                {
+                    string query = string.Format("SELECT * FROM '{0}' ;", typeof(MMonDaDat).Name);
+                    SQLiteCommand cmd = localDB.Database.CreateCommand(query);
+                    var item = localDB.Database.Query<MMonDaDat>(query);
+                    if (item.Count > 0)
+                    {
+                        return item;
+                    }
+                    else
+                    {
+                        return new List<MMonDaDat>();
+                    }
+                }
+                catch
+                {
+                    return new List<MMonDaDat>();
+                }
+            }
+            return new List<MMonDaDat>();
         }
 
         /// <summary>

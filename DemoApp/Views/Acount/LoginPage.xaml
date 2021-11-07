@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:markupextension="clr-namespace:DemoApp.Common.MarkupExtension"
+    xmlns:font="clr-namespace:DemoApp.Resources.Fonts" xmlns:controls="clr-namespace:DemoApp.Controls"
+    x:Class="DemoApp.Views.Acount.LoginPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame" x:Key="frame">
+                <Setter Property="HasShadow" Value="{OnPlatform Android=true,iOS=false}"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="BorderColor" Value="{OnPlatform Android=White,iOS=#eaeaea}"/>
+                <Setter Property="HeightRequest" Value="45"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+            <Style TargetType="Label" x:Key="icon">
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.RegularStyle}"/>
+                <Setter Property="TextColor" Value="#222222"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Margin" Value="10,0"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+            <Style TargetType="controls:CTEntry" x:Key="entry">
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.NunitoSemiBoldItalic}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="Margin" Value="0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical" VerticalOptions="Fill"  HorizontalOptions="Fill" Padding="20,10" Spacing="0" BackgroundColor="Transparent">
+                <Grid HeightRequest="220" VerticalOptions="Start">
+                    <Image Source="{markupextension:EmbeddedImageResource DacSan.png}" WidthRequest="220"  HeightRequest="220"
+                       Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0"/>
+                    <Button FontSize="16" WidthRequest="44" HeightRequest="44" VerticalOptions="Start" HorizontalOptions="Start" Command="{Binding ClosePage}" BackgroundColor="Transparent" Margin="{OnPlatform Android='-20,-5',iOS='-20'}"
+                                Text="{markupextension:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft,Text='{0}'}" FontFamily="{x:Static font:FontAssembly.SolidStyle}" TextColor="#630000"/>
+                </Grid>
+                <Label Text="Xin mời Đăng Nhập!"  FontSize="22" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}" Margin="5,0"/>
+                <StackLayout Spacing="10" Margin="0,25,0,0" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
+                    <StackLayout  BackgroundColor="Transparent">
+                        <Label Text="Tên đăng nhập" TextColor="Black" FontSize="16" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+                        <Frame x:Name="frameUsername" Style="{StaticResource frame}">
+                            <Frame.Triggers>
+                                <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference entryUserName}, Path=IsFocused}" Value="True">
+                                    <Setter Property="BorderColor" Value="#630000"/>
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            <Grid ColumnDefinitions="35,*" ColumnSpacing="0">
+                                <Label Text="{markupextension:PlatformAwesomeFontFamilyMarkup Icon=User,Text='{0}'}" Style="{StaticResource icon}"/>
+                                <controls:CTEntry x:Name="entryUserName" Grid.Column="1" Style="{StaticResource entry}" Text="{Binding NameSigin}" TextChanged="entryUserName_TextChanged"
+                                                               Placeholder="Nhập tên đăng nhập">
+                                    <controls:CTEntry.Keyboard>
+                                        <Keyboard x:FactoryMethod="Create">
+                                            <x:Arguments>
+                                                <KeyboardFlags>None</KeyboardFlags>
+                                            </x:Arguments>
+                                        </Keyboard>
+                                    </controls:CTEntry.Keyboard>
+                                </controls:CTEntry>
+                            </Grid>
+                        </Frame>
+                        <Label x:Name="lblUsernamePower" FontSize="12" IsVisible="False" TextColor="Red"
+                               FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}" Margin="0,-5" Text="Vui lòng nhập tên đăng nhập!"/>
+                    </StackLayout>
+
+                 
+                    <StackLayout BackgroundColor="Transparent">
+                     <Label Text="Mật khẩu" TextColor="Black" FontSize="16" Margin="0,5,0,0" Style="{StaticResource Title}" />
+                        <Frame x:Name="framePassword" Style="{StaticResource frame}">
+                            <Frame.Triggers>
+                                <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference entryPassWord}, Path=IsFocused}" Value="True">
+                                    <Setter Property="BorderColor" Value="#630000"/>
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            <Grid ColumnDefinitions="35,*,Auto" ColumnSpacing="0" >
+                                <Label Text="{markupextension:PlatformAwesomeFontFamilyMarkup Icon=LockAlt,Text='{0}'}" Style="{StaticResource icon}"/>
+                                <controls:CTEntry x:Name="entryPassWord" Grid.Column="1" Style="{StaticResource entry}" Text="{Binding PassSigin}" TextChanged="entryUserName_TextChanged" Unfocused="entryPassWord_Unfocused"
+                                                               IsPassword="True"  Placeholder="Nhập mật khẩu"/>
+                                <Label Grid.Column="2" Text="{markupextension:PlatformAwesomeFontFamilyMarkup Icon=EyeSlash,Text='{0}'}" Style="{StaticResource icon}">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="ShowPassWord_Tapped"/>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+                        </Frame>
+                        <Label x:Name="lblPasswordPower" Text="Vui lòng nhập mật khẩu!" FontSize="12" IsVisible="False" TextColor="Red"
+                               Style="{StaticResource Title}" Margin="0,-5"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
+                        <CheckBox Color="#630000" VerticalOptions="Center" Margin="0,0,-10,0" IsChecked="{Binding RememberMe}"/>
+                        <Label Text="Ghi nhớ tài khoản" VerticalOptions="Center" TextColor="Black" HorizontalOptions="StartAndExpand" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+                        <Label Text="Quên mật khẩu?" VerticalOptions="Center" TextColor="#CC7C4F" FontAttributes="Bold" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}" HorizontalOptions="End" Padding="5">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </StackLayout>
+                    <Button x:Name="btnSignIn" CornerRadius="10" Text="Đăng nhập" TextColor="White" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"
+                            BackgroundColor="#630000"
+                            Margin="0,15,0,0" HorizontalOptions="Fill" Command="{Binding Login}"/>
+                <StackLayout Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="Center" Margin="{OnPlatform Android='0',iOS='0,0,0,20'}"
+                             Padding="0,0,0,0" Spacing="20" BackgroundColor="Transparent">
+                    <Label Text="Bạn chưa có tài khoản?" TextColor="Black" VerticalOptions="Center" Margin="0,0,10,0" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+                    <Label Text="Đăng Ký" VerticalOptions="Center" BackgroundColor="Transparent"  HorizontalOptions="Center" TextDecorations="Underline" TextColor="#630000"
+                           FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer  Command="{Binding Signup}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -5,6 +5,7 @@ using Xamarin.CommunityToolkit.UI.Views;
 using System.Collections.Generic;
 using DemoApp.Models;
 using System.Threading.Tasks;
+using DemoApp.Resources.Fonts;
 
 namespace DemoApp
 {
@@ -12,9 +13,10 @@ namespace DemoApp
     {
         private VMMain vm;
         public List<Models.MenuItem> menuItems = new List<Models.MenuItem>();
-        public MainPage()
+        public MainPage(string _name)
         {
             InitializeComponent();
+            txtName.Text = _name;
             vm = new VMMain();
             this.BindingContext = vm;
             CreatMenu();
@@ -25,7 +27,17 @@ namespace DemoApp
             foreach(var header in vm.MMain)
             {
                 Expander expander = new Expander() { IsExpanded = true };
-                expander.Header = new Label { Text = header.Name, FontSize = 30,Padding = new Thickness(0,10) };
+                var Contentheader = new StackLayout
+                {
+                    Padding = new Thickness(0, 10, 10, 10),
+                    Orientation = StackOrientation.Horizontal
+                };
+
+                Contentheader.Children.Add(new Label { Text = header.Name, FontSize = 30 ,HorizontalOptions = LayoutOptions.StartAndExpand});
+                Contentheader.Children.Add(new Label { FontFamily = FontAssembly.SolidStyle, Text = FontAwesomeIcon.Icon.ChevronDown, VerticalOptions = LayoutOptions.Center, FontSize=20 });
+                expander.Header = Contentheader;
+
+                expander.Tapped += Expander_Tapped;
 
                 List<VisualElement> ele = new List<VisualElement>();
                 StackLayout content = new StackLayout();
@@ -63,6 +75,13 @@ namespace DemoApp
                     Menu = ele
                 });
             }
+        }
+
+        private void Expander_Tapped(object sender, System.EventArgs e)
+        {
+            var controlexpan = (sender as Expander);
+            var label = (controlexpan.Header as StackLayout).Children.LastOrDefault() as Label;
+            label.Text = controlexpan.IsExpanded ? FontAwesomeIcon.Icon.ChevronDown : FontAwesomeIcon.Icon.ChevronUp;
         }
 
         async void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)

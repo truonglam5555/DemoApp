@@ -16,7 +16,7 @@ namespace DemoApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new Views.Acount.LoginPage();
             Task.Run(() => {
                 if(dataBussiness == null)
                     dataBussiness = new DataBussiness();

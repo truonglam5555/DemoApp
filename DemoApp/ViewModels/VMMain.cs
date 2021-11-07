@@ -15,8 +15,6 @@ namespace DemoApp.ViewModels
         {
             _mMain = new ObservableCollection<MMain>();
             _monAnList = new ObservableCollection<MonAnChiTiet>();
-            //OrderedList = new ObservableCollection<OrderList>();
-            //OrderingList = new ObservableCollection<OrderList>();
             ThemMonGoiCmd = new Command<MonAnChiTiet>(ThemVaoMonDangGoi);
             GhostData();
         }
@@ -26,9 +24,6 @@ namespace DemoApp.ViewModels
         public ObservableCollection<MMain> MMain { get => _mMain; set { SetProperty(ref _mMain, value); } }
         private ObservableCollection<MonAnChiTiet> _monAnList;
         public ObservableCollection<MonAnChiTiet> MonAnList { get => _monAnList; set { SetProperty(ref _monAnList, value); } }
-
-        //public ObservableCollection<OrderList> OrderedList;
-        //public ObservableCollection<OrderList> OrderingList;
         #endregion
 
         #region Cmds
@@ -93,7 +88,7 @@ namespace DemoApp.ViewModels
             buffet.Details.Add(new Detail { detail = "BF. Rau mì", ID = "008" });
             buffet.Details.Add(new Detail { detail = "BF. Tráng miệng", ID = "009" });
 
-            buffet.Details.Add(new Detail { detail = "BF. Thịt bò", ID = "001" });
+            buffet.Details.Add(new Detail { detail = "BF. Thịt bò", ID = "001", BgItem = Color.FromHex("#D8B6A4") });
             buffet.Details.Add(new Detail { detail = "BF. Thịt heo", ID = "002" });
             buffet.Details.Add(new Detail { detail = "BF. Salad", ID = "003" });
 
@@ -206,102 +201,6 @@ namespace DemoApp.ViewModels
                 IDGroup = "003",
                 ID = "014",
             });
-
-            
-
-            //MonAnList.Add(new MonAnGroup("Thịt bò", new List<MonAnChiTiet>
-            //{
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Thịt bò 1",            
-            //        Price = "109",               
-            //        IDGroup = "001"
-            //    },
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Thịt bò 2",            
-            //        Price = "109",               
-            //        IDGroup = "001"
-            //    },
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Thịt bò 3",            
-            //        Price = "109",               
-            //        IDGroup = "001"
-            //    },
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Thịt bò 4",            
-            //        Price = "109",               
-            //        IDGroup = "001"
-            //    },
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Thịt bò 5",            
-            //        Price = "109",               
-            //        IDGroup = "001"
-            //    },
-            //}));
-            //MonAnList.Add(new MonAnGroup("Thịt heo", new List<MonAnChiTiet>
-            //{
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Thịt heo 1",            
-            //        Price = "109",               
-            //        IDGroup = "002"
-            //    },
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Thịt heo 2",            
-            //        Price = "109",               
-            //        IDGroup = "002"
-            //    },
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Thịt heo 3",            
-            //        Price = "109",               
-            //        IDGroup = "002"
-            //    },
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Thịt heo 4",            
-            //        Price = "109",               
-            //        IDGroup = "002"
-            //    },
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Thịt heo 5",            
-            //        Price = "109",               
-            //        IDGroup = "002"
-            //    },
-            //}));
-            //MonAnList.Add(new MonAnGroup("Salad", new List<MonAnChiTiet>
-            //{
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Salad 1",            
-            //        Price = "109",               
-            //        IDGroup = "003"
-            //    },
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Salad 2",            
-            //        Price = "109",               
-            //        IDGroup = "003"
-            //    },
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Salad 3",            
-            //        Price = "109",               
-            //        IDGroup = "003"
-            //    },
-            //    new MonAnChiTiet
-            //    {              
-            //        Tittle = "Salad 4",            
-            //        Price = "109",               
-            //        IDGroup = "003"
-            //    },
-            //}));
         }
 
         public void ScrollChangedSelect(string ID)
@@ -322,7 +221,7 @@ namespace DemoApp.ViewModels
                     if (item.ID == ID)
                     {
                         item.isSelected = true;
-                        item.BgItem = Color.LightGoldenrodYellow;
+                        item.BgItem = Color.FromHex("#D8B6A4");
                     }
                 }
             }

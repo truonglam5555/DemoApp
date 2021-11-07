@@ -20,6 +20,10 @@
     <None Remove="Resources\Fonts\Nunito-SemiBoldItalic.ttf" />
     <None Remove="sqlite-net-pcl" />
     <None Remove="Resources\Images\noproduct.png" />
+    <None Remove="Views\Acount\" />
+    <None Remove="ViewModels\VMNavigation\" />
+    <None Remove="ViewModels\Acount\" />
+    <None Remove="Resources\Images\DacSan.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\fa-duotone-900.ttf" />
@@ -31,6 +35,7 @@
     <EmbeddedResource Include="Resources\Fonts\Nunito-SemiBoldItalic.ttf" />
     <EmbeddedResource Include="Resources\Images\thuonghieugogihouse.png" />
     <EmbeddedResource Include="Resources\Images\noproduct.png" />
+    <EmbeddedResource Include="Resources\Images\DacSan.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.14" />
@@ -52,5 +57,10 @@
     <EmbeddedResource Update="Views\Popup\PopupAlertCancel.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Acount\" />
+    <Folder Include="ViewModels\VMNavigation\" />
+    <Folder Include="ViewModels\Acount\" />
   </ItemGroup>
 </Project>

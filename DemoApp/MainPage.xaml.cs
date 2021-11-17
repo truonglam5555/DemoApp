@@ -99,6 +99,7 @@ namespace DemoApp
         {
             var item = vm.MonAnList[e.FirstVisibleItemIndex];
             vm.ScrollChangedSelect(item.IDGroup);
+            var beakRun = false;
             if(menuItems != null)
             {
                 foreach (var itemM in menuItems)
@@ -109,8 +110,12 @@ namespace DemoApp
                         {
                             (itemM.ExpandItem as Expander).IsExpanded = true;
                             await controlScroll.ScrollToAsync(ci, ScrollToPosition.MakeVisible, true);
+                            beakRun = true;
+                            break;
                         }
                     }
+                    if (beakRun)
+                        break;
                 }
             }
         }

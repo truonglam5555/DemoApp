@@ -45,7 +45,7 @@
                 <Grid RowDefinitions="Auto,*,Auto" Padding="0,48,0,0" BackgroundColor="Black" RowSpacing="0">
                     <Grid ColumnDefinitions="5*,1*,2*,2*" BackgroundColor="Black" Padding="0,20" VerticalOptions="Start">
                         <Label Text="Tên món" Style="{StaticResource Title}"/>
-                        <Label Text="Ghi Chu" Style="{StaticResource Title}"  Grid.Column="1"/>
+                        <Label Text="Note" Style="{StaticResource Title}"  Grid.Column="1"/>
                         <Label Text="S/L" Style="{StaticResource Title}"  Grid.Column="2"/>
                         <Label Text="Đơn giá" Style="{StaticResource Title}" Grid.Column="3"/>
                     </Grid>
@@ -57,7 +57,7 @@
                                     <Label Text="{Binding Tittle}" Style="{StaticResource Title}"/>
                                     <!--<Label Grid.Column="1" Text="{Binding SoLuong}" Style="{StaticResource Title}"/>-->
                                     <Button Text="{markupextension:PlatformAwesomeFontFamilyMarkup Icon=Paperclip,Text='{0}'}" FontFamily="{x:Static font:FontAssembly.SolidStyle}"
-                                            BackgroundColor="Transparent" Grid.Column="1" FontSize="20" TextColor="White"
+                                            BackgroundColor="Transparent" Grid.Column="1" FontSize="20" TextColor="White"  Margin="0,-5,0,0"
                                             Command="{Binding Source={Reference CurrentPopup},Path=BindingContext.GhiChuCmd}"
                                             CommandParameter="{Binding .}"/>
                                     <controls:StepperControl Grid.Column="2" Value="{Binding SoLuong}" TapEvent="StepperControl_TapEventAsync" FontSizeValue="20"

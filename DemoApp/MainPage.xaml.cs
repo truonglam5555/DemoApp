@@ -100,25 +100,28 @@ namespace DemoApp
 
         async void CollectionView_Scrolled(System.Object sender, Xamarin.Forms.ItemsViewScrolledEventArgs e)
         {
-            var item = vm.MonAnList[e.FirstVisibleItemIndex];
-            vm.ScrollChangedSelect(item.IDGroup);
-            var beakRun = false;
-            if(menuItems != null)
+            var item = vm.MonAnList[e.FirstVisibleItemIndex + 4];
+            if(item != null)
             {
-                foreach (var itemM in menuItems)
+                vm.ScrollChangedSelect(item.IDGroup);
+                var beakRun = false;
+                if (menuItems != null)
                 {
-                    foreach (Label ci in itemM.Menu)
+                    foreach (var itemM in menuItems)
                     {
-                        if ((ci.BindingContext as Detail).ID == item.IDGroup)
+                        foreach (Label ci in itemM.Menu)
                         {
-                            (itemM.ExpandItem as Expander).IsExpanded = true;
-                            await controlScroll.ScrollToAsync(ci, ScrollToPosition.MakeVisible, true);
-                            beakRun = true;
-                            break;
+                            if ((ci.BindingContext as Detail).ID == item.IDGroup)
+                            {
+                                (itemM.ExpandItem as Expander).IsExpanded = true;
+                                await controlScroll.ScrollToAsync(ci, ScrollToPosition.MakeVisible, true);
+                                beakRun = true;
+                                break;
+                            }
                         }
+                        if (beakRun)
+                            break;
                     }
-                    if (beakRun)
-                        break;
                 }
             }
         }

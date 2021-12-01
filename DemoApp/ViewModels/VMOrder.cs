@@ -1,8 +1,9 @@
 ﻿using DemoApp.Models;
+using DemoApp.Views.Popup;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
+using System.Linq;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
@@ -17,6 +18,7 @@ namespace DemoApp.ViewModels
             _ordering = new ObservableCollection<MMonDat>();
             HuyMonCmd = new Command(HuyMonAction);
             XacNhanMonCmd = new Command(XacNhanMonAction);
+            GhiChuCmd = new Command<MMonDat>(GhiChuAction);
             LoadDataOedering();
 
         }
@@ -30,6 +32,7 @@ namespace DemoApp.ViewModels
         #region Cmds
         public Command HuyMonCmd { get; set; }
         public Command XacNhanMonCmd { get; set; }
+        public Command GhiChuCmd { get; set; }
         #endregion
 
         #region Acts
@@ -47,6 +50,25 @@ namespace DemoApp.ViewModels
                 App.dataBussiness.UpdateRow(item);
             }
             Ordering.Clear();
+        }
+
+        async void GhiChuAction(MMonDat monDat)
+        {
+            if(monDat != null)
+            {
+                var popupnote = new NotePage(monDat.Note);
+                await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popupnote);
+                popupnote.Resutl += (s,e)=> {
+                    if(!string.IsNullOrEmpty(e))
+                    {
+                        var item = App.dataBussiness.GetAllRowMonDat().Where(x => x.ID == monDat.ID).FirstOrDefault();
+                        item.Note = e;
+                        App.dataBussiness.UpdateRow(item);
+                        Ordering.Clear();
+                        LoadDataOedering();
+                    }
+                };
+            }
         }
 
         #endregion

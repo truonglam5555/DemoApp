@@ -29,12 +29,14 @@ namespace DemoApp
                 Expander expander = new Expander() { IsExpanded = true };
                 var Contentheader = new StackLayout
                 {
-                    Padding = new Thickness(0, 10, 10, 10),
+                    Padding = new Thickness(10),
                     Orientation = StackOrientation.Horizontal
                 };
 
-                Contentheader.Children.Add(new Label { Text = header.Name, FontSize = 30 ,HorizontalOptions = LayoutOptions.StartAndExpand});
-                Contentheader.Children.Add(new Label { FontFamily = FontAssembly.SolidStyle, Text = FontAwesomeIcon.Icon.ChevronDown, VerticalOptions = LayoutOptions.Center, FontSize=20 });
+                Contentheader.Children.Add(new Label { Text = header.Name, FontSize = 30,TextColor = Color.White ,HorizontalOptions = LayoutOptions.StartAndExpand});
+                Contentheader.Children.Add(new Label { FontFamily = FontAssembly.SolidStyle,
+                    TextColor = Color.White,
+                    Text = FontAwesomeIcon.Icon.ChevronDown, VerticalOptions = LayoutOptions.Center, FontSize=20 });
                 expander.Header = Contentheader;
 
                 expander.Tapped += Expander_Tapped;
@@ -47,8 +49,9 @@ namespace DemoApp
                     {
                         Text = Title.detail,
                         FontSize = 25,
-                        Padding = new Thickness(20,10),
+                        Padding = new Thickness(25,10,20,10),
                         BackgroundColor = Color.White,
+                        TextColor = Color.White
                     };
                     ele.Add(label);
                     label.BindingContext = Title;

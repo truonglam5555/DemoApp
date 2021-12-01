@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:markupextension="clr-namespace:DemoApp.Common.MarkupExtension" 
-             xmlns:behaviors="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:markupextension="clr-namespace:DemoApp.Common.MarkupExtension"
+             xmlns:font="clr-namespace:DemoApp.Resources.Fonts"
              x:Class="DemoApp.MainPage" x:Name="currentPage" BackgroundColor="Black">
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -18,17 +19,15 @@
             </DataTemplate>-->
 
             <DataTemplate x:Key="collection">
-                <Grid  HeightRequest="300" ColumnDefinitions="6*,4*" ColumnSpacing="0">
-                    <!--<Image Source="{Binding HinhMonAn}" Aspect="AspectFit" HorizontalOptions="Fill" HeightRequest="300"/>-->
-                    <!--<StackLayout HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Aqua">
-                        <Label TextColor="White" FontSize="30" Text="Chua Co Hinh" FontAttributes="Bold"
-                               VerticalOptions="Fill" BackgroundColor="Aquamarine"
-                               HorizontalOptions="Fill"/>
-                    </StackLayout>-->
+                <Grid  HeightRequest="250" ColumnDefinitions="6*,4*" ColumnSpacing="0">
                     <Image Source="{markupextension:EmbeddedImageResource noproduct.png}" Aspect="AspectFill"/>
+                    <Grid IsVisible="{Binding isImageOff}">
+                        <BoxView Color="Black" Opacity="0.5"/>
+                        <Label Text="Het Mon" FontSize="30" TextColor="White" VerticalOptions="Center" HorizontalOptions="Center"/>
+                    </Grid>
                     <StackLayout Grid.Column="1" VerticalOptions="Fill" Padding="10" BackgroundColor="#EEEBDD">
                         <Label Text="{Binding Tittle}" TextColor="White" FontSize="30" FontAttributes="Bold"/>
-                        <Label TextColor="White" FontSize="20" FontAttributes="Bold">
+                        <Label TextColor="White" FontSize="25" FontAttributes="Bold">
                             <Label.FormattedText>
                                 <FormattedString>
                                     <Span Text="{Binding Price}"/>
@@ -39,18 +38,18 @@
                     </StackLayout>
                     <Button Text="+" HeightRequest="50" WidthRequest="50" VerticalOptions="End" HorizontalOptions="End" Grid.Column="1" Margin="20"
                             CornerRadius="25" BackgroundColor="#630000" TextColor="White" Command="{Binding Source={Reference currentPage},Path=BindingContext.ThemMonGoiCmd}"
-                            CommandParameter="{Binding .}" FontSize="30"/>
+                            CommandParameter="{Binding .}" FontSize="30" IsVisible="{Binding isButtonOff}"/>
                 </Grid>
             </DataTemplate>
 
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid ColumnDefinitions="350,*" ColumnSpacing="10"
+        <Grid ColumnDefinitions="350,*" ColumnSpacing="5"
           BackgroundColor="White" HorizontalOptions="Fill" VerticalOptions="Fill">
             <Grid RowDefinitions="Auto,*" RowSpacing="0" BackgroundColor="LightGoldenrodYellow">
                 <Image Grid.Row="0" Source="{markupextension:EmbeddedImageResource thuonghieugogihouse.png}" HeightRequest="200" HorizontalOptions="Fill" Aspect="AspectFill"/>
-                <ScrollView Grid.Row="1" x:Name="controlScroll" VerticalOptions="Fill" BackgroundColor="#EEEBDD">
+                <ScrollView Grid.Row="1" x:Name="controlScroll" VerticalOptions="Fill" BackgroundColor="Black">
                     <StackLayout x:Name="NameMenu" VerticalOptions="Fill" > <!--BindableLayout.ItemsSource="{Binding MMain}"-->
                         <!--<BindableLayout.ItemTemplate>
                             <DataTemplate>
@@ -71,14 +70,22 @@
             </Grid>
 
             <Grid Grid.Column="1" RowDefinitions="Auto,*" RowSpacing="0">
-                <StackLayout x:Name="Startus" HorizontalOptions="Fill" BackgroundColor="Black" HeightRequest="80" Padding="20">
-                    <Frame HorizontalOptions="Start" VerticalOptions="Center" Padding="20,10"
+                <StackLayout x:Name="Startus" HorizontalOptions="Fill" BackgroundColor="Black"
+                             HeightRequest="80" Padding="20" Orientation="Horizontal">
+                    <Frame HorizontalOptions="StartAndExpand" VerticalOptions="Center" Padding="20,10"
                        BackgroundColor="#eaeaea" CornerRadius="10">
                         <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                             <BoxView HeightRequest="50" WidthRequest="50" CornerRadius="25" Color="Yellow"/>
                             <Label x:Name="txtName" Text="Nhan vien abcef" VerticalOptions="Center" FontSize="20" FontAttributes="Bold"/>
                         </StackLayout>
                     </Frame>
+                    <Grid VerticalOptions="Center" HeightRequest="50" Margin="0,0,50,0" ColumnSpacing="20">
+                        <Button Text="{markupextension:PlatformAwesomeFontFamilyMarkup Icon=InfoCircle,Text='{0}'}" FontSize="30"
+                                BackgroundColor="Transparent" FontFamily="{x:Static font:FontAssembly.SolidStyle}" TextColor="White"  />
+                        <BoxView WidthRequest="1" HorizontalOptions="Center" VerticalOptions="Fill" Color="White" Grid.Column="1"/>
+                        <Button Text="{markupextension:PlatformAwesomeFontFamilyMarkup Icon=SignOut,Text='{0}'}" FontSize="30" Grid.Column="2"
+                                BackgroundColor="Transparent" FontFamily="{x:Static font:FontAssembly.SolidStyle}" TextColor="White"  Command="{Binding DangXuatCmd}" />
+                    </Grid>
                 </StackLayout>
                 <CollectionView x:Name="cvMonAn" BackgroundColor="White" Grid.Row="1"  ItemTemplate="{StaticResource collection}" ItemsSource="{Binding MonAnList}" 
                                 Scrolled="CollectionView_Scrolled" >

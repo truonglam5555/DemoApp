@@ -30,6 +30,17 @@ namespace DemoApp.Models
         public string HinhMonAn { get; set; }
         public string Price { get; set; }
         public string Tittle { get; set; }
+
+        private bool _isImageOff = false;
+        public bool isImageOff { get => _isImageOff;
+            set {
+                SetProperty(ref _isImageOff, value);
+                isButtonOff = !value;
+            }
+        }
+
+        private bool _isButtonOff = true;
+        public bool isButtonOff { get => _isButtonOff; set => SetProperty(ref _isButtonOff, value); }
     }
 
     public class MMonDat
@@ -43,24 +54,8 @@ namespace DemoApp.Models
         public string Tittle { get; set; }
         public int SoLuong { get; set; }
         public bool isOrder { get; set; }
+        public string Note { get; set; }
         public MMonDat()
-        {
-            isOrder = false;
-        }
-    }
-
-    public class MMonDaDat
-    {
-        [PrimaryKey, AutoIncrement]
-        public long PK { get; set; }
-        public string ID { get; set; }
-        public string IDGroup { get; set; }
-        public string HinhMonAn { get; set; }
-        public string Price { get; set; }
-        public string Tittle { get; set; }
-        public int SoLuong { get; set; }
-        public bool isOrder { get; set; }
-        public MMonDaDat()
         {
             isOrder = false;
         }

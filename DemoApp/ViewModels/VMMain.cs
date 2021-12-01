@@ -16,6 +16,7 @@ namespace DemoApp.ViewModels
             _mMain = new ObservableCollection<MMain>();
             _monAnList = new ObservableCollection<MonAnChiTiet>();
             ThemMonGoiCmd = new Command<MonAnChiTiet>(ThemVaoMonDangGoi);
+            DangXuatCmd = new Command(DangXuatAction);
             GhostData();
         }
 
@@ -28,6 +29,7 @@ namespace DemoApp.ViewModels
 
         #region Cmds
         public Command ThemMonGoiCmd { get; set; }
+        public Command DangXuatCmd { get; set; }
         #endregion
 
         #region Acts
@@ -74,6 +76,15 @@ namespace DemoApp.ViewModels
                 }
             }
         }
+
+        async void DangXuatAction()
+        {
+            var ok = await App.Current.MainPage.DisplayAlert("Thông báo", "Bạn có muốn đăng xuất?", "Đồng ý", "Hủy");
+            if(ok)
+            {
+                App.Current.MainPage = new Views.Acount.LoginPage();
+            }
+        }
         #endregion
 
         #region Methods
@@ -88,7 +99,7 @@ namespace DemoApp.ViewModels
             buffet.Details.Add(new Detail { detail = "BF. Rau mì", ID = "008" });
             buffet.Details.Add(new Detail { detail = "BF. Tráng miệng", ID = "009" });
 
-            buffet.Details.Add(new Detail { detail = "BF. Thịt bò", ID = "001", BgItem = Color.FromHex("#D8B6A4") });
+            buffet.Details.Add(new Detail { detail = "BF. Thịt bò", ID = "001", BgItem = Color.Orange });
             buffet.Details.Add(new Detail { detail = "BF. Thịt heo", ID = "002" });
             buffet.Details.Add(new Detail { detail = "BF. Salad", ID = "003" });
 
@@ -116,6 +127,7 @@ namespace DemoApp.ViewModels
                 Price = "109",
                 IDGroup = "001",
                 ID = "002",
+                isImageOff = true,
             });
             MonAnList.Add(new MonAnChiTiet
             {
@@ -144,6 +156,7 @@ namespace DemoApp.ViewModels
                 Price = "109",
                 IDGroup = "002",
                 ID = "006",
+                isImageOff = true,
             });
             MonAnList.Add(new MonAnChiTiet
             {
@@ -193,6 +206,7 @@ namespace DemoApp.ViewModels
                 Price = "109",
                 IDGroup = "003",
                 ID = "013",
+                isImageOff = true,
             });
             MonAnList.Add(new MonAnChiTiet
             {
@@ -221,7 +235,7 @@ namespace DemoApp.ViewModels
                     if (item.ID == ID)
                     {
                         item.isSelected = true;
-                        item.BgItem = Color.FromHex("#D8B6A4");
+                        item.BgItem = Color.Orange;
                     }
                 }
             }

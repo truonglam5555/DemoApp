@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:markup="clr-namespace:DemoApp.Common.MarkupExtension" BackgroundColor="White"
+    xmlns:font="clr-namespace:DemoApp.Resources.Fonts" xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Class="DemoApp.Views.Home.MainPage" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="Title">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+                <Setter Property="FontSize" Value="16"/>
+            </Style>
+            <Style TargetType="Image" x:Key="ImageStyle">
+                <Setter Property="Aspect" Value="AspectFit"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="VerticalOptions" Value="Fill"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="icon">
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.RegularStyle}"/>
+                <Setter Property="TextColor" Value="#222222"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Margin" Value="10,0"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid VerticalOptions="FillAndExpand" RowDefinitions="*,Auto,50">
+            <StackLayout VerticalOptions="Start" HeightRequest="265">
+                <Grid HeightRequest="250">
+                     <BoxView Grid.Row="0" Grid.RowSpan="2" CornerRadius="0,0,50,50" VerticalOptions="Fill"
+                         BackgroundColor="{StaticResource ThemeMainColor}"/>
+                    <Label Text="App Demo" VerticalOptions="Center" Margin="20,0" TextColor="White" FontSize="30"/>
+                </Grid>
+                <Frame VerticalOptions="End" Padding="10" Margin="20,-50,20,0" 
+                       CornerRadius="10">
+                    <Grid ColumnDefinitions="*,1,*" >
+                        <Label Text="Na/N" Style="{StaticResource Title}" TextColor="Black"
+                               HorizontalOptions="Center" VerticalOptions="Center"/>
+                        <BoxView HorizontalOptions="Center" WidthRequest="1" Color="#eaeaea"
+                                 VerticalOptions="Fill" Grid.Column="1"/>
+                        <Label Text="Na/N" Grid.Column="2" Style="{StaticResource Title}" TextColor="Black"
+                               HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Grid>
+                </Frame>
+            </StackLayout>
+
+             <Grid VerticalOptions="EndAndExpand" HeightRequest="150">
+                    <Image Style="{StaticResource ImageStyle}" Source="{markup:EmbeddedImageResource TrueHappyFarm.jpg}"/>
+                    <Image Style="{StaticResource ImageStyle}" Source="{markup:EmbeddedImageResource TrueID.png}" Grid.Column="1"/>
+                    <Image Style="{StaticResource ImageStyle}" Source="{markup:EmbeddedImageResource Truelogictic.png}" Grid.Column="2"/>
+                    <Image Style="{StaticResource ImageStyle}" Source="{markup:EmbeddedImageResource TruePharma.png}" Grid.Column="3"/>
+                    <Image Style="{StaticResource ImageStyle}" Source="{markup:EmbeddedImageResource TrueSell.png}" Grid.Row="1" Grid.Column="0"/>
+                    <Image Style="{StaticResource ImageStyle}" Source="{markup:EmbeddedImageResource TrueWork.png}" Grid.Row="1" Grid.Column="1"/>
+                    <Image Style="{StaticResource ImageStyle}" Source="{markup:EmbeddedImageResource TrueShop.png}" Grid.Row="1" Grid.Column="2"/>
+                    <Image Style="{StaticResource ImageStyle}" Source="{markup:EmbeddedImageResource Vitaorgalogo.jpg}" Grid.Row="1" Grid.Column="3"/>
+             </Grid>
+            
+            <Grid Grid.Row="2" BackgroundColor="{StaticResource ThemeMainColor}" ColumnDefinitions="*,50,*">
+                <Label Text="Về chúng tôi" VerticalOptions="Center" Style="{StaticResource Title}"
+                       HorizontalOptions="Center"/>
+                <BoxView Color="White" Grid.Column="1" CornerRadius="25" Margin="2"/>
+                <Label Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=QRCode,Text='{0}'}" Style="{StaticResource icon}"
+                       Grid.Column="1" FontSize="20" TextColor="{StaticResource ThemeMainColor}" xct:TouchEffect.Command="{Binding Scanr}" />
+                <Label Grid.Column="2" Text="Đăng nhập" VerticalOptions="Fill" Style="{StaticResource Title}" xct:TouchEffect.Command="{Binding Login}"
+                       HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

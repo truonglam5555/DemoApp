@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:font="clr-namespace:DemoApp.Resources.Fonts" xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+    xmlns:markup="clr-namespace:DemoApp.Common.MarkupExtension" xmlns:master="clr-namespace:DemoApp.ViewModels.VMNavigation" x:Name="CurrentPage"
+    x:Class="DemoApp.Views.Scanr.ScanrPage" xmlns:xct="http://xamarin.com/schemas/2020/toolkit" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="BoxView" x:Key="Line">
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="Color" Value="#E4E4E4"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="Margin" Value="0,0,0,25"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0" RowDefinitions="Auto,*">
+            <StackLayout Grid.Row="1"
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="Fill"
+                         IsVisible="{Binding BindingContext.ShowScanStage, Source={Reference CurrentPage}}">
+                <Grid  x:Name="scanLogo">
+                    <Image  HorizontalOptions="Center"  VerticalOptions="Center" Source="{markup:EmbeddedImageResource NFC_CARDHAND.png}"
+                            WidthRequest="150" HeightRequest="150"/>
+                </Grid>
+                <Label Text="Vui lòng bật NFC và đặt điện thoại gần tem RFID để quét" 
+                       HorizontalOptions="Center" VerticalOptions="StartAndExpand"  WidthRequest="200" HorizontalTextAlignment="Center" Margin="0,40,0,0"/>
+            </StackLayout>
+            <Grid Grid.Row="0" Grid.RowSpan="2" IsVisible="{Binding BindingContext.ShowScanStageBarCode, Source={Reference CurrentPage}}" >
+                <zxing:ZXingScannerView x:Name="scanView" IsScanning="{Binding BindingContext.ShowScanStageBarCode, Source={Reference CurrentPage}}"  VerticalOptions="Fill" OnScanResult="scanView_OnScanResult" HorizontalOptions="Fill" />
+                <Image Source="{markup:EmbeddedImageResource quetqr.png}" Aspect="AspectFill" VerticalOptions="Fill" HorizontalOptions="Fill"/>
+            </Grid>
+           
+            <Grid x:Name="gridNavBar" VerticalOptions="Start"  BackgroundColor="Transparent">
+                <Grid.BindingContext>
+                    <master:VMNavigationBar/>
+                </Grid.BindingContext>
+                <Grid.RowDefinitions>
+                    <RowDefinition x:Name="statusBarRow" Height="{Binding StatuBar}" />
+                    <RowDefinition x:Name="navBarRow" Height="{Binding Navigattion}" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button  x:Name="btnNavBarBack" Grid.Row="1"  Grid.Column="0"  Margin="0" Padding="0"  BackgroundColor="Transparent" Clicked="btnNavBarBack_Clicked"  FontFamily="{x:Static font:FontAssembly.LightStyle}"
+                         FontSize="18" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft, Text='{0}'}" TextColor="Black" VerticalOptions="Center" WidthRequest="45" />
+                <!--<Label x:Name="lblNavTitle" Grid.Row="1" Grid.Column="1"  TextColor="{StaticResource NavicationTextColor}" FontAttributes="Bold"  FontSize="16"
+                       Text="Thông tin hành trình" VerticalOptions="Center" />-->
+                <Image  HorizontalOptions="EndAndExpand"  Margin="0,0,20,0" Grid.Row="1" Grid.Column="1" IsVisible="{Binding BindingContext.ShowButtonSelect, Source={Reference CurrentPage}}"
+                        VerticalOptions="Center" x:Name="IconChanged" Source="{markup:EmbeddedImageResource qr_code_icon.jpg}" WidthRequest="32" HeightRequest="32" 
+                        xct:IconTintColorEffect.TintColor="Black">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

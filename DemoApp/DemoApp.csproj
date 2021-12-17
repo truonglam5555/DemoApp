@@ -24,6 +24,38 @@
     <None Remove="ViewModels\VMNavigation\" />
     <None Remove="ViewModels\Acount\" />
     <None Remove="Resources\Images\DacSan.png" />
+    <None Remove="Views\OderFood\" />
+    <None Remove="Views\Home\" />
+    <None Remove="Services\" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Plugin.NFC" />
+    <None Remove="ViewModels\Home\" />
+    <None Remove="Resources\Images\Icon1.png" />
+    <None Remove="Resources\Images\Icon2.png" />
+    <None Remove="Resources\Images\Icon3.png" />
+    <None Remove="Resources\Images\aleroder.png" />
+    <None Remove="Resources\Images\icon_vitaorga.png" />
+    <None Remove="Resources\Images\buttoncafe.png" />
+    <None Remove="Resources\Images\MatOng.png" />
+    <None Remove="Resources\Images\Doanhthu.png" />
+    <None Remove="Resources\Images\setting.png" />
+    <None Remove="Resources\Images\subuser.png" />
+    <None Remove="Services\Interface\" />
+    <None Remove="Resources\Images\TrueBirnest.png" />
+    <None Remove="Resources\Images\TrueHappyFarm.jpg" />
+    <None Remove="Resources\Images\TrueID.png" />
+    <None Remove="Resources\Images\Truelogictic.png" />
+    <None Remove="Resources\Images\TruePharma.png" />
+    <None Remove="Resources\Images\TrueSell.png" />
+    <None Remove="Resources\Images\TrueShop.png" />
+    <None Remove="Resources\Images\TrueWork.png" />
+    <None Remove="Resources\Images\Vitaorgalogo.jpg" />
+    <None Remove="Views\Scanr\" />
+    <None Remove="ZXing.Net.Mobile.Forms" />
+    <None Remove="ViewModels\Scanr\" />
+    <None Remove="Resources\Images\qr_code_icon.jpg" />
+    <None Remove="Resources\Images\NFC_CARDHAND.png" />
+    <None Remove="ZXing.Net.MobileX.Forms" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\fa-duotone-900.ttf" />
@@ -36,13 +68,37 @@
     <EmbeddedResource Include="Resources\Images\thuonghieugogihouse.png" />
     <EmbeddedResource Include="Resources\Images\noproduct.png" />
     <EmbeddedResource Include="Resources\Images\DacSan.png" />
+    <EmbeddedResource Include="Resources\Images\Icon1.png" />
+    <EmbeddedResource Include="Resources\Images\Icon2.png" />
+    <EmbeddedResource Include="Resources\Images\Icon3.png" />
+    <EmbeddedResource Include="Resources\Images\aleroder.png" />
+    <EmbeddedResource Include="Resources\Images\icon_vitaorga.png" />
+    <EmbeddedResource Include="Resources\Images\buttoncafe.png" />
+    <EmbeddedResource Include="Resources\Images\MatOng.png" />
+    <EmbeddedResource Include="Resources\Images\Doanhthu.png" />
+    <EmbeddedResource Include="Resources\Images\setting.png" />
+    <EmbeddedResource Include="Resources\Images\subuser.png" />
+    <EmbeddedResource Include="Resources\Images\TrueBirnest.png" />
+    <EmbeddedResource Include="Resources\Images\TrueHappyFarm.jpg" />
+    <EmbeddedResource Include="Resources\Images\TrueID.png" />
+    <EmbeddedResource Include="Resources\Images\Truelogictic.png" />
+    <EmbeddedResource Include="Resources\Images\TruePharma.png" />
+    <EmbeddedResource Include="Resources\Images\TrueSell.png" />
+    <EmbeddedResource Include="Resources\Images\TrueShop.png" />
+    <EmbeddedResource Include="Resources\Images\TrueWork.png" />
+    <EmbeddedResource Include="Resources\Images\Vitaorgalogo.jpg" />
+    <EmbeddedResource Include="Resources\Images\qr_code_icon.jpg" />
+    <EmbeddedResource Include="Resources\Images\NFC_CARDHAND.png" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.14" />
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.3.0" />
-    <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="1.3.0" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.3.1" />
+    <PackageReference Include="Xamarin.CommunityToolkit.Markup" Version="1.3.1" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Plugin.NFC" Version="0.1.20" />
+    <PackageReference Include="ZXing.Net.MobileX.Forms" Version="3.0.1" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
   </ItemGroup>
   <ItemGroup>
@@ -62,5 +118,12 @@
     <Folder Include="Views\Acount\" />
     <Folder Include="ViewModels\VMNavigation\" />
     <Folder Include="ViewModels\Acount\" />
+    <Folder Include="Views\OderFood\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="Services\" />
+    <Folder Include="ViewModels\Home\" />
+    <Folder Include="Services\Interface\" />
+    <Folder Include="Views\Scanr\" />
+    <Folder Include="ViewModels\Scanr\" />
   </ItemGroup>
 </Project>

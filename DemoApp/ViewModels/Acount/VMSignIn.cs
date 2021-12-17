@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DemoApp.Services;
 using DemoApp.ViewModels.VMNavigation;
 using Xamarin.CommunityToolkit.ObjectModel;
 
@@ -46,7 +47,8 @@ namespace DemoApp.ViewModels.Acount
             if (Validate())
             {
                 await Task.Delay(100);
-                App.Current.MainPage = new MainPage(NameSigin);
+                //App.Current.MainPage = new MainPage(NameSigin);
+                App.Current.MainPage = new TransitionNavigationPage(new Views.Home.HomePage());
             }
         }
 

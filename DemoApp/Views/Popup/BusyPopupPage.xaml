@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<pages:PopupPage
+    xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+    xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+    xmlns="http://xamarin.com/schemas/2014/forms" BackgroundInputTransparent="False" 
+    CloseWhenBackgroundIsClicked="False"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="DemoApp.Views.Popup.BusyPopupPage">
+    <pages:PopupPage.Animation>
+        <animations:FadeAnimation
+            DurationIn="300"
+            EasingIn="SpringIn"
+            EasingOut="SinInOut"
+            HasBackgroundAnimation="True"/>
+    </pages:PopupPage.Animation>
+    <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+        
+            <Frame x:Name="FrameContainer"
+                   Margin="40"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   BackgroundColor="Transparent"
+                   CornerRadius="10">
+                <StackLayout IsClippedToBounds="True" Orientation="Vertical">
+                    <!--<ffimageloading:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
+			                                    WidthRequest="35" HeightRequest="35"
+			                                    DownsampleToViewSize="False"
+                                                Aspect="AspectFill"
+			                                    Source = "{markupExtension:PlatformImageMarkup SourceImage=loading.gif}"/>-->
+                    <ActivityIndicator VerticalOptions="Center" HorizontalOptions="Center" Color="WhiteSmoke" WidthRequest="30" HeightRequest="30" IsRunning="True"/>
+                    <Label x:Name="lblBusyingText" VerticalOptions="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" HorizontalTextAlignment="Center"
+                           Text="{Binding Text}"/>
+                </StackLayout>
+            </Frame>
+ 
+    </StackLayout>
+</pages:PopupPage>

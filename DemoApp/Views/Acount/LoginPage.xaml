@@ -2,7 +2,7 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:markupextension="clr-namespace:DemoApp.Common.MarkupExtension"
+    xmlns:markupextension="clr-namespace:DemoApp.Common.MarkupExtension" NavigationPage.HasNavigationBar="False"
     xmlns:font="clr-namespace:DemoApp.Resources.Fonts" xmlns:controls="clr-namespace:DemoApp.Controls"
     x:Class="DemoApp.Views.Acount.LoginPage">
     <ContentPage.Resources>
@@ -40,7 +40,7 @@
                     <Image Source="{markupextension:EmbeddedImageResource DacSan.png}" WidthRequest="220"  HeightRequest="220"
                        Aspect="AspectFit" VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,0"/>
                     <Button FontSize="16" WidthRequest="44" HeightRequest="44" VerticalOptions="Start" HorizontalOptions="Start" Command="{Binding ClosePage}" BackgroundColor="Transparent" Margin="{OnPlatform Android='-20,-5',iOS='-20'}"
-                                Text="{markupextension:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft,Text='{0}'}" FontFamily="{x:Static font:FontAssembly.SolidStyle}" TextColor="#630000"/>
+                                Text="{markupextension:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft,Text='{0}'}" FontFamily="{x:Static font:FontAssembly.SolidStyle}" TextColor="{StaticResource ThemeMainColor}"/>
                 </Grid>
                 <Label Text="Xin mời Đăng Nhập!"  FontSize="22" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}" Margin="5,0"/>
                 <StackLayout Spacing="10" Margin="0,25,0,0" VerticalOptions="FillAndExpand" BackgroundColor="Transparent">
@@ -49,7 +49,7 @@
                         <Frame x:Name="frameUsername" Style="{StaticResource frame}">
                             <Frame.Triggers>
                                 <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference entryUserName}, Path=IsFocused}" Value="True">
-                                    <Setter Property="BorderColor" Value="#630000"/>
+                                    <Setter Property="BorderColor" Value="{StaticResource ThemeMainColor}"/>
                                 </DataTrigger>
                             </Frame.Triggers>
                             <Grid ColumnDefinitions="35,*" ColumnSpacing="0">
@@ -76,7 +76,7 @@
                         <Frame x:Name="framePassword" Style="{StaticResource frame}">
                             <Frame.Triggers>
                                 <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference entryPassWord}, Path=IsFocused}" Value="True">
-                                    <Setter Property="BorderColor" Value="#630000"/>
+                                    <Setter Property="BorderColor" Value="{StaticResource ThemeMainColor}"/>
                                 </DataTrigger>
                             </Frame.Triggers>
                             <Grid ColumnDefinitions="35,*,Auto" ColumnSpacing="0" >
@@ -94,7 +94,7 @@
                                Style="{StaticResource Title}" Margin="0,-5"/>
                     </StackLayout>
                     <StackLayout Orientation="Horizontal" BackgroundColor="Transparent">
-                        <CheckBox Color="#630000" VerticalOptions="Center" Margin="0,0,-10,0" IsChecked="{Binding RememberMe}"/>
+                        <CheckBox Color="{StaticResource ThemeMainColor}" VerticalOptions="Center" Margin="0,0,-10,0" IsChecked="{Binding RememberMe}"/>
                         <Label Text="Ghi nhớ tài khoản" VerticalOptions="Center" TextColor="Black" HorizontalOptions="StartAndExpand" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"/>
                         <Label Text="Quên mật khẩu?" VerticalOptions="Center" TextColor="#CC7C4F" FontAttributes="Bold" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}" HorizontalOptions="End" Padding="5">
                             <Label.GestureRecognizers>
@@ -103,9 +103,9 @@
                         </Label>
                     </StackLayout>
                     <Button x:Name="btnSignIn" CornerRadius="10" Text="Đăng nhập" TextColor="White" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"
-                            BackgroundColor="#630000"
+                            BackgroundColor="{StaticResource ThemeMainColor}"
                             Margin="0,15,0,0" HorizontalOptions="Fill" Command="{Binding Login}"/>
-                <StackLayout Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="Center" Margin="{OnPlatform Android='0',iOS='0,0,0,20'}"
+                <!--<StackLayout Orientation="Horizontal" VerticalOptions="Start" HorizontalOptions="Center" Margin="{OnPlatform Android='0',iOS='0,0,0,20'}"
                              Padding="0,0,0,0" Spacing="20" BackgroundColor="Transparent">
                     <Label Text="Bạn chưa có tài khoản?" TextColor="Black" VerticalOptions="Center" Margin="0,0,10,0" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"/>
                     <Label Text="Đăng Ký" VerticalOptions="Center" BackgroundColor="Transparent"  HorizontalOptions="Center" TextDecorations="Underline" TextColor="#630000"
@@ -114,7 +114,7 @@
                             <TapGestureRecognizer  Command="{Binding Signup}"/>
                         </Label.GestureRecognizers>
                     </Label>
-                </StackLayout>
+                </StackLayout>-->
             </StackLayout>
             </StackLayout>
         </ScrollView>

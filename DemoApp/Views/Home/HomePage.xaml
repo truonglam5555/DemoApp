@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:master="clr-namespace:DemoApp.ViewModels.VMNavigation"
+    xmlns:markupextension="clr-namespace:DemoApp.Common.MarkupExtension"
+    xmlns:controls="clr-namespace:DemoApp.Controls" xmlns:font="clr-namespace:DemoApp.Resources.Fonts"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Class="DemoApp.Views.Home.HomePage" NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <markupextension:EmbeddedImageResourceConverter x:Key="imageLinkConverter"/>
+            <Style TargetType="Frame" x:Key="CardView">
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="BorderColor" Value="#eaeaea"/>
+            </Style>
+
+            <Style TargetType="Image" x:Key="icon">
+                <Setter Property="HeightRequest" Value="81"/>
+                <Setter Property="WidthRequest" Value="81"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+       <Grid RowDefinitions="40,200,*" RowSpacing="0">
+
+           <BoxView Grid.Row="0" Grid.RowSpan="2">
+                    <BoxView.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="{StaticResource ThemeMainColor}" Offset="0.1"/>
+                            <GradientStop Color="White"  Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+                <StackLayout Grid.Row="1">
+                    <Label  Text="{markupextension:PlatformAwesomeFontFamilyMarkup  Icon=User,Text='{0}'}"  FontFamily="{x:Static font:FontAssembly.SolidStyle}" FontSize="80" Margin="0,20,0,0"
+                            VerticalOptions="Start" HorizontalOptions="Center" TextColor="White"/>
+                    <Label x:Name="txtUserName" Text="{Binding NameUser}" HorizontalOptions="Center" VerticalOptions="Start"
+                           FontFamily="{Static font:FontAssembly.NunitoSemiBold}" FontAttributes="Bold" TextColor="White" FontSize="20"/>
+                    <!--<Label HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" 
+                       IsVisible="{Binding IsCurrentTruePointNameVisible}"
+                       xct:TouchEffect.Command="{Binding ChangeTruePointCommand}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{markupextension:PlatformAwesomeFontFamilyMarkup Icon=Mapmarkeralt,Text='{0} '}" FontFamily="{x:Static font:FontAssembly.SolidStyle}" TextColor="{StaticResource ThemeMainColor}" FontSize="20"/>
+                                <Span Text="&#160;&#160;"/>
+                                <Span x:Name="spCurrentTruePoint" 
+                                  FontFamily="{Static font:FontAssembly.NunitoSemiBold}" FontAttributes="Bold" FontSize="15" 
+                                  TextColor="{StaticResource ThemeMainColor}"
+                                  Text="{Binding CurrentTruePointName}"/>
+                                <Span Text="{markupextension:PlatformAwesomeFontFamilyMarkup  Icon=Refresh,Text='&#160; {0} '}" FontFamily="{x:Static font:FontAssembly.RegularStyle}" TextColor="{StaticResource ThemeTextColorNew}" FontSize="20"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>-->
+                </StackLayout>
+
+                <CollectionView Grid.Row="2" ItemsSource="{Binding List}" Margin="{OnIdiom Tablet='25,0,25,10', Phone='0,0,0,10'}"
+                                SelectionMode="None" VerticalScrollBarVisibility="Never">
+                   <CollectionView.ItemsLayout>
+                       <GridItemsLayout Orientation="Vertical" Span="2"  />
+                   </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Padding="5" >
+                             <Frame Style="{StaticResource CardView}" xct:TouchEffect.Command="{Binding Function}">
+                                 <StackLayout>
+                                     <Image Source="{Binding Image,Converter={StaticResource imageLinkConverter}}" Style="{StaticResource icon}"/>
+                                     <Label Text="{Binding Name}" Style="{StaticResource Title}" HorizontalOptions="Center" />
+                                 </StackLayout>
+                             </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+    </ContentPage.Content>
+</ContentPage>

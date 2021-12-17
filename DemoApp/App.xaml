@@ -8,5 +8,8 @@
             <Setter Property="FontFamily" Value="{x:Static fonts:FontAssembly.NunitoSemiBold}"/>
             <Setter Property="TextColor" Value="#63686E"/>
         </Style>
+        <Color x:Key="ThemeMainColor">#F7941F</Color>
+        <Color x:Key="ThemeTextColor">#222222</Color>
+        <Color x:Key="ThemeTextColorNew">#4F4F4F</Color>
     </Application.Resources>
 </Application>

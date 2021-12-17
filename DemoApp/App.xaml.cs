@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using DemoApp.Common.Bussiness;
+using DemoApp.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,14 +12,18 @@ namespace DemoApp
         public static int ScreenHeight;
         public static int ScreenWidth;
         public static DataBussiness dataBussiness;
-
+        public static Request request;
+        public static TransitionType transitionType;
         public App()
         {
             InitializeComponent();
 
-            MainPage = new Views.Acount.LoginPage();
+            MainPage = new TransitionNavigationPage(new Views.Home.MainPage());
+            transitionType = Device.RuntimePlatform == Device.Android ? TransitionType.Fade : TransitionType.Default;
             Task.Run(() => {
-                if(dataBussiness == null)
+                if (request == null)
+                    request = new Request();
+                if (dataBussiness == null)
                     dataBussiness = new DataBussiness();
             });
         }

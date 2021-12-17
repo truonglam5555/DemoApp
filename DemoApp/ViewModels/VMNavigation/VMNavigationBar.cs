@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DemoApp.Services.Interface;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
@@ -13,7 +14,7 @@ namespace DemoApp.ViewModels.VMNavigation
             Navigattion = 40;
             if (Device.RuntimePlatform == Device.Android)
             {
-                //StatuBar = DependencyService.Get<IDeviceStatuBar>().GetStatuBarHeight();
+                StatuBar = DependencyService.Get<IDeviceStatuBar>().GetHeight();
             }
             else
             {

@@ -44,15 +44,6 @@ namespace DemoApp.ViewModels.Scanr
      
 
         #region Properties
-        //private bool _showResult = false;
-        //public bool ShowResult
-        //{
-        //    get => _showResult;
-        //    set
-        //    {
-        //        SetProperty(ref _showResult, value);
-        //    }
-        //}
 
         private bool _showScanStage = false;
         public bool ShowScanStage

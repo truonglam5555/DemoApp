@@ -56,6 +56,11 @@
     <None Remove="Resources\Images\qr_code_icon.jpg" />
     <None Remove="Resources\Images\NFC_CARDHAND.png" />
     <None Remove="ZXing.Net.MobileX.Forms" />
+    <None Remove="Models\File\" />
+    <None Remove="Models\Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\Scanr\ScanrPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\fa-duotone-900.ttf" />
@@ -125,5 +130,13 @@
     <Folder Include="Services\Interface\" />
     <Folder Include="Views\Scanr\" />
     <Folder Include="ViewModels\Scanr\" />
+    <Folder Include="Models\File\" />
+    <Folder Include="Models\Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Views\Scanr\ScanrPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </AndroidResource>
   </ItemGroup>
 </Project>

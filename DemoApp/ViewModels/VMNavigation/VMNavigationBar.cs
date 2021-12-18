@@ -14,7 +14,7 @@ namespace DemoApp.ViewModels.VMNavigation
             Navigattion = 40;
             if (Device.RuntimePlatform == Device.Android)
             {
-                StatuBar = DependencyService.Get<IDeviceStatuBar>().GetHeight();
+                //StatuBar = DependencyService.Get<IDeviceStatuBar>().GetHeight();
             }
             else
             {

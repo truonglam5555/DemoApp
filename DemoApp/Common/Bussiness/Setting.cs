@@ -24,8 +24,10 @@ namespace DemoApp.Common.Bussiness
         public Setting()
         {
             ApiUrl = "https://vitaorga.com/";
+            MediaUrl = "http://upload.odbtruedata.com/";
         }
 
         public string ApiUrl { get; set; }
+        public string MediaUrl { get; set; }
     }
 }

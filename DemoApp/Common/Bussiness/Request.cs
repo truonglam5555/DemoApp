@@ -72,8 +72,8 @@ namespace DemoApp.Common.Bussiness
                 {
                     MultipartFormDataContent content = new MultipartFormDataContent();
 
-                    //StringContent guidUser = new StringContent(fileRequest.GuidUser.ToString());
-                    //content.Add(guidUser, "GuidUser");
+                    StringContent guidUser = new StringContent(fileRequest.GuidUser.ToString());
+                    content.Add(guidUser, "GuidUser");
 
                     //StringContent guidCompany = new StringContent(fileRequest.GuidCompany.ToString());
                     //content.Add(guidCompany, "GuidCompany");
@@ -88,7 +88,7 @@ namespace DemoApp.Common.Bussiness
                     foreach (var file in Files)
                     {
                         HttpContent fileStreamContent = new StreamContent(new MemoryStream(file));
-                        fileStreamContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data") { Name = "file", FileName = fileRequest.FolderProject + "-" + i.ToString() + ".jpg" };
+                        fileStreamContent.Headers.ContentDisposition = new System.Net.Http.Headers.ContentDispositionHeaderValue("form-data") { Name = "file", FileName = fileRequest.GuidUser + "-" + i.ToString() + ".jpg" };
                         fileStreamContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
                         content.Add(fileStreamContent);
                         i++;

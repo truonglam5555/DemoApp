@@ -47,13 +47,13 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Button  x:Name="btnNavBarBack" Grid.Row="1"  Grid.Column="0"  Margin="0" Padding="0"  BackgroundColor="Transparent" Clicked="btnNavBarBack_Clicked"  FontFamily="{x:Static font:FontAssembly.LightStyle}"
-                         FontSize="18" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft, Text='{0}'}" TextColor="Black" VerticalOptions="Center" WidthRequest="45" />
+                <Button  x:Name="btnNavBarBack" Grid.Row="1"  Grid.Column="0"  Margin="0" Padding="0"  BackgroundColor="Transparent" Clicked="btnNavBarBack_Clicked"  FontFamily="{x:Static font:FontAssembly.SolidStyle}"
+                         FontSize="18" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft, Text='{0}'}" TextColor="{StaticResource ThemeMainColor}" VerticalOptions="Center" WidthRequest="45" />
                 <!--<Label x:Name="lblNavTitle" Grid.Row="1" Grid.Column="1"  TextColor="{StaticResource NavicationTextColor}" FontAttributes="Bold"  FontSize="16"
                        Text="Thông tin hành trình" VerticalOptions="Center" />-->
                 <Image  HorizontalOptions="EndAndExpand"  Margin="0,0,20,0" Grid.Row="1" Grid.Column="1" IsVisible="{Binding BindingContext.ShowButtonSelect, Source={Reference CurrentPage}}"
                         VerticalOptions="Center" x:Name="IconChanged" Source="{markup:EmbeddedImageResource qr_code_icon.jpg}" WidthRequest="32" HeightRequest="32" 
-                        xct:IconTintColorEffect.TintColor="Black">
+                        xct:IconTintColorEffect.TintColor="{StaticResource ThemeMainColor}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                     </Image.GestureRecognizers>

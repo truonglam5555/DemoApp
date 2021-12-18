@@ -30,7 +30,8 @@ namespace DemoApp.ViewModels.Home
 
         async Task ScanrAction()
         {
-            var scanrPage = new Views.Scanr.ScanrPage();
+            //var scanrPage = new Views.Scanr.ScanrPage();
+            var scanrPage = new Views.RegistratCredit.RsgistraCreditPage();
             await scanrPage.Transition(App.Current.MainPage as TransitionNavigationPage, App.transitionType);
         }
         #endregion

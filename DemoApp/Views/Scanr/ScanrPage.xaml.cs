@@ -31,7 +31,7 @@ namespace DemoApp.Views.Scanr
                         {
                             vMScanr.ShowScanStageBarCode = false;
                             vMScanr.ShowScanStage = true;
-                            IconChanged.Source = ImageSource.FromResource("OB.TrueData.Resources.Images.qr_code_icon.jpg", typeof(EmbeddedImageResource).GetTypeInfo().Assembly);
+                            IconChanged.Source = ImageSource.FromResource("DemoApp.Resources.Images.qr_code_icon.jpg", typeof(EmbeddedImageResource).GetTypeInfo().Assembly);
                             IconChanged.WidthRequest = 32;
                             IconChanged.HeightRequest = 32;
                             Task.Run(() => {
@@ -57,7 +57,7 @@ namespace DemoApp.Views.Scanr
                     vMScanr.ShowScanStage = false;
                     if (CrossNFC.IsSupported && CrossNFC.Current.IsAvailable)
                     {
-                        IconChanged.Source = ImageSource.FromResource("OB.TrueData.Resources.Images.NFC_CARDHAND.png", typeof(EmbeddedImageResource).GetTypeInfo().Assembly);
+                        IconChanged.Source = ImageSource.FromResource("DemoApp.Resources.Images.NFC_CARDHAND.png", typeof(EmbeddedImageResource).GetTypeInfo().Assembly);
                         IconChanged.WidthRequest = 40;
                         IconChanged.HeightRequest = 40;
                         Task.Run(() => {
@@ -79,6 +79,14 @@ namespace DemoApp.Views.Scanr
 
         void btnNavBarBack_Clicked(System.Object sender, System.EventArgs e)
         {
+            MessagingCenter.Instance.Unsubscribe<byte[]>(this, "NFCMessageReceived_ScanrPage");
+            App.Current.MainPage.Navigation.PopAsync();
+        }
+
+        protected override bool OnBackButtonPressed()
+        {
+            MessagingCenter.Instance.Unsubscribe<byte[]>(this, "NFCMessageReceived_ScanrPage");
+            return base.OnBackButtonPressed();
         }
     }
 }

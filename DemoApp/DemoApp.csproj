@@ -58,9 +58,10 @@
     <None Remove="ZXing.Net.MobileX.Forms" />
     <None Remove="Models\File\" />
     <None Remove="Models\Base\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Remove="Views\Scanr\ScanrPage.xaml" />
+    <None Remove="Views\ListProfile\" />
+    <None Remove="Views\RegistratCredit\" />
+    <None Remove="ViewModels\RegistratCredit\" />
+    <None Remove="Models\RegitstraCredit\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\fa-duotone-900.ttf" />
@@ -132,11 +133,9 @@
     <Folder Include="ViewModels\Scanr\" />
     <Folder Include="Models\File\" />
     <Folder Include="Models\Base\" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Views\Scanr\ScanrPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </AndroidResource>
+    <Folder Include="Views\ListProfile\" />
+    <Folder Include="Views\RegistratCredit\" />
+    <Folder Include="ViewModels\RegistratCredit\" />
+    <Folder Include="Models\RegitstraCredit\" />
   </ItemGroup>
 </Project>

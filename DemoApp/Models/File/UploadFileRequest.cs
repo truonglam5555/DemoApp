@@ -14,7 +14,7 @@ namespace DemoApp.Models.File
 
     public class FileRequest_RQ
     {
-        //public string GuidUser { get; set; }
+        public string GuidUser { get; set; }
         //public string GuidCompany { get; set; }
         public string ForPhanHe { get; set; } = "8";
         public string FolderProject { get; set; } = "TrueCredit";

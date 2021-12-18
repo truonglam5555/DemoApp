@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using DemoApp.Services.Interface;
@@ -198,6 +199,15 @@ namespace DemoApp.Common.Utils
                 result = false;
             }
             return (result, Lat, Lng);
+        }
+
+        public static byte[] streamToByteArray(Stream input)
+        {
+            var ms = new MemoryStream();
+            input.CopyTo(ms);
+            var mangbyte = ms.ToArray();
+            ms.Close();
+            return mangbyte;
         }
     }
 }

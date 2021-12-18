@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms" xmlns:font="clr-namespace:DemoApp.Resources.Fonts"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" NavigationPage.HasNavigationBar="False"
+    x:Class="DemoApp.Views.ListProfile.ListProfilePage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="Title">
+                <Setter Property="TextColor" Value="#222222"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding StatuBar}"/>
+                <RowDefinition Height="{Binding Navigattion}"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="3">
+                <CollectionView SelectionMode="None" >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="10" CornerRadius="10" HasShadow="True">
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Ten Nguoi Vay" Style="{StaticResource Title}" HorizontalOptions="FillAndExpand"/>
+                                        <Label Text="Ngay Vay" Style="{StaticResource Title}"/>
+                                    </StackLayout>
+                                    <Label Text="Ma Hs" Style="{StaticResource Title}"/>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

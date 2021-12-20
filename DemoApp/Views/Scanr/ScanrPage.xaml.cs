@@ -12,12 +12,17 @@ namespace DemoApp.Views.Scanr
     public partial class ScanrPage : ContentPage
     {
         VMScanr vMScanr;
-        public ScanrPage()
+        public event EventHandler<string> Result;
+        public ScanrPage(bool IsResul = false)
         {
             InitializeComponent();
             vMScanr = new VMScanr();
             this.BindingContext = vMScanr;
+            vMScanr.IsResult = IsResul;
+            vMScanr.ResultTag += VMScanr_ResultTag;
         }
+
+       
 
         void TapGestureRecognizer_Tapped(System.Object sender, System.EventArgs e)
         {
@@ -68,19 +73,44 @@ namespace DemoApp.Views.Scanr
             });
         }
 
-        void scanView_OnScanResult(ZXing.Result result)
+        private void VMScanr_ResultTag(object sender, string e)
         {
-            vMScanr.ShowScanStageBarCode = false;
-            vMScanr.StrStickID = result.Text;
-            vMScanr.RequestdetailJoumey(vMScanr.StrStickID, () => {
-                vMScanr.ShowScanStageBarCode = true;
-            });
+            EventResult(e);
         }
 
-        void btnNavBarBack_Clicked(System.Object sender, System.EventArgs e)
+        public void EventResult(string tagID)
+        {
+            Result?.Invoke(null, tagID);
+            App.Current.MainPage.Navigation.PopModalAsync();
+        }
+
+        void scanView_OnScanResult(ZXing.Result result)
+        {
+            if(!vMScanr.IsResult)
+            {
+                vMScanr.ShowScanStageBarCode = false;
+                vMScanr.StrStickID = result.Text;
+                vMScanr.RequestdetailJoumey(vMScanr.StrStickID, () => {
+                    vMScanr.ShowScanStageBarCode = true;
+                });
+            }
+            else
+            {
+                EventResult(result.Text);
+            }
+        }
+
+        async void btnNavBarBack_Clicked(System.Object sender, System.EventArgs e)
         {
             MessagingCenter.Instance.Unsubscribe<byte[]>(this, "NFCMessageReceived_ScanrPage");
-            App.Current.MainPage.Navigation.PopAsync();
+            if (App.Current.MainPage.Navigation.ModalStack.Count > 0)
+            {
+                await App.Current.MainPage.Navigation.PopModalAsync();
+            }
+            else
+            {
+                await App.Current.MainPage.Navigation.PopAsync();
+            }
         }
 
         protected override bool OnBackButtonPressed()

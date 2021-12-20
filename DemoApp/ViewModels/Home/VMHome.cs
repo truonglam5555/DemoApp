@@ -14,7 +14,7 @@ namespace DemoApp.ViewModels.Home
         }
 
         #region Properties
-        private string _nameUser = "ABC";
+        private string _nameUser;
         public string NameUser
         {
             get => _nameUser;
@@ -37,12 +37,25 @@ namespace DemoApp.ViewModels.Home
         #region Actions
         async Task BrowseprofilesAction()
         {
+            
+        }
 
+        async Task CreatProfileCredit()
+        {
+            var page = new Views.RegistratCredit.RsgistraCreditPage();
+            await App.Current.MainPage.Navigation.PushAsync(page);
+        }
+
+        async Task ListProfileCredit()
+        {
+            var page = new Views.RegistratCredit.ListCustomerPage();
+            await App.Current.MainPage.Navigation.PushAsync(page);
         }
 
         async Task LogoutAction()
         {
-
+            App.dataBussiness.DeleteAllRow<Models.Accoun.MLogin>();
+            await App.Current.MainPage.Navigation.PopAsync();
         }
         #endregion
 
@@ -50,7 +63,8 @@ namespace DemoApp.ViewModels.Home
         void Init()
         {
             List = new ObservableCollection<MFunctionOfUser>();
-            switch("")
+            NameUser = App.dataBussiness.GetUserLogin().HoDem + " " + App.dataBussiness.GetUserLogin().Ten;
+            switch (App.dataBussiness.GetUserLogin().ForGroup)
             {
                 case "F73334B4-F6FE-4C64-A320-D0131F8F194E": // Quan tri vien
                     List.Add(new MFunctionOfUser
@@ -65,7 +79,13 @@ namespace DemoApp.ViewModels.Home
                     {
                         Name = "Tạo hồ sơ vây",
                         Image = "subuser.png",
-                        Function = new AsyncCommand(BrowseprofilesAction)
+                        Function = new AsyncCommand(CreatProfileCredit)
+                    });
+                    List.Add(new MFunctionOfUser
+                    {
+                        Name = "Khách hàng",
+                        Image = "subuser.png",
+                        Function = new AsyncCommand(ListProfileCredit)
                     });
                     break;
                 case "501C9AE2-D892-4E55-8B2E-6BAF13B348A0": // nguoi dung

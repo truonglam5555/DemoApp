@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DemoApp.Models.Accoun;
 using DemoApp.Services;
 using DemoApp.ViewModels.VMNavigation;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Forms;
 
 namespace DemoApp.ViewModels.Acount
 {
@@ -12,10 +14,11 @@ namespace DemoApp.ViewModels.Acount
         public Action ValidateName;
         public Action ValidatePass;
 
+        public Action RemovePage;
+
         public VMSignIn()
         {
             Login = new AsyncCommand(LoginAction);
-            Signup = new AsyncCommand(SignupAction);
         }
 
         #region Properties
@@ -38,7 +41,6 @@ namespace DemoApp.ViewModels.Acount
 
         #region Commnads
         public ICommand Login { get; set; }
-        public ICommand Signup { get; set; }
         #endregion
 
         #region Actions
@@ -46,16 +48,27 @@ namespace DemoApp.ViewModels.Acount
         {
             if (Validate())
             {
-                await Task.Delay(100);
-                //App.Current.MainPage = new MainPage(NameSigin);
-                App.Current.MainPage = new TransitionNavigationPage(new Views.Home.HomePage());
+                var popup = new Views.Popup.BusyPopupPage();
+                await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popup);
+                await Task.Run(async () => {
+                    var model = new MLogin_RS();
+                    var rs = App.request.RequestsUser(ref model, "/api/User/Login", new MLogin_RQ {
+                        username = NameSigin,
+                        password = PassSigin,
+                    });
+                    await Rg.Plugins.Popup.Services.PopupNavigation.Instance.RemovePageAsync(popup);
+                    if (rs && model?.data.Count>0)
+                    {
+                        Device.BeginInvokeOnMainThread(async () => {
+                            App.dataBussiness.AddRow(model.data[0]);
+                            var homePage = new Views.Home.HomePage();
+                            await homePage.Transition(App.Current.MainPage as TransitionNavigationPage, App.transitionType);
+                            RemovePage();
+                        });
+                    }
+                });
+               
             }
-        }
-
-        async Task SignupAction()
-        {
-            //var signUp = new Views.Acounts.SignUp();
-            //await signUp.Transition(App.Current.MainPage as TransitionNavigationPage, App.transitionType);
         }
         #endregion
 

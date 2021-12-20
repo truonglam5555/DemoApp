@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:markup="clr-namespace:DemoApp.Common.MarkupExtension" x:Name="CurrentPage"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:font="clr-namespace:DemoApp.Resources.Fonts" NavigationPage.HasNavigationBar="False"
+    x:Class="DemoApp.Views.RegistratCredit.ListCustomerPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="Title">
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="TextColor" Value="#4F4F4F"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding StatuBar}"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" BackgroundColor="{StaticResource ThemeMainColor}" ColumnDefinitions="Auto,*" >
+                <Button  x:Name="btnNavBarBack"  Grid.Column="0"  Margin="0" Padding="0"  BackgroundColor="Transparent" Command="{Binding ClosePage}" FontFamily="{x:Static  font:FontAssembly.SolidStyle}"
+                         FontSize="18" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft, Text='{0}'}" TextColor="White" VerticalOptions="Center" WidthRequest="45"  />
+                <Label x:Name="lblNavTitle" Grid.Column="1"  TextColor="White" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"  FontSize="16"
+                       Text="Danh sách hồ sơ" VerticalOptions="Center" />
+            </Grid>
+            <CollectionView Grid.Row="2" SelectionMode="None" ItemsSource="{Binding List}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10,10,10,0" xct:TouchEffect.Command="{Binding Source={Reference CurrentPage},Path=BindingContext.ChonKhach}" xct:TouchEffect.CommandParameter="{Binding .}">
+                            <Frame Padding="10" CornerRadius="5" Margin="0,0,0,3" >
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding FullName}" Style="{StaticResource Title}"
+                                               HorizontalOptions="StartAndExpand" FontSize="16"/>
+                                        <Label Text="{Binding MaKhachHang}" Style="{StaticResource Title}"
+                                               HorizontalOptions="End"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding SoDienThoai}" TextColor="#222222" Opacity="0.5"
+                                           Style="{StaticResource Title}" FontSize="12"/>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

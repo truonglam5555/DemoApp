@@ -8,9 +8,10 @@ namespace DemoApp.ViewModels.Scanr
 {
     public class VMScanr : Xamarin.CommunityToolkit.ObjectModel.ObservableObject
     {
+        public event EventHandler<string> ResultTag;
         public VMScanr()
         {
-            MessagingCenter.Instance.Subscribe<byte[]>(this, "NFCMessageReceived_ScanrPage", RequestProductDetail);
+            MessagingCenter.Instance.Subscribe<byte[]>(this,"NFCMessageReceived_ScanrPage", RequestProductDetail);
             if (CrossNFC.IsSupported && CrossNFC.Current.IsAvailable)
             {
                 if (CrossNFC.Current.IsEnabled)
@@ -41,9 +42,11 @@ namespace DemoApp.ViewModels.Scanr
             }
         }
 
-     
+
 
         #region Properties
+
+        public bool IsResult;
 
         private bool _showScanStage = false;
         public bool ShowScanStage
@@ -104,43 +107,50 @@ namespace DemoApp.ViewModels.Scanr
 
         public async void RequestdetailJoumey(string strStickID, Action action = null)
         {
-            var positionResponse = await CommonMethods.GetPosition(false);
-            if (!positionResponse.Item1)
+            if(!IsResult)
             {
-                positionResponse.Item2 = 10.762622;
-                positionResponse.Item3 = 106.660172;
+                var positionResponse = await CommonMethods.GetPosition(false);
+                if (!positionResponse.Item1)
+                {
+                    positionResponse.Item2 = 10.762622;
+                    positionResponse.Item3 = 106.660172;
+                }
+                await Task.Run(async () => {
+                    //var model = new MMThongTinViewHanhTrinh_RS();
+                    //var rs = App.request.RequestHanhTrinh(ref model, "/api/TrueData/ViewThongTinHanhTrinh", new MMThongTinViewHanhTrinh_RQ
+                    //{
+                    //    rfid = strStickID,
+                    //    tenThietBi = Xamarin.Essentials.DeviceInfo.Name,
+                    //    lat = positionResponse.Item2,
+                    //    lng = positionResponse.Item3
+                    //});
+                    //await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAllAsync();
+                    //Device.BeginInvokeOnMainThread(() => {
+                    //    if (rs && model.Data != null && model.isSuccess && model.Data.Count > 0)
+                    //    {
+                    //        ThongTinHanhTrinh = model.Data.FirstOrDefault();
+                    //        ShowScanStage = false;
+                    //        ShowScanStageBarCode = false;
+                    //        ShowResult = true;
+                    //    }
+                    //    else
+                    //    {
+                    //        ThongTinHanhTrinh = new MThongTinViewHanhTrinh
+                    //        {
+                    //            TrangThaiHanhTrinh = -1,
+                    //        };
+                    //        ShowScanStage = false;
+                    //        ShowScanStageBarCode = false;
+                    //        ShowResult = true;
+                    //        action?.Invoke();
+                    //    }
+                    //});
+                });
             }
-            await Task.Run(async () => {
-                //var model = new MMThongTinViewHanhTrinh_RS();
-                //var rs = App.request.RequestHanhTrinh(ref model, "/api/TrueData/ViewThongTinHanhTrinh", new MMThongTinViewHanhTrinh_RQ
-                //{
-                //    rfid = strStickID,
-                //    tenThietBi = Xamarin.Essentials.DeviceInfo.Name,
-                //    lat = positionResponse.Item2,
-                //    lng = positionResponse.Item3
-                //});
-                //await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAllAsync();
-                //Device.BeginInvokeOnMainThread(() => {
-                //    if (rs && model.Data != null && model.isSuccess && model.Data.Count > 0)
-                //    {
-                //        ThongTinHanhTrinh = model.Data.FirstOrDefault();
-                //        ShowScanStage = false;
-                //        ShowScanStageBarCode = false;
-                //        ShowResult = true;
-                //    }
-                //    else
-                //    {
-                //        ThongTinHanhTrinh = new MThongTinViewHanhTrinh
-                //        {
-                //            TrangThaiHanhTrinh = -1,
-                //        };
-                //        ShowScanStage = false;
-                //        ShowScanStageBarCode = false;
-                //        ShowResult = true;
-                //        action?.Invoke();
-                //    }
-                //});
-            });
+            else
+            {
+                ResultTag?.Invoke(null, strStickID);
+            }
         }
         #endregion
     }

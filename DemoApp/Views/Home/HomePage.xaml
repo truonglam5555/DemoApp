@@ -70,7 +70,8 @@
                              <Frame Style="{StaticResource CardView}" xct:TouchEffect.Command="{Binding Function}">
                                  <StackLayout>
                                      <Image Source="{Binding Image,Converter={StaticResource imageLinkConverter}}" Style="{StaticResource icon}"/>
-                                     <Label Text="{Binding Name}" Style="{StaticResource Title}" HorizontalOptions="Center" />
+                                     <Label Text="{Binding Name}" Style="{StaticResource Title}" HorizontalOptions="Center" 
+                                            HorizontalTextAlignment="Center" />
                                  </StackLayout>
                              </Frame>
                             </StackLayout>

@@ -30,12 +30,24 @@ namespace DemoApp.Views.Home
             if (App.Current.MainPage.Navigation.NavigationStack?.LastOrDefault()?.GetType() == typeof(ScanrPage))
             {
                 MessagingCenter.Instance.Send<byte[]>(tagInfo.Identifier, "NFCMessageReceived_ScanrPage");
+            } else if (App.Current.MainPage.Navigation.ModalStack?.LastOrDefault()?.GetType() == typeof(ScanrPage))
+            {
+                MessagingCenter.Instance.Send<byte[]>(tagInfo.Identifier, "NFCMessageReceived_ScanrPage");
             }
         }
 
         private void Current_OnMessagePublished(ITagInfo tagInfo)
         {
 
+        }
+
+        protected override void OnAppearing()
+        {
+            if (App.dataBussiness == null)
+                App.dataBussiness = new Common.Bussiness.DataBussiness();
+                txtChucNang.Text = App.dataBussiness.GetUserLogin() != null ? "Chức năng" : "Đăng nhập";
+
+            base.OnAppearing();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -10,250 +11,292 @@ using Xamarin.Forms;
 
 namespace DemoApp.ViewModels.RegistratCredit
 {
-    public class VMCreatProfileCredit : ViewModels.VMNavigation.VMNavigationBar
+    public class VMCreatAssetCredit : VMNavigation.VMNavigationBar
     {
-        public VMCreatProfileCredit()
+        public VMCreatAssetCredit()
         {
             Init();
         }
         #region Properties
-        private string _tenDangNhap;
-        public string TenDangNhap
+        private int IdPlus = 0;
+
+        public string MaKhachHang;
+
+        private string _tenTaiSan;
+        public string TenTaiSan
         {
-            get => _tenDangNhap;
-            set => SetProperty(ref _tenDangNhap, value);
+            get => _tenTaiSan;
+            set => SetProperty(ref _tenTaiSan, value);
         }
 
-        private string _hoDem;
-        public string HoDem
+        private string _nhanHieu;
+        public string NhanHieu
         {
-            get => _hoDem;
-            set => SetProperty(ref _hoDem, value);
+            get => _nhanHieu;
+            set => SetProperty(ref _nhanHieu, value);
         }
 
-        private string _ten;
-        public string Ten
+        private string _thongSoKyThuat;
+        public string ThongSoKyThuat
         {
-            get => _ten;
-            set => SetProperty(ref _ten, value);
+            get => _thongSoKyThuat;
+            set => SetProperty(ref _thongSoKyThuat, value);
         }
 
-        private string _soDienThoai;
-        public string SoDienThoai
+        private string _giaTriTaiSan;
+        public string GiaTriTaiSan
         {
-            get => _soDienThoai;
-            set => SetProperty(ref _soDienThoai, value);
+            get => _giaTriTaiSan;
+            set
+            {
+                _giaTriTaiSan = value.Length > 2 ? String.Format("{0:0,0}", double.Parse(value)) : value;
+                OnPropertyChanged(nameof(GiaTriTaiSan));
+            }
         }
 
-        private string _email;
-        public string Email
+        private string _soTienVay;
+        public string SoTienVay
         {
-            get => _email;
-            set => SetProperty(ref _email, value);
+            get => _soTienVay;
+            set
+            {
+                _soTienVay = value.Length > 2 ? String.Format("{0:0,0}", double.Parse(value)) : value;
+                OnPropertyChanged(nameof(SoTienVay));
+            }
         }
 
-        private string _diaChi;
-        public string DiaChi
+        private string _laiXuatVay;
+        public string LaiXuatVay
         {
-            get => _diaChi;
-            set => SetProperty(ref _diaChi, value);
+            get => _laiXuatVay;
+            set
+            {
+                //_laiXuatVay = value.Length > 2 ? String.Format("{0:0,0}", double.Parse(value)) : value;
+                //OnPropertyChanged(nameof(LaiXuatVay));
+                SetProperty(ref _laiXuatVay, value);
+            }
         }
 
-        private string _soCMND;
-        public string SoCMND
+        private string _kyHanTraNo;
+        public string KyHanTraNo
         {
-            get => _soCMND;
-            set => SetProperty(ref _soCMND, value);
+            get => _kyHanTraNo;
+            set
+            {
+                _kyHanTraNo = value.Length > 2 ? String.Format("{0:0,0}", double.Parse(value)) : value;
+                OnPropertyChanged(nameof(KyHanTraNo));
+            }
         }
 
-        private string _sotkNganHang;
-        public string SoTKNganHang
+        private string _phiTraNoTruocHan;
+        public string PhiTraNoTruocHan
         {
-            get => _sotkNganHang;
-            set => SetProperty(ref _sotkNganHang, value);
+            get => _phiTraNoTruocHan;
+            set
+            {
+                _phiTraNoTruocHan = value.Length > 2 ? String.Format("{0:0,0}", double.Parse(value)) : value;
+                OnPropertyChanged(nameof(PhiTraNoTruocHan));
+            }
         }
 
-        private string _tenNganHang;
-        public string TenNganHang
+        private int _heightRequest = 0;
+        public int HeightRequest
         {
-            get => _tenNganHang;
-            set => SetProperty(ref _tenNganHang, value);
+            get => _heightRequest;
+            set
+            {
+                _heightRequest = value;
+                OnPropertyChanged(nameof(HeightRequest));
+            }
         }
 
-        private Xamarin.Forms.ImageSource _mattruoc;
-        private byte[] _MatTruoc;
-
-        public Xamarin.Forms.ImageSource MatTruoc
+        private ObservableCollection<ImagesModel> _images;
+        public ObservableCollection<ImagesModel> Images
         {
-            get => _mattruoc;
-            set => SetProperty(ref _mattruoc, value);
-        }
-
-        private bool _isvisibleMatTruoc = true;
-
-        public bool IsvisibleMatTruoc
-        {
-            get => _isvisibleMatTruoc;
-            set => SetProperty(ref _isvisibleMatTruoc, value);
-        }
-
-        private Xamarin.Forms.ImageSource _matsau;
-        private byte[] _MatSau;
-
-        public Xamarin.Forms.ImageSource MatSau
-        {
-            get => _matsau;
-            set => SetProperty(ref _matsau, value);
-        }
-
-        private bool _isvisibleMatSau = true;
-
-        public bool IsvisibleMatSau
-        {
-            get => _isvisibleMatTruoc;
-            set => SetProperty(ref _isvisibleMatSau, value);
+            get => _images;
+            set
+            {
+                _images = value;
+                OnPropertyChanged(nameof(Images));
+            }
         }
 
         #endregion
         #region Commands
-        public ICommand ChupMatTruoc { get; set; }
-        public ICommand ChupMatSau { get; set; }
+        public ICommand ThemAnh { get; set; }
+        public ICommand ChonAnh { get; set; }
+        public ICommand XoaAnh { get; set; }
         public ICommand DangKy { get; set; }
         #endregion
         #region Actions
-        async void ChupMatTruocAction()
-        {
-            var result = await MediaPicker.CapturePhotoAsync();
-            if (result != null)
-            {
-                var item = await result.OpenReadAsync();
-                MatTruoc = ImageSource.FromFile(result.FullPath);
-                _MatTruoc = CommonMethods.streamToByteArray(item);
-                IsvisibleMatTruoc = false;
-            }
-        }
-
-        async void ChupMatSauAction()
-        {
-            var result = await MediaPicker.CapturePhotoAsync();
-            if (result != null)
-            {
-                var item = await result.OpenReadAsync();
-                MatSau = ImageSource.FromFile(result.FullPath);
-                _MatSau = CommonMethods.streamToByteArray(item);
-                IsvisibleMatSau = false;
-            }
-        }
-
         async void DangKyAction()
         {
-            if(Vailidate())
+            if (Vailidate())
             {
                 var popup = new Views.Popup.BusyPopupPage();
                 await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popup);
                 await Task.Run(async () => {
-                    var _listFile = new List<byte[]>();
-                    _listFile.Add(_MatTruoc);
-                    _listFile.Add(_MatSau);
+
                     var listfile = App.request.UploadFileRequest(new Models.File.FileRequest_RQ
                     {
-
-                    }, _listFile);
-                    if(listfile.data.Count > 0)
+                        GuidUser = App.dataBussiness.GetUserLogin().Id
+                    }, Images?.ToList()?.ConvertAll(m => m.ArrayHinh)) ;
+                    if (listfile != null && listfile.isSuccess && listfile.data != null && listfile.data.Count > 0)
                     {
                         var model = new MRegitraCredit_RS();
-                        var rs = App.request.Requests(ref model, "",new MRegitraCredit_RQ{
-                            TenDangNhap = TenDangNhap,
-                            Ten = Ten,
-                            HoDem = HoDem,
-                            SoDienThoai = SoDienThoai,
-                            Email = Email,
-                            DiaChi = DiaChi,
-                            SoCMND = SoCMND,
-                            CMNDMatTruoc = listfile.data.FirstOrDefault().Id,
-                            CMNDMatSau = listfile.data.LastOrDefault().Id,
-                            TaiKhoanNganHang = SoTKNganHang,
-                            TenNganHang = TenNganHang,
-                            GuidUser = "",
+                        var rs = App.request.Requests(ref model, "/api/TrueData/CreateHoSoTaiSanKhachHang", new MCreatAssetCredit_RQ
+                        {
+                            TenTaiSan = TenTaiSan,
+                            MaKhachHang = MaKhachHang,
+                            NhanHieu = NhanHieu,
+                            ThongSoKyThuat = ThongSoKyThuat,
+                            DinhGiaTaiSan = decimal.Parse(GiaTriTaiSan.Replace(",", "").Replace(",", "")),
+                            SoTienChoVay = decimal.Parse(SoTienVay.Replace(",", "").Replace(",", "")),
+                            LaiXuatVay = decimal.Parse(LaiXuatVay.Replace(",", "").Replace(",", "")),
+                            ThoiHanTraNo = decimal.Parse(KyHanTraNo.Replace(",", "").Replace(",", "")),
+                            PhiTraNoTruocHan = decimal.Parse(PhiTraNoTruocHan.Replace(",", "").Replace(",", "")),
+                            DanhSachFileDinhKem = listfile.data.ConvertAll(x =>x.Id),
+                            GuidUser = App.dataBussiness.GetUserLogin().Id,
                         });
-                        await App.Current.MainPage.DisplayAlert("Thông báo", rs ? "Đăng ký hồ sơ thành công" : model.message, "Đồng ý");
+                        Device.BeginInvokeOnMainThread(async () => {
+                            await App.Current.MainPage.DisplayAlert("Thông báo", rs ? "Đăng ký hồ sơ thành công" : model.message, "Đồng ý");
+                        });
                     }
                     await Rg.Plugins.Popup.Services.PopupNavigation.Instance.RemovePageAsync(popup);
                 });
             }
         }
+
+
+        private async void ThemAnhAction()
+        {
+            try
+            {
+                var result = await MediaPicker.CapturePhotoAsync();
+                PickerResult(result?.FullPath);
+            }
+            catch { }
+        }
+
+        private async void ChonAnhAction()
+        {
+            try
+            {
+                var fileResult = await Xamarin.Essentials.MediaPicker.PickPhotoAsync(new MediaPickerOptions { Title = "Chọn Ảnh" });
+                PickerResult(fileResult?.FullPath);
+            }
+            catch { }
+        }
+
+
+        private void PickerResult(string path)
+         {
+            IdPlus++;
+            Images.Add(new ImagesModel
+            {
+                ID = IdPlus,
+                Hinh = ImageSource.FromFile(path),
+                ArrayHinh = File.ReadAllBytes(path)
+            });
+            HeightRequest = 150;
+        }
+
+        private void XoaAnhAction(ImagesModel image)
+        {
+            try
+            {
+                if (image != null)
+                {
+                    Images.Remove(Images.Where(x => x.ID == image.ID).FirstOrDefault());
+                }
+
+                HeightRequest = Images.Count <= 0 ? 0 : 150;
+            }
+            catch { }
+        }
+
         #endregion
         #region Methods
         void Init()
         {
-            ChupMatTruoc = new Command(ChupMatTruocAction);
-            ChupMatSau = new Command(ChupMatSauAction);
+            ThemAnh = new Command(ThemAnhAction);
+            ChonAnh= new Command(ChonAnhAction);
+            XoaAnh = new Command<ImagesModel>(XoaAnhAction);
             DangKy = new Command(DangKyAction);
+            Images = new ObservableCollection<ImagesModel>();
         }
 
         bool Vailidate()
         {
-            if(string.IsNullOrEmpty(TenDangNhap))
+            if (string.IsNullOrEmpty(TenTaiSan))
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập tên đăng nhập!", "Đồng ý");
-                return false;
-            }
-            if(string.IsNullOrEmpty(HoDem))
-            {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập họ đệm!", "Đồng ý");
+                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập tên tài sản!", "Đồng ý");
                 return false;
             }
 
-            if (string.IsNullOrEmpty(Ten))
+            if (string.IsNullOrEmpty(NhanHieu))
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập tên!", "Đồng ý");
+                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập nhãn hiệu!", "Đồng ý");
                 return false;
             }
 
-            if (string.IsNullOrEmpty(SoDienThoai))
+            if (string.IsNullOrEmpty(GiaTriTaiSan) || decimal.Parse(GiaTriTaiSan.Replace(",", "").Replace(",", "")) < 0)
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập Số điện thoại!", "Đồng ý");
+                App.Current.MainPage.DisplayAlert("Thông báo", "Giá trị sản phẩm tróng hoặc không hợp lệ!", "Đồng ý");
                 return false;
             }
 
-            if (string.IsNullOrEmpty(Email))
+            if (string.IsNullOrEmpty(SoTienVay) || decimal.Parse(SoTienVay.Replace(",", "").Replace(",", "")) < 0)
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập Email!", "Đồng ý");
+                App.Current.MainPage.DisplayAlert("Thông báo", "Khoản vay tróng hoặc không hợp lệ!", "Đồng ý");
                 return false;
             }
 
-            if (string.IsNullOrEmpty(DiaChi))
+            if (string.IsNullOrEmpty(KyHanTraNo) || decimal.Parse(LaiXuatVay.Replace(",", "").Replace(",", "")) < 0)
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập địa chỉ!", "Đồng ý");
+                App.Current.MainPage.DisplayAlert("Thông báo", "Kỳ hạn tróng hoặc không hợp lệ!", "Đồng ý");
                 return false;
             }
 
-            if (string.IsNullOrEmpty(SoCMND))
+            if (string.IsNullOrEmpty(PhiTraNoTruocHan) || decimal.Parse(KyHanTraNo.Replace(",", "").Replace(",", "")) < 0)
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập CMND/CCCD!", "Đồng ý");
+                App.Current.MainPage.DisplayAlert("Thông báo", "Phí trả nợ trước hạn tróng hoặc không hợp lệ!", "Đồng ý");
                 return false;
             }
 
-            if (_MatTruoc == null || _MatSau == null)
+            if (Images.Count <=1)
             {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập anh CMND/CCCD!", "Đồng ý");
+                App.Current.MainPage.DisplayAlert("Thông báo", "Hình ảnh tài sản phải ít nhất 2 tấm!", "Đồng ý");
                 return false;
             }
 
-            if (string.IsNullOrEmpty(SoTKNganHang))
-            {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập tài khoản ngân hàng!", "Đồng ý");
-                return false;
-            }
+            //if (_MatTruoc == null || _MatSau == null)
+            //{
+            //    App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập anh CMND/CCCD!", "Đồng ý");
+            //    return false;
+            //}
 
-            if (string.IsNullOrEmpty(TenNganHang))
-            {
-                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập tên ngân hàng!", "Đồng ý");
-                return false;
-            }
+            //if (string.IsNullOrEmpty(SoTKNganHang))
+            //{
+            //    App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập tài khoản ngân hàng!", "Đồng ý");
+            //    return false;
+            //}
+
+            //if (string.IsNullOrEmpty(TenNganHang))
+            //{
+            //    App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng nhập tên ngân hàng!", "Đồng ý");
+            //    return false;
+            //}
 
             return true;
         }
         #endregion
+    }
+
+    public class ImagesModel
+    {
+        public int ID { get; set; }
+        public ImageSource Hinh { get; set; }
+        public byte[] ArrayHinh { get; set; }
     }
 }

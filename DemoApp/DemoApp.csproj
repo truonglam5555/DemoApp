@@ -62,6 +62,8 @@
     <None Remove="Views\RegistratCredit\" />
     <None Remove="ViewModels\RegistratCredit\" />
     <None Remove="Models\RegitstraCredit\" />
+    <None Remove="Models\Accoun\" />
+    <None Remove="EnumList\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\fa-duotone-900.ttf" />
@@ -137,5 +139,7 @@
     <Folder Include="Views\RegistratCredit\" />
     <Folder Include="ViewModels\RegistratCredit\" />
     <Folder Include="Models\RegitstraCredit\" />
+    <Folder Include="Models\Accoun\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 </Project>

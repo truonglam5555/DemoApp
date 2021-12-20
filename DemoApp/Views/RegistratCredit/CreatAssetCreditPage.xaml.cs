@@ -7,11 +7,11 @@ namespace DemoApp.Views.RegistratCredit
 {
     public partial class CreatAssetCreditPage : ContentPage
     {
-        VMCreatProfileCredit mCreatAssetCredit;
+        public VMCreatAssetCredit mCreatAssetCredit;
         public CreatAssetCreditPage()
         {
             InitializeComponent();
-            mCreatAssetCredit = new VMCreatProfileCredit();
+            mCreatAssetCredit = new VMCreatAssetCredit();
             this.BindingContext = mCreatAssetCredit;
         }
     }

@@ -63,10 +63,10 @@
             <Grid Grid.Row="2" BackgroundColor="{StaticResource ThemeMainColor}" ColumnDefinitions="*,50,*">
                 <Label Text="Về chúng tôi" VerticalOptions="Center" Style="{StaticResource Title}"
                        HorizontalOptions="Center"/>
-                <BoxView Color="White" Grid.Column="1" CornerRadius="25" Margin="2"/>
+                <BoxView Color="White" Grid.Column="1" CornerRadius="25" Margin="2" xct:TouchEffect.Command="{Binding Scanr}"/>
                 <Label Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=QRCode,Text='{0}'}" Style="{StaticResource icon}"
-                       Grid.Column="1" FontSize="20" TextColor="{StaticResource ThemeMainColor}" xct:TouchEffect.Command="{Binding Scanr}" />
-                <Label Grid.Column="2" Text="Đăng nhập" VerticalOptions="Fill" Style="{StaticResource Title}" xct:TouchEffect.Command="{Binding Login}"
+                       Grid.Column="1" FontSize="20" TextColor="{StaticResource ThemeMainColor}" InputTransparent="True"/>
+                <Label x:Name="txtChucNang" Grid.Column="2" Text="Đăng nhập" VerticalOptions="Fill" Style="{StaticResource Title}" xct:TouchEffect.Command="{Binding Login}"
                        HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
             </Grid>
         </Grid>

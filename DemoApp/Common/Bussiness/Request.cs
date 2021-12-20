@@ -13,12 +13,14 @@ namespace DemoApp.Common.Bussiness
         private Setting mSetting = Setting.Instance;
 
         private HttpClient ApiClient;
-        private HttpClient mMediaClient;
+        private HttpClient ApiMediaClient;
+        private HttpClient ApiUserClient;
 
         public Request()
         {
             ApiClient = NetClient.Instance(mSetting.ApiUrl).Client;
-            mMediaClient = NetClient.Instance(mSetting.MediaUrl).Client;
+            ApiMediaClient = NetClient.Instance(mSetting.MediaUrl).Client;
+            ApiUserClient = NetClient.Instance(mSetting.ApiUserUrl).Client;
         }
 
         public bool Requests<DataResult, ParamRequest>(ref DataResult returnData, string api, ParamRequest requestParam)
@@ -47,7 +49,7 @@ namespace DemoApp.Common.Bussiness
                         return false;
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
                     return false;
                 }
@@ -68,7 +70,7 @@ namespace DemoApp.Common.Bussiness
             }
             try
             {
-                if (mMediaClient != null)
+                if (ApiMediaClient != null)
                 {
                     MultipartFormDataContent content = new MultipartFormDataContent();
 
@@ -94,7 +96,7 @@ namespace DemoApp.Common.Bussiness
                         i++;
                     }
 
-                    var response = (mMediaClient.PostAsync("/api/Media/UploadFile", content)).Result;
+                    var response = (ApiMediaClient.PostAsync("/api/Media/UploadFile", content)).Result;
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -130,6 +132,39 @@ namespace DemoApp.Common.Bussiness
                 isSuccess = false,
                 message = "Lỗi, vui lòng thử lại!"
             };
+        }
+
+        public bool RequestsUser<DataResult, ParamRequest>(ref DataResult returnData, string api, ParamRequest requestParam)
+        {
+            if (ApiUserClient != null)
+            {
+                try
+                {
+                    string param = "{}";
+                    if (!string.IsNullOrEmpty(requestParam.ToString()))
+                    {
+                        param = Newtonsoft.Json.Linq.JObject.FromObject(requestParam).ToString();
+                    }
+
+                    HttpContent content = new StringContent(param, Encoding.UTF8, "application/json");
+                    HttpResponseMessage response = ApiUserClient.PostAsync(api, content).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string strData = response.Content.ReadAsStringAsync().Result;
+                        returnData = JsonConvert.DeserializeObject<DataResult>(strData);
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return false;
         }
     }
 }

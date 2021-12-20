@@ -16,6 +16,7 @@ namespace DemoApp.Views.Acount
             this.BindingContext = vMSignIn;
             vMSignIn.ValidateName += FocusName;
             vMSignIn.ValidatePass += FocusPass;
+            vMSignIn.RemovePage += RemovePage;
         }
 
         void FocusName()
@@ -28,6 +29,11 @@ namespace DemoApp.Views.Acount
         {
             lblPasswordPower.IsVisible = true;
             entryPassWord.Focus();
+        }
+
+        void RemovePage()
+        {
+            App.Current.MainPage.Navigation.RemovePage(this);
         }
 
         private void ShowPassWord_Tapped(object sender, EventArgs e)

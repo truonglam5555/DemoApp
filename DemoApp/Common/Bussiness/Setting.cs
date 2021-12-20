@@ -23,11 +23,13 @@ namespace DemoApp.Common.Bussiness
 
         public Setting()
         {
-            ApiUrl = "https://vitaorga.com/";
+            ApiUrl = "http://demo.truedata.vn/";
             MediaUrl = "http://upload.odbtruedata.com/";
+            ApiUserUrl = "http://demouser.truedata.vn";
         }
 
         public string ApiUrl { get; set; }
         public string MediaUrl { get; set; }
+        public string ApiUserUrl { get; set; }
     }
 }

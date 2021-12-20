@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using DemoApp.Common.Bussiness;
+using System.Linq;
 using DemoApp.Models;
+using DemoApp.Models.Accoun;
 using SQLite;
 
 namespace DemoApp.Common.Bussiness
@@ -17,7 +19,8 @@ namespace DemoApp.Common.Bussiness
 
         public void CreatTables()
         {
-            localDB.Database.CreateTable<MMonDat>();
+            localDB.Database.CreateTable<MMonDat>(); 
+            localDB.Database.CreateTable<MLogin>();
         }
 
         public Object GetLastRow<T>()
@@ -70,6 +73,32 @@ namespace DemoApp.Common.Bussiness
                 }
             }
             return new List<MMonDat>();
+        }
+
+        public MLogin GetUserLogin()
+        {
+            if (localDB.TableExist(typeof(MLogin).Name))
+            {
+                try
+                {
+                    string query = string.Format("SELECT * FROM '{0}' ;", typeof(MLogin).Name);
+                    SQLiteCommand cmd = localDB.Database.CreateCommand(query);
+                    var item = localDB.Database.Query<MLogin>(query);
+                    if (item.Count > 0)
+                    {
+                        return item.FirstOrDefault();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            return null;
         }
 
         /// <summary>

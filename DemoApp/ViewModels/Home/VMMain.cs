@@ -24,14 +24,21 @@ namespace DemoApp.ViewModels.Home
         #region Actions
         async Task LoginAction()
         {
-            var loginPage = new Views.Acount.LoginPage();
-            await loginPage.Transition(App.Current.MainPage as TransitionNavigationPage,App.transitionType);
+            if(App.dataBussiness.GetUserLogin() != null)
+            {
+                var homePage = new Views.Home.HomePage();
+                await homePage.Transition(App.Current.MainPage as TransitionNavigationPage, App.transitionType);
+            }
+            else
+            {
+                var loginPage = new Views.Acount.LoginPage();
+                await loginPage.Transition(App.Current.MainPage as TransitionNavigationPage, App.transitionType);
+            }
         }
 
         async Task ScanrAction()
         {
-            //var scanrPage = new Views.Scanr.ScanrPage();
-            var scanrPage = new Views.RegistratCredit.RsgistraCreditPage();
+            var scanrPage = new Views.Scanr.ScanrPage();
             await scanrPage.Transition(App.Current.MainPage as TransitionNavigationPage, App.transitionType);
         }
         #endregion

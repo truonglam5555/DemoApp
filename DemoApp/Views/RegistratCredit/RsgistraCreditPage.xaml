@@ -145,7 +145,7 @@
                             </Frame.Triggers>
                             <Grid Style="{StaticResource gridContent}">
                                 <Label Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=Mobile,Text='{0}'}" Style="{StaticResource Icon}"/>
-                                <controls:CTEntry  Grid.Column="1" x:Name="txtMail" Placeholder="Nhập Email" Style="{StaticResource EntryCustom}" Keyboard="Numeric"
+                                <controls:CTEntry  Grid.Column="1" x:Name="txtMail" Placeholder="Nhập Email" Style="{StaticResource EntryCustom}" Keyboard="Email"
                                                                      Text="{Binding Email}"/>
                             </Grid>
                          </Frame>
@@ -161,7 +161,7 @@
                             </Frame.Triggers>
                             <Grid Style="{StaticResource gridContent}">
                                 <Label Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=Mobile,Text='{0}'}" Style="{StaticResource Icon}"/>
-                                <controls:CTEntry  Grid.Column="1" x:Name="txtAddress" Placeholder="Nhập địa chỉ" Style="{StaticResource EntryCustom}" Keyboard="Numeric"
+                                <controls:CTEntry  Grid.Column="1" x:Name="txtAddress" Placeholder="Nhập địa chỉ" Style="{StaticResource EntryCustom}" Keyboard="Default"
                                                                      Text="{Binding DiaChi}"/>
                             </Grid>
                          </Frame>
@@ -229,7 +229,7 @@
                             </Frame.Triggers>
                             <Grid Style="{StaticResource gridContent}">
                                 <Label Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=Mobile,Text='{0}'}" Style="{StaticResource Icon}"/>
-                                <controls:CTEntry  Grid.Column="1" x:Name="txtTenNganHang" Placeholder="Nhập tên ngân hàng" Style="{StaticResource EntryCustom}" Keyboard="Numeric"
+                                <controls:CTEntry  Grid.Column="1" x:Name="txtTenNganHang" Placeholder="Nhập tên ngân hàng" Style="{StaticResource EntryCustom}" Keyboard="Default"
                                                                      Text="{Binding TenNganHang}"/>
                             </Grid>
                          </Frame>

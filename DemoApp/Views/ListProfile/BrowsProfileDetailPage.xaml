@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:markup="clr-namespace:DemoApp.Common.MarkupExtension" x:Name="CurrentPage"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:font="clr-namespace:DemoApp.Resources.Fonts" xmlns:controls="clr-namespace:DemoApp.Controls" NavigationPage.HasNavigationBar="False"
+    x:Class="DemoApp.Views.ListProfile.BrowsProfileDetailPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="Title">
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="TextColor" Value="#4F4F4F"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+            </Style>
+
+            <Style TargetType="Frame" x:Key="Card">
+                <Setter Property="HasShadow" Value="{OnPlatform Android=True,iOS=False}"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Padding" Value="10,0"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="BorderColor" Value="{OnPlatform Android=White,iOS=#eaeaea}"/>
+                <Setter Property="Margin" Value="2,0"/>
+            </Style>
+
+            <Style TargetType="controls:CTEntry" x:Key="EntryCustom">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="PlaceholderColor" Value="#828282"/>
+                <Setter Property="TextColor" Value="#828282"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding StatuBar}"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" BackgroundColor="{StaticResource ThemeMainColor}" ColumnDefinitions="Auto,*,Auto" >
+                <Button  x:Name="btnNavBarBack"  Grid.Column="0"  Margin="0" Padding="0"  BackgroundColor="Transparent" Command="{Binding ClosePage}" FontFamily="{x:Static  font:FontAssembly.SolidStyle}"
+                         FontSize="18" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft, Text='{0}'}" TextColor="White" VerticalOptions="Center" WidthRequest="45"  />
+                <Label x:Name="lblNavTitle" Grid.Column="1"  TextColor="White" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"  FontSize="16"
+                       Text="Danh sách hồ sơ cần duyệt" VerticalOptions="Center" />
+            </Grid>
+            <ScrollView Grid.Row="2" Padding="15,20">
+                <StackLayout Spacing="20">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Mã khách hàng" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding BrowProfile.MaKhachHang}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Tên tài sản" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding BrowProfile.TenTaiSan}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Định giá tài sản" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding BrowProfile.DinhGiaTaiSan,StringFormat='{0:C0}'}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Số tiền cho vay" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding BrowProfile.SoTienChoVay,StringFormat='{0:C0}'}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Trạng thái" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding BrowProfile.TenTrangThai}" Style="{StaticResource Title}" TextColor="Red"/>
+                    </StackLayout>
+
+                     <StackLayout Orientation="Horizontal">
+                        <Label Text="Người tạo hồ sơ" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding BrowProfile.NguoiTaoHoSo}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Ngày tạo hồ sơ" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding BrowProfile.NgayTaoHoSo}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <RadioButton x:Name="rbDuyet" Content="Duyệt" FontSize="14" IsChecked="True" CheckedChanged="rbDuyet_CheckedChanged"/>
+                        <RadioButton x:Name="rgKhongDuyet" Content="Không duyệt" FontSize="14"/>
+                    </StackLayout>
+                    <Frame Style="{StaticResource Card}">
+                        <Frame.Triggers>
+                             <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference rgKhongDuyet}, Path=IsChecked}" Value="True">
+                                <Setter Property="IsVisible" Value="False"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference txtSoTienChoVay}, Path=IsFocused}" Value="True">
+                                <Setter Property="BorderColor" Value="{StaticResource ThemeMainColor}"/>
+                            </DataTrigger>
+                        </Frame.Triggers>
+                        <controls:CTEntry x:Name="txtSoTienChoVay" Placeholder="Nhập số tiền cho vay" Style="{StaticResource EntryCustom}" Keyboard="Numeric"
+                                                                     Text="{Binding TienChoVay}"/>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+            <Button Grid.Row="3" Text="Phản hồi" TextColor="White" Margin="10" CornerRadius="5" Command="{Binding Duyet}"
+                    BackgroundColor="{StaticResource ThemeMainColor}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -64,6 +64,8 @@
     <None Remove="Models\RegitstraCredit\" />
     <None Remove="Models\Accoun\" />
     <None Remove="EnumList\" />
+    <None Remove="ViewModels\ListProfile\" />
+    <None Remove="Models\ListProfile\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\fa-duotone-900.ttf" />
@@ -113,6 +115,10 @@
     <Compile Update="Views\Popup\PopupAlertCancel.xaml.cs">
       <DependentUpon>PopupAlertCancel.xaml</DependentUpon>
     </Compile>
+    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\ListProfile\BrowsProfilePage.xaml.cs">
+      <DependentUpon>BrowsProfilePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Controls\StepperControl.xaml">
@@ -141,5 +147,7 @@
     <Folder Include="Models\RegitstraCredit\" />
     <Folder Include="Models\Accoun\" />
     <Folder Include="Enums\" />
+    <Folder Include="ViewModels\ListProfile\" />
+    <Folder Include="Models\ListProfile\" />
   </ItemGroup>
 </Project>

@@ -37,7 +37,8 @@ namespace DemoApp.ViewModels.Home
         #region Actions
         async Task BrowseprofilesAction()
         {
-            
+            var page = new Views.ListProfile.BrowsProfilePage();
+            await App.Current.MainPage.Navigation.PushAsync(page);
         }
 
         async Task CreatProfileCredit()

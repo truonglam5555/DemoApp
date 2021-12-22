@@ -121,6 +121,12 @@ namespace DemoApp.ViewModels.RegistratCredit
                 }
             });
         }
+
+        public void RefreahData()
+        {
+            List.Clear();
+            RequetData();
+        }
         #endregion
     }
 }

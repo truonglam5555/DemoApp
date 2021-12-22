@@ -14,5 +14,10 @@ namespace DemoApp.Views.RegistratCredit
             vMListAssetProfile = new VMListAssetProfile();
             this.BindingContext = vMListAssetProfile;
         }
+
+        public void Refresh()
+        {
+            vMListAssetProfile.RefreahData();
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using DemoApp.Common.Utils;
 using DemoApp.Models.RegitstraCredit;
+using DemoApp.Views.RegistratCredit;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -159,7 +160,18 @@ namespace DemoApp.ViewModels.RegistratCredit
                             GuidUser = App.dataBussiness.GetUserLogin().Id,
                         });
                         Device.BeginInvokeOnMainThread(async () => {
-                            await App.Current.MainPage.DisplayAlert("Thông báo", rs ? "Đăng ký hồ sơ thành công" : model.message, "Đồng ý");
+                            await App.Current.MainPage.DisplayAlert("Thông báo", model.isSuccess ? "Đăng ký hồ sơ thành công" : model.message, "Đồng ý");
+                            if(model.isSuccess)
+                            {
+                                await App.Current.MainPage.Navigation.PopAsync();
+                                foreach(var page in App.Current.MainPage.Navigation.NavigationStack)
+                                {
+                                    if(page.GetType() == typeof(ListAssetProfilePage))
+                                    {
+                                        (page as ListAssetProfilePage).Refresh();
+                                    }
+                                }
+                            }
                         });
                     }
                     await Rg.Plugins.Popup.Services.PopupNavigation.Instance.RemovePageAsync(popup);
@@ -187,7 +199,6 @@ namespace DemoApp.ViewModels.RegistratCredit
             }
             catch { }
         }
-
 
         private void PickerResult(string path)
          {

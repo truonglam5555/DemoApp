@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DemoApp.Models.RegitstraCredit;
+using DemoApp.Models.UpdateRFID;
 using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
@@ -39,11 +40,22 @@ namespace DemoApp.ViewModels.RegistratCredit
             await App.Current.MainPage.Navigation.PushAsync(creatAsset);
         }
 
-        async Task KichHoatAction()
+        async Task KichHoatAction(MAssetCredit assetCredit)
         {
-            var page = new Views.Scanr.ScanrPage(true);
-            await App.Current.MainPage.Navigation.PushModalAsync(page);
-            page.Result += Page_Result;
+            if(assetCredit.TrangThai == 1 && string.IsNullOrEmpty(assetCredit.Rfid))
+            {
+                var page = new Views.Scanr.ScanrPage(true);
+                await App.Current.MainPage.Navigation.PushModalAsync(page);
+                page.Result += (s,e)=> {
+                    Page_Result(e,assetCredit.Id);
+                };
+            }
+            else if(!string.IsNullOrEmpty(assetCredit.Rfid))
+            {
+                var page = new Views.RegistratCredit.HistoryConfirmAssetPage();
+                page.vMHistoryConfirmAsset._IDTaiSan = assetCredit.Id;
+                await App.Current.MainPage.Navigation.PushAsync(page);
+            }
         }
 
         void RefreshAction(RefreshView refresh)
@@ -56,9 +68,24 @@ namespace DemoApp.ViewModels.RegistratCredit
             }
         }
 
-        private void Page_Result(object sender, string e)
+
+        private async void Page_Result(string _Idtag,string _TaiSan)
         {
-            
+            var popup = new Views.Popup.BusyPopupPage();
+            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popup);
+            await Task.Run(async () => {
+                var model = new MAssetCreditRS();
+                var rs = App.request.Requests(ref model, "/api/TrueData/UpdateRFIDHoSoTaiSanKhachHang", new MUpdateRFIDRQ
+                {
+                    GuidUser = App.dataBussiness.GetUserLogin().Id,
+                    GuidTaiSan = _TaiSan,
+                    Rfid = _Idtag
+                });
+                await Rg.Plugins.Popup.Services.PopupNavigation.Instance.RemovePageAsync(popup);
+                Device.BeginInvokeOnMainThread(() => {
+                    App.Current.MainPage.DisplayAlert("Thông báo", model.isSuccess ? "Kích hoạt thành công!" : model.message, "Đồng ý");
+                });
+            });
         }
         #endregion
 
@@ -67,7 +94,7 @@ namespace DemoApp.ViewModels.RegistratCredit
         {
             _list = new ObservableCollection<MAssetCredit>();
             TaoTaiSanVay = new AsyncCommand(TaoTaiSanVayAction);
-            KichHoat = new AsyncCommand(KichHoatAction);
+            KichHoat = new AsyncCommand<MAssetCredit>(KichHoatAction);
             Refresh = new Command<RefreshView>(RefreshAction);
             RequetData();
         }

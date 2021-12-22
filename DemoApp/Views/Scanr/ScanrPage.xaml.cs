@@ -82,6 +82,7 @@ namespace DemoApp.Views.Scanr
         {
             Result?.Invoke(null, tagID);
             App.Current.MainPage.Navigation.PopModalAsync();
+            MessagingCenter.Instance.Unsubscribe<byte[]>(vMScanr, "NFCMessageReceived_ScanrPage");
         }
 
         void scanView_OnScanResult(ZXing.Result result)
@@ -102,7 +103,7 @@ namespace DemoApp.Views.Scanr
 
         async void btnNavBarBack_Clicked(System.Object sender, System.EventArgs e)
         {
-            MessagingCenter.Instance.Unsubscribe<byte[]>(this, "NFCMessageReceived_ScanrPage");
+            MessagingCenter.Instance.Unsubscribe<byte[]>(vMScanr, "NFCMessageReceived_ScanrPage");
             if (App.Current.MainPage.Navigation.ModalStack.Count > 0)
             {
                 await App.Current.MainPage.Navigation.PopModalAsync();
@@ -115,7 +116,7 @@ namespace DemoApp.Views.Scanr
 
         protected override bool OnBackButtonPressed()
         {
-            MessagingCenter.Instance.Unsubscribe<byte[]>(this, "NFCMessageReceived_ScanrPage");
+            MessagingCenter.Instance.Unsubscribe<byte[]>(vMScanr, "NFCMessageReceived_ScanrPage");
             return base.OnBackButtonPressed();
         }
     }

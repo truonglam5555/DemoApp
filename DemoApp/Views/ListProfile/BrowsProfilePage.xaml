@@ -34,7 +34,7 @@
             <StackLayout Grid.Row="2" Spacing="0">
                 <Frame Padding="10" xct:TouchEffect.Command="{Binding ChonLoai}" HasShadow="True" HeightRequest="30"
                        CornerRadius="0">
-                    <Label Text="{Binding NameSelect }" HorizontalOptions="Center"
+                    <Label Text="{Binding NameSelect}" HorizontalOptions="Center"
                            VerticalOptions="Center" Style="{StaticResource Title}"/>
                 </Frame>
                 <RefreshView x:Name="content" Command="{Binding Refresh}" CommandParameter="{Reference content}">

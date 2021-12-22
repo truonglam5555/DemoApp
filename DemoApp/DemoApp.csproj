@@ -66,6 +66,7 @@
     <None Remove="EnumList\" />
     <None Remove="ViewModels\ListProfile\" />
     <None Remove="Models\ListProfile\" />
+    <None Remove="Models\UpdateRFID\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\fa-duotone-900.ttf" />
@@ -149,5 +150,6 @@
     <Folder Include="Enums\" />
     <Folder Include="ViewModels\ListProfile\" />
     <Folder Include="Models\ListProfile\" />
+    <Folder Include="Models\UpdateRFID\" />
   </ItemGroup>
 </Project>

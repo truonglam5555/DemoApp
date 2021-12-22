@@ -48,22 +48,23 @@ namespace DemoApp.ViewModels.ListProfile
                 var popup = new Views.Popup.BusyPopupPage();
                 await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popup);
                 await Task.Run(async () => {
-                    //var model = new MBaseResponse<string>();
-                    //var rs = App.request.Requests(ref model, "/api/TrueData/PheDuyetHoSoTaiSanQuanTri", new MBrowserRQ
-                    //{
-                    //    Id = BrowProfile.Id,
-                    //    SoTienChoVay = decimal.Parse(TienChoVay.Replace(",", "").Replace(",", "")),
-                    //    TrangThai = _TrangThai,
-                    //    GuidUser = App.dataBussiness.GetUserLogin().Id
-                    //});
+                    var model = new MBrowserRS();
+                    var rs = App.request.Requests(ref model, "/api/TrueData/PheDuyetHoSoTaiSanQuanTri", new MBrowserRQ
+                    {
+                        Id = BrowProfile.Id,
+                        SoTienChoVay = decimal.Parse(TienChoVay.Replace(",", "").Replace(",", "")),
+                        TrangThai = _TrangThai,
+                        GuidUser = App.dataBussiness.GetUserLogin().Id
+                    });
                     await Task.Delay(500);
                     await Rg.Plugins.Popup.Services.PopupNavigation.Instance.RemovePageAsync(popup);
-                    //if (rs && model?.data != null)
-                    //{
-                    //    Device.BeginInvokeOnMainThread(() => {
-
-                    //    });
-                    //}
+                    if (rs && model?.data != null)
+                    {
+                        Device.BeginInvokeOnMainThread(() =>
+                        {
+                            App.Current.MainPage.Navigation.PopAsync();
+                        });
+                    }
                 });
             }
         }

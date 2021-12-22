@@ -50,7 +50,7 @@ namespace DemoApp.ViewModels.ListProfile
 
         async Task ChonDuyetAction(MBrowProfile browProfile)
         {
-            if(browProfile != null)
+            if(browProfile != null && browProfile.TrangThai != 1)
             {
                 var page = new Views.ListProfile.BrowsProfileDetailPage();
                 page.vMBrowsProfileDetail.BrowProfile = browProfile;

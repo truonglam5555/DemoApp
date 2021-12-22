@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using DemoApp.Models.Base;
+
 namespace DemoApp.Models.ListProfile
 {
     public class MBrowserRQ
@@ -7,5 +10,10 @@ namespace DemoApp.Models.ListProfile
         public int TrangThai { get; set; }
         public decimal SoTienChoVay { get; set; }
         public string GuidUser { get; set; }
+    }
+
+    public class MBrowserRS : MBaseResponse<List<MBrowProfile>>
+    {
+
     }
 }

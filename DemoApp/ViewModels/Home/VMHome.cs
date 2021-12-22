@@ -6,7 +6,7 @@ using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace DemoApp.ViewModels.Home
 {
-    public class VMHome : Xamarin.CommunityToolkit.ObjectModel.ObservableObject
+    public class VMHome : ViewModels.VMNavigation.VMNavigationBar
     {
         public VMHome()
         {

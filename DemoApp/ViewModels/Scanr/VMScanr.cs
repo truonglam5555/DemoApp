@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using DemoApp.Common.Utils;
+using DemoApp.Models.Base;
+using DemoApp.Models.UpdateRFID;
 using Plugin.NFC;
 using Xamarin.Forms;
 
@@ -103,6 +106,7 @@ namespace DemoApp.ViewModels.Scanr
         private void RequestProductDetail(byte[] tagID)
         {
             StickID = tagID;
+            RequestdetailJoumey(StrStickID);
         }
 
         public async void RequestdetailJoumey(string strStickID, Action action = null)
@@ -116,35 +120,24 @@ namespace DemoApp.ViewModels.Scanr
                     positionResponse.Item3 = 106.660172;
                 }
                 await Task.Run(async () => {
-                    //var model = new MMThongTinViewHanhTrinh_RS();
-                    //var rs = App.request.RequestHanhTrinh(ref model, "/api/TrueData/ViewThongTinHanhTrinh", new MMThongTinViewHanhTrinh_RQ
-                    //{
-                    //    rfid = strStickID,
-                    //    tenThietBi = Xamarin.Essentials.DeviceInfo.Name,
-                    //    lat = positionResponse.Item2,
-                    //    lng = positionResponse.Item3
-                    //});
-                    //await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAllAsync();
-                    //Device.BeginInvokeOnMainThread(() => {
-                    //    if (rs && model.Data != null && model.isSuccess && model.Data.Count > 0)
-                    //    {
-                    //        ThongTinHanhTrinh = model.Data.FirstOrDefault();
-                    //        ShowScanStage = false;
-                    //        ShowScanStageBarCode = false;
-                    //        ShowResult = true;
-                    //    }
-                    //    else
-                    //    {
-                    //        ThongTinHanhTrinh = new MThongTinViewHanhTrinh
-                    //        {
-                    //            TrangThaiHanhTrinh = -1,
-                    //        };
-                    //        ShowScanStage = false;
-                    //        ShowScanStageBarCode = false;
-                    //        ShowResult = true;
-                    //        action?.Invoke();
-                    //    }
-                    //});
+                    var model = new MBaseResponse<List<string>>();
+                    var rs = App.request.Requests(ref model, "/api/TrueData/UpdateXacThucHoSoTaiSanKhachHang", new MConfirmRFID
+                    {
+                        Rfid = strStickID,
+                        TenThietBi = Xamarin.Essentials.DeviceInfo.Name,
+                        Lat = positionResponse.Item2,
+                        Lng = positionResponse.Item3
+                    });
+                    await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PopAllAsync();
+                    Device.BeginInvokeOnMainThread(() =>
+                    {
+                        App.Current.MainPage.DisplayAlert("Thông báo", model.isSuccess ? "Xác nhận thành công!" : model.message, "Đồng ý");
+                        if(model.isSuccess)
+                        {
+                            App.Current.MainPage.Navigation.PopAsync();
+                            MessagingCenter.Instance.Unsubscribe<byte[]>(this, "NFCMessageReceived_ScanrPage");
+                        }
+                    });
                 });
             }
             else

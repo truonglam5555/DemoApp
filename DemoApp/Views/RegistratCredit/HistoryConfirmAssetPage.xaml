@@ -5,8 +5,8 @@
     xmlns:markup="clr-namespace:DemoApp.Common.MarkupExtension" x:Name="CurrentPage"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     xmlns:font="clr-namespace:DemoApp.Resources.Fonts" NavigationPage.HasNavigationBar="False"
-    x:Class="DemoApp.Views.RegistratCredit.ListAssetProfilePage">
-  <ContentPage.Resources>
+    x:Class="DemoApp.Views.RegistratCredit.HistoryConfirmAssetPage">
+    <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label" x:Key="Title">
                 <Setter Property="HorizontalOptions" Value="Start"/>
@@ -28,28 +28,29 @@
                 <Button  x:Name="btnNavBarBack"  Grid.Column="0"  Margin="0" Padding="0"  BackgroundColor="Transparent" Command="{Binding ClosePage}" FontFamily="{x:Static  font:FontAssembly.SolidStyle}"
                          FontSize="18" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft, Text='{0}'}" TextColor="White" VerticalOptions="Center" WidthRequest="45"  />
                 <Label x:Name="lblNavTitle" Grid.Column="1"  TextColor="White" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"  FontSize="16"
-                       Text="Tài sản thế chấp" VerticalOptions="Center" />
-                <Button  Grid.Column="2"  Margin="0" Padding="0"  BackgroundColor="Transparent" Command="{Binding TaoTaiSanVay}" FontFamily="{x:Static  font:FontAssembly.SolidStyle}" HorizontalOptions="End"
-                         FontSize="18" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=Plus, Text='{0}'}" TextColor="White" VerticalOptions="Center" WidthRequest="45"  />
+                       Text="Lịch sử xác thực" VerticalOptions="Center" />
             </Grid>
-            <RefreshView x:Name="content" Grid.Row="2" Command="{Binding Refresh}" CommandParameter="{Reference content}">
+            <RefreshView x:Name="content" Grid.Row="2" Command="{Binding Refresh}" CommandParameter="{Reference content}" Padding="0,20,0,0">
                 <CollectionView  SelectionMode="None" ItemsSource="{Binding List}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Padding="10,10,10,0" xct:TouchEffect.Command="{Binding Source={Reference CurrentPage},Path=BindingContext.KichHoat}" xct:TouchEffect.CommandParameter="{Binding .}">
-                                <Frame Padding="10" CornerRadius="5" Margin="0,0,0,3" >
-                                    <StackLayout>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding TenTaiSan}" Style="{StaticResource Title}"
-                                                   HorizontalOptions="StartAndExpand" FontSize="16"/>
-                                            <Label Text="{Binding TenTrangThai}" Style="{StaticResource Title}" TextColor="Red" Opacity="0.8"
-                                                   HorizontalOptions="End"/>
-                                        </StackLayout>
-                                        <Label Text="{Binding NhanHieu}" TextColor="#222222" Opacity="0.5"
-                                               Style="{StaticResource Title}" FontSize="12"/>
+                            <Grid ColumnDefinitions="30,*" Padding="10,0">
+                                <BoxView HorizontalOptions="Center" VerticalOptions="Fill" Color="Green" WidthRequest="1" Margin="0,0,0,0"/>
+                                <BoxView HeightRequest="10" WidthRequest="10" CornerRadius="5" Color="Aqua" Margin="0,0,0,0" IsVisible="{Binding Isfrish}"
+                                         HorizontalOptions="Center" VerticalOptions="Start"/> 
+                                <BoxView HeightRequest="6" WidthRequest="6" CornerRadius="3" Color="Red" Margin="0,2,0,0"
+                                         HorizontalOptions="Center" VerticalOptions="Start"/>
+                                <StackLayout Grid.Column="1" Margin="10" Spacing="10">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding TenThietBi}" HorizontalOptions="StartAndExpand" FontSize="16" Style="{StaticResource Title}"/>
+                                        <Label Text="{Binding ThoiGian}" FontSize="12" TextColor="Green" Style="{StaticResource Title}"/>
                                     </StackLayout>
-                                </Frame>
-                            </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Lat}" FontSize="12" TextColor="Red" Style="{StaticResource Title}"/>
+                                        <Label Text="{Binding Lng}" FontSize="12" TextColor="Red" Style="{StaticResource Title}"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

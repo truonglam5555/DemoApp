@@ -27,17 +27,18 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-       <Grid RowDefinitions="40,200,*" RowSpacing="0">
-
+       <Grid RowDefinitions="60,200,*" RowSpacing="0">
            <BoxView Grid.Row="0" Grid.RowSpan="2">
-                    <BoxView.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                            <GradientStop Color="{StaticResource ThemeMainColor}" Offset="0.1"/>
-                            <GradientStop Color="White"  Offset="1.0"/>
-                        </LinearGradientBrush>
-                    </BoxView.Background>
-                </BoxView>
-                <StackLayout Grid.Row="1">
+               <BoxView.Background>
+                   <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                       <GradientStop Color="{StaticResource ThemeMainColor}" Offset="0.1"/>
+                       <GradientStop Color="White"  Offset="1.0"/>
+                   </LinearGradientBrush>
+               </BoxView.Background>
+           </BoxView>
+           <Button  x:Name="btnNavBarBack"  Grid.Column="0"  Margin="5,0" Padding="0"  BackgroundColor="Transparent" Command="{Binding ClosePage}" FontFamily="{x:Static  font:FontAssembly.SolidStyle}" 
+                         FontSize="18" Text="{markupextension:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft, Text='{0}'}" TextColor="White" VerticalOptions="Center" WidthRequest="45"   HorizontalOptions="Start"/>
+           <StackLayout Grid.Row="1">
                     <Label  Text="{markupextension:PlatformAwesomeFontFamilyMarkup  Icon=User,Text='{0}'}"  FontFamily="{x:Static font:FontAssembly.SolidStyle}" FontSize="80" Margin="0,20,0,0"
                             VerticalOptions="Start" HorizontalOptions="Center" TextColor="White"/>
                     <Label x:Name="txtUserName" Text="{Binding NameUser}" HorizontalOptions="Center" VerticalOptions="Start"

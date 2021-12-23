@@ -50,12 +50,18 @@ namespace DemoApp.ViewModels.RegistratCredit
                     Page_Result(e,assetCredit.Id);
                 };
             }
+            else if (!assetCredit.IsCoFileHopDong.Value && (assetCredit.DanhSachHinhAnhHopDong == null || assetCredit.DanhSachHinhAnhHopDong.Count <= 0) && assetCredit.TrangThai == 1)
+            {
+                var page = new Views.RegistratCredit.ContractCreditPage();
+                page.vMContractCredit._IDTaiSan = assetCredit.Id;
+                await App.Current.MainPage.Navigation.PushAsync(page);
+            }
             else if(!string.IsNullOrEmpty(assetCredit.Rfid))
             {
                 var page = new Views.RegistratCredit.HistoryConfirmAssetPage();
                 page.vMHistoryConfirmAsset._IDTaiSan = assetCredit.Id;
                 await App.Current.MainPage.Navigation.PushAsync(page);
-            }
+            } 
         }
 
         void RefreshAction(RefreshView refresh)

@@ -7,7 +7,7 @@ namespace DemoApp.Views.RegistratCredit
 {
     public partial class ContractCreditPage : ContentPage
     {
-        VMContractCredit vMContractCredit;
+        public VMContractCredit vMContractCredit;
         public ContractCreditPage()
         {
             InitializeComponent();

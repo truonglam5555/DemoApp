@@ -21,6 +21,9 @@ namespace DemoApp.Models.RegitstraCredit
         public string TenTrangThai { get; set; }
         public string LyDoKhongPheDuyet { get; set; }
         public string GhiChu { get; set; }
+        public bool? IsCoFileHopDong { get; set; }
+        public List<string> DanhSachHinhAnhTaiSan { get; set; }
+        public List<string> DanhSachHinhAnhHopDong { get; set; }
     }
 
     public class MAssetCreditRQ

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using DemoApp.Models.Base;
 using DemoApp.Models.ListProfile;
+using DemoApp.Views.ListProfile;
 using Xamarin.Forms;
 
 namespace DemoApp.ViewModels.ListProfile
@@ -56,13 +57,19 @@ namespace DemoApp.ViewModels.ListProfile
                         TrangThai = _TrangThai,
                         GuidUser = App.dataBussiness.GetUserLogin().Id
                     });
-                    await Task.Delay(500);
                     await Rg.Plugins.Popup.Services.PopupNavigation.Instance.RemovePageAsync(popup);
                     if (rs && model?.data != null)
                     {
                         Device.BeginInvokeOnMainThread(() =>
                         {
                             App.Current.MainPage.Navigation.PopAsync();
+                            foreach(var page in App.Current.MainPage.Navigation.NavigationStack)
+                            {
+                                if(page.GetType() == typeof(BrowsProfilePage))
+                                {
+                                    (page as BrowsProfilePage).Refresh();
+                                }
+                            }
                         });
                     }
                 });

@@ -57,15 +57,19 @@ namespace DemoApp.ViewModels.Acount
                         password = PassSigin,
                     });
                     await Rg.Plugins.Popup.Services.PopupNavigation.Instance.RemovePageAsync(popup);
-                    if (rs && model?.data.Count>0)
-                    {
-                        Device.BeginInvokeOnMainThread(async () => {
+                    Device.BeginInvokeOnMainThread(async () => {
+                        if (rs && model?.data.Count>0)
+                        {
                             App.dataBussiness.AddRow(model.data[0]);
                             var homePage = new Views.Home.HomePage();
                             await homePage.Transition(App.Current.MainPage as TransitionNavigationPage, App.transitionType);
                             RemovePage();
-                        });
-                    }
+                        }
+                        else
+                        {
+                            await App.Current.MainPage.DisplayAlert("Thông báo", "Sai thong tin dang nhap!", "Đồng ý");
+                        }
+                    });
                 });
                
             }

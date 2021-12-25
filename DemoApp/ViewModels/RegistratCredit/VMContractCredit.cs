@@ -127,7 +127,7 @@ namespace DemoApp.ViewModels.RegistratCredit
                     if (listfile != null && listfile.isSuccess && listfile.data != null && listfile.data.Count > 0)
                     {
                         var model = new MBaseResponse<List<MAssetCredit>>();
-                        var rs = App.request.Requests(ref model, "/api/TrueData/UpdateRFIDHoSoTaiSanKhachHang", new MUpdateContrackRQ
+                        var rs = App.request.Requests(ref model, "/api/TrueData/UpdateHopDongHoSoTaiSanKhachHang", new MUpdateContrackRQ
                         {
                             GuidTaiSan = _IDTaiSan,
                             DanhSachFileHopDong = listfile.data.ConvertAll(x => x.Id).ToList()
@@ -142,7 +142,6 @@ namespace DemoApp.ViewModels.RegistratCredit
                                 {
                                     if (page.GetType() == typeof(ListAssetProfilePage))
                                     {
-                                        await Task.Delay(500);
                                         (page as ListAssetProfilePage).Refresh();
                                     }
                                 }

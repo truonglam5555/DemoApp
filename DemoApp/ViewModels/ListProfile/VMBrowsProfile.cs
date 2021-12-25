@@ -73,7 +73,6 @@ namespace DemoApp.ViewModels.ListProfile
                 RequetData(SaveSelect);
             }
         }
-
         #endregion
 
         #region Methods
@@ -108,6 +107,11 @@ namespace DemoApp.ViewModels.ListProfile
                     });
                 }
             });
+        }
+
+        public void RefreshData()
+        {
+            RequetData(SaveSelect);
         }
         #endregion
     }

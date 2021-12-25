@@ -42,6 +42,14 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <AndroidKeyStore>True</AndroidKeyStore>
+    <AndroidSigningKeyStore>/Volumes/LuuCuaMac/Github/DemoApp/DemoApp.Android/DemoStore.keystore</AndroidSigningKeyStore>
+    <AndroidSigningStorePass>123456789</AndroidSigningStorePass>
+    <AndroidSigningKeyAlias>DemoStore</AndroidSigningKeyAlias>
+    <AndroidSigningKeyPass>123456789</AndroidSigningKeyPass>
+    <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
+    <AndroidUseDefaultAotProfile>false</AndroidUseDefaultAotProfile>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Android" />
@@ -87,6 +95,7 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="Properties\AndroidManifest.xml" />
+    <None Include="DemoStore.keystore" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\styles.xml" />

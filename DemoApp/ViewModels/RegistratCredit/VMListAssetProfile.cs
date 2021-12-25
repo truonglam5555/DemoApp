@@ -42,21 +42,19 @@ namespace DemoApp.ViewModels.RegistratCredit
 
         async Task KichHoatAction(MAssetCredit assetCredit)
         {
-            if(assetCredit.TrangThai == 1 && string.IsNullOrEmpty(assetCredit.Rfid))
-            {
-                var page = new Views.Scanr.ScanrPage(true);
-                await App.Current.MainPage.Navigation.PushModalAsync(page);
-                page.Result += (s,e)=> {
-                    Page_Result(e,assetCredit.Id);
-                };
-            }
-            else if (!assetCredit.IsCoFileHopDong.Value && (assetCredit.DanhSachHinhAnhHopDong == null || assetCredit.DanhSachHinhAnhHopDong.Count <= 0) && assetCredit.TrangThai == 1)
+            if (!assetCredit.IsCoFileHopDong.Value && (assetCredit.DanhSachHinhAnhHopDong == null || assetCredit.DanhSachHinhAnhHopDong.Count <= 0) && assetCredit.TrangThai == 1)
             {
                 var page = new Views.RegistratCredit.ContractCreditPage();
                 page.vMContractCredit._IDTaiSan = assetCredit.Id;
                 await App.Current.MainPage.Navigation.PushAsync(page);
-            }
-            else if(!string.IsNullOrEmpty(assetCredit.Rfid))
+            } else if (assetCredit.TrangThai == 1 && string.IsNullOrEmpty(assetCredit.Rfid))
+            {
+                var page = new Views.Scanr.ScanrPage(true);
+                await App.Current.MainPage.Navigation.PushModalAsync(page);
+                page.Result += (s, e) => {
+                    Page_Result(e, assetCredit.Id);
+                };
+            } else if(!string.IsNullOrEmpty(assetCredit.Rfid))
             {
                 var page = new Views.RegistratCredit.HistoryConfirmAssetPage();
                 page.vMHistoryConfirmAsset._IDTaiSan = assetCredit.Id;
@@ -90,6 +88,8 @@ namespace DemoApp.ViewModels.RegistratCredit
                 await Rg.Plugins.Popup.Services.PopupNavigation.Instance.RemovePageAsync(popup);
                 Device.BeginInvokeOnMainThread(() => {
                     App.Current.MainPage.DisplayAlert("Thông báo", model.isSuccess ? "Kích hoạt thành công!" : model.message, "Đồng ý");
+                    List.Clear();
+                    RequetData();
                 });
             });
         }

@@ -14,5 +14,10 @@ namespace DemoApp.Views.ListProfile
             vMBrowsProfile = new VMBrowsProfile();
             this.BindingContext = vMBrowsProfile;
         }
+
+        public void Refresh()
+        {
+            vMBrowsProfile.RefreshData();
+        }
     }
 }

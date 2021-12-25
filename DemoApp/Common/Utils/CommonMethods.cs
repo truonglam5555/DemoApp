@@ -209,5 +209,18 @@ namespace DemoApp.Common.Utils
             ms.Close();
             return mangbyte;
         }
+
+        public static bool CheckInternet()
+        {
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                App.Current.MainPage.DisplayAlert("Thông báo", "Vui lòng kiểm tra lại kết nối mạng", "Đồng ý");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }

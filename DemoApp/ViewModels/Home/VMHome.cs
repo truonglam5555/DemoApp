@@ -37,26 +37,38 @@ namespace DemoApp.ViewModels.Home
         #region Actions
         async Task BrowseprofilesAction()
         {
-            var page = new Views.ListProfile.BrowsProfilePage();
-            await App.Current.MainPage.Navigation.PushAsync(page);
+            if (Common.Utils.CommonMethods.CheckInternet())
+            {
+                var page = new Views.ListProfile.BrowsProfilePage();
+                await App.Current.MainPage.Navigation.PushAsync(page);
+            }
         }
 
         async Task CreatProfileCredit()
         {
-            var page = new Views.RegistratCredit.RsgistraCreditPage();
-            await App.Current.MainPage.Navigation.PushAsync(page);
+            if (Common.Utils.CommonMethods.CheckInternet())
+            {
+                var page = new Views.RegistratCredit.RsgistraCreditPage();
+                await App.Current.MainPage.Navigation.PushAsync(page);
+            }
         }
 
         async Task ListProfileCredit()
         {
-            var page = new Views.RegistratCredit.ListCustomerPage();
-            await App.Current.MainPage.Navigation.PushAsync(page);
+            if (Common.Utils.CommonMethods.CheckInternet())
+            {
+                var page = new Views.RegistratCredit.ListCustomerPage();
+                await App.Current.MainPage.Navigation.PushAsync(page);
+            }
         }
 
         async Task LogoutAction()
         {
-            App.dataBussiness.DeleteAllRow<Models.Accoun.MLogin>();
-            await App.Current.MainPage.Navigation.PopAsync();
+            if (Common.Utils.CommonMethods.CheckInternet())
+            {
+                App.dataBussiness.DeleteAllRow<Models.Accoun.MLogin>();
+                await App.Current.MainPage.Navigation.PopAsync();
+            }
         }
         #endregion
 

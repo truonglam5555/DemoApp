@@ -72,7 +72,16 @@
             <ScrollView Grid.Row="2" Padding="10">
                 <StackLayout>
                     <StackLayout>
-                        <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Title}" Text="Tên tài sản"/>
+                        <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource Title}" >
+                              <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Tên tài sản"/>
+                                        <Span Text=" ("/>
+                                        <Span Text="*" TextColor="Red"/>
+                                        <Span Text=")"/>
+                                    </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                         <Frame Grid.ColumnSpan="2" Style="{StaticResource Card}">
                             <Frame.Triggers>
                                 <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference txtName}, Path=IsFocused}" Value="True">
@@ -88,7 +97,16 @@
                     </StackLayout>
 
                     <StackLayout Spacing="10">
-                        <Label Text="Nhãn hiệu" Style="{StaticResource Title}"/>
+                        <Label Style="{StaticResource Title}">
+                             <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Nhãn hiệu"/>
+                                        <Span Text=" ("/>
+                                        <Span Text="*" TextColor="Red"/>
+                                        <Span Text=")"/>
+                                    </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                         <Frame Style="{StaticResource Card}">
                             <Frame.Triggers>
                                 <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference txtNhanHieu}, Path=IsFocused}" Value="True">
@@ -120,7 +138,16 @@
                     </StackLayout>
 
                     <StackLayout Spacing="10">
-                        <Label Text="Giá trị tài sản" Style="{StaticResource Title}"/>
+                        <Label  Style="{StaticResource Title}">
+                            <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Giá trị tài sản"/>
+                                        <Span Text=" ("/>
+                                        <Span Text="*" TextColor="Red"/>
+                                        <Span Text=")"/>
+                                    </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                         <Frame Style="{StaticResource Card}">
                             <Frame.Triggers>
                                 <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference txtGiaTriTaiSan}, Path=IsFocused}" Value="True">
@@ -138,7 +165,16 @@
                     </StackLayout>
 
                      <StackLayout Spacing="10">
-                        <Label Text="Số tiền vay" Style="{StaticResource Title}"/>
+                        <Label Style="{StaticResource Title}">
+                            <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Số tiền vay" />
+                                        <Span Text=" ("/>
+                                        <Span Text="*" TextColor="Red"/>
+                                        <Span Text=")"/>
+                                    </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                         <Frame Style="{StaticResource Card}">
                             <Frame.Triggers>
                                 <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference txtSoTienVay}, Path=IsFocused}" Value="True">
@@ -156,7 +192,16 @@
                     </StackLayout>
 
                      <StackLayout Spacing="10">
-                        <Label Text="Lãi xuất vay" Style="{StaticResource Title}"/>
+                        <Label  Style="{StaticResource Title}">
+                            <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Lãi xuất vay" />
+                                        <Span Text=" ("/>
+                                        <Span Text="*" TextColor="Red"/>
+                                        <Span Text=")"/>
+                                    </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                         <Frame Style="{StaticResource Card}">
                             <Frame.Triggers>
                                 <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference txtLaiXuatVay}, Path=IsFocused}" Value="True">
@@ -174,7 +219,16 @@
                     </StackLayout>
 
                     <StackLayout Spacing="10">
-                        <Label Text="Kỳ hạn trả nợ" Style="{StaticResource Title}"/>
+                        <Label  Style="{StaticResource Title}">
+                            <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Kỳ hạn trả nợ" />
+                                        <Span Text=" ("/>
+                                        <Span Text="*" TextColor="Red"/>
+                                        <Span Text=")"/>
+                                    </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                         <Frame Style="{StaticResource Card}">
                             <Frame.Triggers>
                                 <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference txtKyHanTraNo}, Path=IsFocused}" Value="True">
@@ -192,7 +246,16 @@
                     </StackLayout>
 
                     <StackLayout Spacing="10">
-                        <Label Text="Phí trả nợ trước hạn " Style="{StaticResource Title}"/>
+                        <Label  Style="{StaticResource Title}">
+                            <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Phí trả nợ trước hạn" />
+                                        <Span Text=" ("/>
+                                        <Span Text="*" TextColor="Red"/>
+                                        <Span Text=")"/>
+                                    </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                         <Frame Style="{StaticResource Card}">
                             <Frame.Triggers>
                                 <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference txtPhiTraNoTruocHan}, Path=IsFocused}" Value="True">

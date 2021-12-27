@@ -84,7 +84,7 @@ namespace DemoApp.ViewModels.RegistratCredit
             get => _kyHanTraNo;
             set
             {
-                _kyHanTraNo = value.Length > 2 ? String.Format("{0:0,0}", double.Parse(value)) : value;
+                _kyHanTraNo = value;
                 OnPropertyChanged(nameof(KyHanTraNo));
             }
         }

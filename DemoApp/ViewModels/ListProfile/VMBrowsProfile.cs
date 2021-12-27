@@ -16,7 +16,7 @@ namespace DemoApp.ViewModels.ListProfile
         }
 
         #region Properties
-        private int SaveSelect = 0;
+        private int SaveSelect = 1;
         private ObservableCollection<MBrowProfile> _list;
         public ObservableCollection<MBrowProfile> List
         {

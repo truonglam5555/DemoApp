@@ -13,8 +13,8 @@ namespace DemoApp.Views.Popup
             InitializeComponent();
             var list = new List<SelecType>();
             list.Add(new SelecType { ID = -1,Ten = "Không duyệt" });
-            list.Add(new SelecType { ID = 0, Ten = "Chờ phê duyệt" });
-            list.Add(new SelecType { ID = 1, Ten = "Đã duyệt" });
+            list.Add(new SelecType { ID = 1, Ten = "Chờ phê duyệt" });
+            list.Add(new SelecType { ID = 2, Ten = "Đã duyệt" });
             this.BindingContext = list;
         }
 

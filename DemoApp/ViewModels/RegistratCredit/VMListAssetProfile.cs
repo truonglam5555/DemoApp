@@ -42,24 +42,50 @@ namespace DemoApp.ViewModels.RegistratCredit
 
         async Task KichHoatAction(MAssetCredit assetCredit)
         {
-            if (!assetCredit.IsCoFileHopDong.Value && (assetCredit.DanhSachHinhAnhHopDong == null || assetCredit.DanhSachHinhAnhHopDong.Count <= 0) && assetCredit.TrangThai == 1)
+            if (!assetCredit.IsCoFileHopDong.Value && (assetCredit.DanhSachHinhAnhHopDong == null || assetCredit.DanhSachHinhAnhHopDong.Count <= 0) && assetCredit.TrangThai == (int)Enums.EnumList.TrangThaiHoSoTaiSanEnums.PheDuyet)
             {
                 var page = new Views.RegistratCredit.ContractCreditPage();
                 page.vMContractCredit._IDTaiSan = assetCredit.Id;
                 await App.Current.MainPage.Navigation.PushAsync(page);
-            } else if (assetCredit.TrangThai == 1 && string.IsNullOrEmpty(assetCredit.Rfid))
+            } else if (assetCredit.TrangThai == (int)Enums.EnumList.TrangThaiHoSoTaiSanEnums.PheDuyet && string.IsNullOrEmpty(assetCredit.Rfid))
             {
                 var page = new Views.Scanr.ScanrPage(true);
                 await App.Current.MainPage.Navigation.PushModalAsync(page);
                 page.Result += (s, e) => {
                     Page_Result(e, assetCredit.Id);
                 };
-            } else if(!string.IsNullOrEmpty(assetCredit.Rfid))
+            }else if(!string.IsNullOrEmpty(assetCredit.Rfid))
             {
                 var page = new Views.RegistratCredit.HistoryConfirmAssetPage();
                 page.vMHistoryConfirmAsset._IDTaiSan = assetCredit.Id;
                 await App.Current.MainPage.Navigation.PushAsync(page);
-            } 
+            }else if(assetCredit.TrangThai == (int)Enums.EnumList.TrangThaiHoSoTaiSanEnums.TaoMoi)
+            {
+                var selectButton = new Views.Popup.ButtonSelectPopup(assetCredit);
+                await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(selectButton);
+                selectButton.Result += SelectButton_Result;
+            }
+        }
+
+        private async void SelectButton_Result(object sender, string e)
+        {
+            var popup = new Views.Popup.BusyPopupPage();
+            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popup);
+            await Task.Run(async () => {
+                var model = new MAssetCreditRS();
+                var rs = App.request.Requests(ref model, "/api/TrueData/UpdateChoPheDuyetHoSoTaiSanKhachHang", new MUpdateRFIDRQ
+                {
+                    GuidUser = App.dataBussiness.GetUserLogin().Id,
+                    GuidTaiSan = e,
+                    Rfid = null
+                });
+                await Rg.Plugins.Popup.Services.PopupNavigation.Instance.RemovePageAsync(popup);
+                Device.BeginInvokeOnMainThread(() => {
+                    App.Current.MainPage.DisplayAlert("Thông báo", model.isSuccess ? "Kích hoạt thành công!" : model.message, "Đồng ý");
+                    List.Clear();
+                    RequetData();
+                });
+            });
         }
 
         void RefreshAction(RefreshView refresh)

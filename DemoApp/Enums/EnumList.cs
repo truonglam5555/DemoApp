@@ -6,8 +6,9 @@ namespace DemoApp.Enums
         public enum TrangThaiHoSoTaiSanEnums
         {
             KhongPheDuyet = -1,
-            ChoPheDuyet = 0,
-            PheDuyet = 1
+            TaoMoi = 0,
+            ChoPheDuyet = 1,
+            PheDuyet = 2
         }
     }
 }

@@ -50,9 +50,15 @@ namespace DemoApp.ViewModels.ListProfile
 
         async Task ChonDuyetAction(MBrowProfile browProfile)
         {
-            if(browProfile != null && browProfile.TrangThai != 1)
+            if(browProfile != null && browProfile.TrangThai == (int)Enums.EnumList.TrangThaiHoSoTaiSanEnums.ChoPheDuyet)
             {
                 var page = new Views.ListProfile.BrowsProfileDetailPage();
+                page.vMBrowsProfileDetail.BrowProfile = browProfile;
+                await App.Current.MainPage.Navigation.PushAsync(page);
+            }
+            else
+            {
+                var page = new Views.ListProfile.BrowsProfileDetailPage(false);
                 page.vMBrowsProfileDetail.BrowProfile = browProfile;
                 await App.Current.MainPage.Navigation.PushAsync(page);
             }

@@ -4,7 +4,6 @@ using System.Linq;
 using Xamarin.CommunityToolkit.UI.Views;
 using System.Collections.Generic;
 using DemoApp.Models;
-using System.Threading.Tasks;
 using DemoApp.Resources.Fonts;
 
 namespace DemoApp

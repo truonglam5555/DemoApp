@@ -85,11 +85,11 @@
                         <Label Text="{Binding BrowProfile.NgayTaoHoSo}" Style="{StaticResource Title}"/>
                     </StackLayout>
 
-                    <StackLayout Orientation="Horizontal">
+                    <StackLayout Orientation="Horizontal" x:Name="SelectView" >
                         <RadioButton x:Name="rbDuyet" Content="Duyệt" FontSize="14" IsChecked="True" CheckedChanged="rbDuyet_CheckedChanged"/>
                         <RadioButton x:Name="rgKhongDuyet" Content="Không duyệt" FontSize="14"/>
                     </StackLayout>
-                    <Frame Style="{StaticResource Card}">
+                    <Frame Style="{StaticResource Card}" x:Name="InputVew">
                         <Frame.Triggers>
                              <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference rgKhongDuyet}, Path=IsChecked}" Value="True">
                                 <Setter Property="IsVisible" Value="False"/>
@@ -103,7 +103,7 @@
                     </Frame>
                 </StackLayout>
             </ScrollView>
-            <Button Grid.Row="3" Text="Phản hồi" TextColor="White" Margin="10" CornerRadius="5" Command="{Binding Duyet}"
+            <Button Grid.Row="3" x:Name="ButtonView" Text="Phản hồi" TextColor="White" Margin="10" CornerRadius="5" Command="{Binding Duyet}" 
                     BackgroundColor="{StaticResource ThemeMainColor}"/>
         </Grid>
     </ContentPage.Content>

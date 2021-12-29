@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:font="clr-namespace:DemoApp.Resources.Fonts"
+    xmlns:markup="clr-namespace:DemoApp.Common.MarkupExtension"
+    xmlns:controls="clr-namespace:DemoApp.Controls" NavigationPage.HasNavigationBar="False"
+    x:Class="DemoApp.Views.RegistratCredit.DetailAssetCreditPage">
+     <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="Title">
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="TextColor" Value="#4F4F4F"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+            </Style>
+
+            <Style TargetType="Frame" x:Key="Card">
+                <Setter Property="HasShadow" Value="{OnPlatform Android=True,iOS=False}"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Padding" Value="10,0"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="BorderColor" Value="{OnPlatform Android=White,iOS=#eaeaea}"/>
+                <Setter Property="Margin" Value="2,0"/>
+            </Style>
+
+            <Style TargetType="controls:CTEntry" x:Key="EntryCustom">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="PlaceholderColor" Value="#828282"/>
+                <Setter Property="TextColor" Value="#828282"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" BackgroundColor="{StaticResource ThemeMainColor}" ColumnDefinitions="Auto,*,Auto" >
+                <Button  x:Name="btnNavBarBack"  Grid.Column="0"  Margin="0" Padding="0"  BackgroundColor="Transparent" Clicked="btnNavBarBack_Clicked" FontFamily="{x:Static  font:FontAssembly.SolidStyle}"
+                         FontSize="18" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft, Text='{0}'}" TextColor="White" VerticalOptions="Center" WidthRequest="45"  />
+                <Label x:Name="lblNavTitle" Grid.Column="1"  TextColor="White" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"  FontSize="16"
+                       Text="Chi tiết" VerticalOptions="Center" />
+            </Grid>
+            <ScrollView Grid.Row="2" Padding="15,20">
+                <StackLayout Spacing="20">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Mã khách hàng" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding MaKhachHang}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Tên tài sản" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding TenTaiSan}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+
+                     <StackLayout Orientation="Horizontal">
+                        <Label Text="Nhãn hiệu" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding NhanHieu}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Định giá tài sản" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding DinhGiaTaiSan,StringFormat='{0:C0}'}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Số tiền cho vay" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding SoTienChoVay,StringFormat='{0:C0}'}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Lãi xuất vay" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Style="{StaticResource Title}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding LaiXuatVay}"/>
+                                    <Span Text=" %/tháng"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Thời hạn trả nợ" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label  Style="{StaticResource Title}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding ThoiHanTraNo}"/>
+                                    <Span Text=" tháng"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Trạng thái" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding TenTrangThai}" Style="{StaticResource Title}" TextColor="Red"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" x:Name="ContentLyDo" >
+                        <Label Text="Lý do " Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding LyDoKhongPheDuyet}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+
+                     <StackLayout Orientation="Vertical" x:Name="ContentAnhTaiSan" >
+                        <Label Text="Ảnh tài sản" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <CollectionView ItemSizingStrategy="MeasureAllItems" ItemsSource="{Binding DanhSachHinhAnhTaiSan}" VerticalOptions="Start" Margin="0">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="15"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Frame Padding="0" HasShadow="False" CornerRadius="10" VerticalOptions="Start">
+                                            <Image HeightRequest="140" WidthRequest="170" Source="{Binding .}" Aspect="Fill" />
+                                        </Frame>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" x:Name="ContentHopDong">
+                        <Label Text="Ảnh hợp đồng" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <CollectionView ItemSizingStrategy="MeasureAllItems" ItemsSource="{Binding DanhSachHinhAnhHopDong}" VerticalOptions="Start" Margin="0">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Horizontal" HorizontalItemSpacing="15"/>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Frame Padding="0" HasShadow="False" CornerRadius="10" VerticalOptions="Start">
+                                            <Image HeightRequest="170" WidthRequest="170" Source="{Binding .}" Aspect="Fill" />
+                                        </Frame>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                     
+
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

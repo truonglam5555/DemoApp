@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:markup="clr-namespace:DemoApp.Common.MarkupExtension" x:Name="CurrentPage"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-    xmlns:font="clr-namespace:DemoApp.Resources.Fonts" xmlns:controls="clr-namespace:DemoApp.Controls" NavigationPage.HasNavigationBar="False"
+    xmlns:font="clr-namespace:DemoApp.Resources.Fonts"
+    xmlns:controls="clr-namespace:DemoApp.Controls" NavigationPage.HasNavigationBar="False"
     x:Class="DemoApp.Views.ListProfile.BrowsProfileDetailPage">
     <ContentPage.Resources>
         <ResourceDictionary>

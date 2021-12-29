@@ -36,19 +36,26 @@
                 <CollectionView  SelectionMode="None" ItemsSource="{Binding List}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout Padding="10,10,10,0" xct:TouchEffect.Command="{Binding Source={Reference CurrentPage},Path=BindingContext.KichHoat}" xct:TouchEffect.CommandParameter="{Binding .}">
-                                <Frame Padding="10" CornerRadius="5" Margin="0,0,0,3" >
-                                    <StackLayout>
-                                        <StackLayout Orientation="Horizontal">
-                                            <Label Text="{Binding TenTaiSan}" Style="{StaticResource Title}"
-                                                   HorizontalOptions="StartAndExpand" FontSize="16"/>
-                                            <Label Text="{Binding TenTrangThai}" Style="{StaticResource Title}" TextColor="Red" Opacity="0.8"
-                                                   HorizontalOptions="End"/>
+                            <StackLayout Padding="10,10,10,0" >
+                                <SwipeView>
+                                    <SwipeView.RightItems>
+                                         <SwipeItem Text="Chi tiet" Command="{Binding Source={Reference CurrentPage},Path=BindingContext.ChiTiet}" CommandParameter="{Binding .}"
+                                                    BackgroundColor="LightGreen" />
+                                    </SwipeView.RightItems>
+                                    <Frame Padding="10" CornerRadius="5" Margin="0,0,0,3" xct:TouchEffect.Command="{Binding Source={Reference CurrentPage},Path=BindingContext.KichHoat}"
+                                         xct:TouchEffect.CommandParameter="{Binding .}" >
+                                        <StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding TenTaiSan}" Style="{StaticResource Title}"
+                                                       HorizontalOptions="StartAndExpand" FontSize="16"/>
+                                                <Label Text="{Binding TenTrangThai}" Style="{StaticResource Title}" TextColor="Red" Opacity="0.8"
+                                                       HorizontalOptions="End"/>
+                                            </StackLayout>
+                                            <Label Text="{Binding NhanHieu}" TextColor="#222222" Opacity="0.5"
+                                                   Style="{StaticResource Title}" FontSize="12"/>
                                         </StackLayout>
-                                        <Label Text="{Binding NhanHieu}" TextColor="#222222" Opacity="0.5"
-                                               Style="{StaticResource Title}" FontSize="12"/>
-                                    </StackLayout>
-                                </Frame>
+                                    </Frame>
+                                </SwipeView>
                             </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>

@@ -30,6 +30,7 @@ namespace DemoApp.ViewModels.RegistratCredit
         public ICommand TaoTaiSanVay { get; set; }
         public ICommand KichHoat { get; set; }
         public ICommand Refresh { get; set; }
+        public ICommand ChiTiet { get; set; }
         #endregion
 
         #region Actions
@@ -119,6 +120,12 @@ namespace DemoApp.ViewModels.RegistratCredit
                 });
             });
         }
+
+        async Task ChietTietAction(MAssetCredit assetCredit)
+        {
+            var page = new Views.RegistratCredit.DetailAssetCreditPage(assetCredit);
+            await App.Current.MainPage.Navigation.PushAsync(page);
+        }
         #endregion
 
         #region Methods
@@ -128,6 +135,7 @@ namespace DemoApp.ViewModels.RegistratCredit
             TaoTaiSanVay = new AsyncCommand(TaoTaiSanVayAction);
             KichHoat = new AsyncCommand<MAssetCredit>(KichHoatAction);
             Refresh = new Command<RefreshView>(RefreshAction);
+            ChiTiet = new AsyncCommand<MAssetCredit>(ChietTietAction);
             RequetData();
         }
 

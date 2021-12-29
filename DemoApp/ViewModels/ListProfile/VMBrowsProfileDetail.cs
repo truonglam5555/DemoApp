@@ -15,7 +15,7 @@ namespace DemoApp.ViewModels.ListProfile
         }
 
         #region Properties
-        public int _TrangThai = 1;
+        public int _TrangThai = (int)Enums.EnumList.TrangThaiHoSoTaiSanEnums.PheDuyet;
 
         private string _tienChoVay;
         public string TienChoVay

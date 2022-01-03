@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:font="clr-namespace:DemoApp.Resources.Fonts"
     xmlns:markup="clr-namespace:DemoApp.Common.MarkupExtension"
-    xmlns:controls="clr-namespace:DemoApp.Controls" NavigationPage.HasNavigationBar="False"
+    xmlns:controls="clr-namespace:DemoApp.Controls" xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" NavigationPage.HasNavigationBar="False"
     x:Class="DemoApp.Views.RegistratCredit.DetailAssetCreditPage">
      <ContentPage.Resources>
         <ResourceDictionary>
@@ -119,7 +119,8 @@
                                 <DataTemplate>
                                     <Grid>
                                         <Frame Padding="0" HasShadow="False" CornerRadius="10" VerticalOptions="Start">
-                                            <Image HeightRequest="140" WidthRequest="170" Source="{Binding .}" Aspect="Fill" />
+                                            <forms:CachedImage HeightRequest="140" WidthRequest="170" BitmapOptimizations="True"
+                                                   Source="{Binding .}" Aspect="Fill" />
                                         </Frame>
                                     </Grid>
                                 </DataTemplate>
@@ -137,7 +138,7 @@
                                 <DataTemplate>
                                     <Grid>
                                         <Frame Padding="0" HasShadow="False" CornerRadius="10" VerticalOptions="Start">
-                                            <Image HeightRequest="170" WidthRequest="170" Source="{Binding .}" Aspect="Fill" />
+                                            <forms:CachedImage HeightRequest="170" WidthRequest="170" Source="{Binding .}" Aspect="AspectFill" />
                                         </Frame>
                                     </Grid>
                                 </DataTemplate>

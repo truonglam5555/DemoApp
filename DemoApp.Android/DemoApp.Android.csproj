@@ -78,6 +78,9 @@
     <PackageReference Include="ZXing.Net.MobileX.Forms">
       <Version>3.0.1</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Plugin.NFC;
 using Android.Content;
 using Android.Content.Res;
+using FFImageLoading.Forms.Platform;
 
 namespace DemoApp.Droid
 {
@@ -29,6 +30,7 @@ namespace DemoApp.Droid
                 ZXing.Net.Mobile.Forms.Android.Platform.Init();
                 Rg.Plugins.Popup.Popup.Init(this);
                 CrossNFC.Init(this);
+                CachedImageRenderer.Init(true);
             });
         }
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

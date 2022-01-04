@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:markup="clr-namespace:DemoApp.Common.MarkupExtension"
+    xmlns:font="clr-namespace:DemoApp.Resources.Fonts" NavigationPage.HasNavigationBar="False"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit" x:Name="CurrentPage"
+    x:Class="DemoApp.Views.Broker.ListBorkerPage">
+     <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="Title">
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="TextColor" Value="#4F4F4F"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+            </Style>
+
+              <Style TargetType="Label" x:Key="Icon">
+                <Setter Property="TextColor" Value="{StaticResource ThemeMainColor}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.SolidStyle}"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+       <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding StatuBar}"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" BackgroundColor="{StaticResource ThemeMainColor}" ColumnDefinitions="Auto,*,Auto" >
+                <Button  x:Name="btnNavBarBack"  Grid.Column="0"  Margin="0" Padding="0"  BackgroundColor="Transparent" Command="{Binding ClosePage}" FontFamily="{x:Static  font:FontAssembly.SolidStyle}"
+                         FontSize="18" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft, Text='{0}'}" TextColor="White" VerticalOptions="Center" WidthRequest="45"  />
+                <Label x:Name="lblNavTitle" Grid.Column="1"  TextColor="White" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"  FontSize="16"
+                       Text="Danh sách cộng tác viên" VerticalOptions="Center" />
+                 <Button  Grid.Column="2"  Margin="0" Padding="0"  BackgroundColor="Transparent" Command="{Binding DangKyBroker}" FontFamily="{x:Static  font:FontAssembly.SolidStyle}" HorizontalOptions="End"
+                         FontSize="18" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=Plus, Text='{0}'}" TextColor="White" VerticalOptions="Center" WidthRequest="45"  />
+            </Grid>
+            <StackLayout Grid.Row="2" Spacing="0">
+                <RefreshView x:Name="content" Command="{Binding Refresh}" CommandParameter="{Reference content}">
+                    <CollectionView  SelectionMode="None" ItemsSource="{Binding List}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <!--xct:TouchEffect.Command="{Binding Source={Reference CurrentPage},Path=BindingContext.ChonDuyet}" xct:TouchEffect.CommandParameter="{Binding .}"-->
+                                <StackLayout Padding="10,10,10,0" >
+                                    <Frame Padding="10" CornerRadius="5" Margin="0,0,0,3" >
+                                        <Grid ColumnDefinitions="30,*" RowDefinitions="Auto">
+                                            <Label Style="{StaticResource Icon}" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=USer_Circle,Text='{0}'}" FontSize="30"
+                                                   HorizontalOptions="Center"/>
+                                            <StackLayout Grid.Column="1">
+                                                <Label Style="{StaticResource Title}" FontSize="16">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding HoDem}"/>
+                                                            <Span Text=" "/>
+                                                            <Span Text="{Binding Ten}"/>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Label Style="{StaticResource Title}" Text="{Binding SoDienThoai}" FontSize="12"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

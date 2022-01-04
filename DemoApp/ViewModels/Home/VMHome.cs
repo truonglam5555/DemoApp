@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using System.Windows.Input;
 using Xamarin.CommunityToolkit.ObjectModel;
+using DemoApp.Models.Broker;
+using DemoApp.Models.Base;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DemoApp.ViewModels.Home
 {
@@ -70,6 +75,38 @@ namespace DemoApp.ViewModels.Home
                 await App.Current.MainPage.Navigation.PopAsync();
             }
         }
+
+
+        async Task ShareAction()
+        {
+            var popup = new Views.Popup.BusyPopupPage();
+            await Rg.Plugins.Popup.Services.PopupNavigation.Instance.PushAsync(popup);
+            await Task.Run(async () => {
+                var model = new MBaseResponse<List<string>>();
+                var rs = App.request.Requests(ref model, "/api/TrueData/GetLinkChiaSeApp", new MBorkerListRQ
+                {
+                    GuidUser = App.dataBussiness.GetUserLogin().Id,
+                });
+                await Rg.Plugins.Popup.Services.PopupNavigation.Instance.RemovePageAsync(popup);
+                if (rs && model?.data.Count > 0)
+                {
+                    await Share.RequestAsync(new ShareTextRequest
+                    {
+                        Uri = model.data.FirstOrDefault(),
+                        Title = "Share Link"
+                    });
+                }
+            });
+        }
+
+        async Task BorkerAction()
+        {
+            if (Common.Utils.CommonMethods.CheckInternet())
+            {
+                var page = new Views.Broker.ListBorkerPage();
+                await App.Current.MainPage.Navigation.PushAsync(page);
+            }
+        }
         #endregion
 
         #region Methods
@@ -100,6 +137,12 @@ namespace DemoApp.ViewModels.Home
                         Image = "subuser.png",
                         Function = new AsyncCommand(ListProfileCredit)
                     });
+                    List.Add(new MFunctionOfUser
+                    {
+                        Name = "Cộng tác viên",
+                        Image = "subuser.png",
+                        Function = new AsyncCommand(BorkerAction)
+                    });
                     break;
                 case "501C9AE2-D892-4E55-8B2E-6BAF13B348A0": // nguoi dung
                     List.Add(new MFunctionOfUser
@@ -107,6 +150,14 @@ namespace DemoApp.ViewModels.Home
                         Name = "Xác thực",
                         Image = "subuser.png",
                         Function = new AsyncCommand(BrowseprofilesAction)
+                    });
+                    break;
+                case "C0279290-9FAA-47FB-B37E-550552828EDF": // Cong tac vien
+                    List.Add(new MFunctionOfUser
+                    {
+                        Name = "Chia sẻ",
+                        Image = "subuser.png",
+                        Function = new AsyncCommand(ShareAction)
                     });
                     break;
             }

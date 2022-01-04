@@ -68,6 +68,9 @@
     <None Remove="Models\ListProfile\" />
     <None Remove="Models\UpdateRFID\" />
     <None Remove="Xamarin.FFImageLoading.Forms" />
+    <None Remove="Views\Broker\" />
+    <None Remove="ViewModels\Broker\" />
+    <None Remove="Models\Broker\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Fonts\fa-duotone-900.ttf" />
@@ -153,5 +156,8 @@
     <Folder Include="ViewModels\ListProfile\" />
     <Folder Include="Models\ListProfile\" />
     <Folder Include="Models\UpdateRFID\" />
+    <Folder Include="Views\Broker\" />
+    <Folder Include="ViewModels\Broker\" />
+    <Folder Include="Models\Broker\" />
   </ItemGroup>
 </Project>

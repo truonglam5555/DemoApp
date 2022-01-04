@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:DemoApp.Controls"
+    xmlns:markup="clr-namespace:DemoApp.Common.MarkupExtension"
+    xmlns:font="clr-namespace:DemoApp.Resources.Fonts" NavigationPage.HasNavigationBar="False"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Class="DemoApp.Views.Broker.RegistratBrokerPage">
+     <ContentPage.Resources>
+        <ResourceDictionary>
+
+             <Style TargetType="Label" x:Key="Title">
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="TextColor" Value="#4F4F4F"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+            </Style>
+
+            <Style TargetType="controls:CTEntry" x:Key="EntryCustom">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="PlaceholderColor" Value="#828282"/>
+                <Setter Property="TextColor" Value="#828282"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+            </Style>
+
+            <Style TargetType="Label" x:Key="Icon">
+                <Setter Property="TextColor" Value="{StaticResource ThemeMainColor}"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.LightStyle}"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style TargetType="Frame" x:Key="Card">
+                <Setter Property="HasShadow" Value="{OnPlatform Android=True,iOS=False}"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="BorderColor" Value="{OnPlatform Android=White,iOS=#eaeaea}"/>
+                <Setter Property="Margin" Value="2,0"/>
+            </Style>
+
+            <Style TargetType="Grid" x:Key="gridContent">
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="HeightRequest" Value="45"/>
+                <Setter Property="ColumnDefinitions" Value="20,*"/>
+                <Setter Property="ColumnSpacing" Value="0"/>
+                <Setter Property="Padding" Value="10,0,5,0"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+         <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{Binding StatuBar}"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" BackgroundColor="{StaticResource ThemeMainColor}" ColumnDefinitions="Auto,*" >
+                <Button  x:Name="btnNavBarBack"  Grid.Column="0"  Margin="0" Padding="0"  BackgroundColor="Transparent" Command="{Binding ClosePage}" FontFamily="{x:Static font:FontAssembly.SolidStyle}"
+                         FontSize="18" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft, Text='{0}'}" TextColor="White" VerticalOptions="Center" WidthRequest="45"  />
+                <Label x:Name="lblNavTitle" Grid.Column="1"  TextColor="White" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"  FontSize="16"
+                       Text="Đăng ký cộng tác viên" VerticalOptions="Center" />
+            </Grid>
+            <ScrollView Grid.Row="2" Padding="10">
+                <StackLayout>
+                    <Grid ColumnDefinitions="*,120" VerticalOptions="Start">
+                        <StackLayout Spacing="10">
+                            <Label  Style="{StaticResource Title}">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Họ đệm"/>
+                                        <Span Text=" ("/>
+                                        <Span Text="*" TextColor="Red"/>
+                                        <Span Text=")"/>
+                                    </FormattedString>
+                            </Label.FormattedText>
+                            </Label>
+                            <Frame Style="{StaticResource Card}">
+                                <Frame.Triggers>
+                                    <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference txthoDem}, Path=IsFocused}" Value="True">
+                                        <Setter Property="BorderColor" Value="{StaticResource ThemeMainColor}"/>
+                                    </DataTrigger>
+                                </Frame.Triggers>
+                                <Grid Style="{StaticResource gridContent}">
+                                    <Label Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=USer_Circle,Text='{0}'}" Style="{StaticResource Icon}"/>
+                                    <controls:CTEntry  x:Name="txthoDem" Grid.Column="1"  Placeholder="Nhập họ đệm" Style="{StaticResource EntryCustom}" 
+                                                            Text="{Binding HoDem}"  />
+                                </Grid>
+                              </Frame>
+                          </StackLayout>
+
+                         <StackLayout Spacing="10" Grid.Column="1">
+                             <Label Style="{StaticResource Title}">
+                                 <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Tên" />
+                                        <Span Text=" ("/>
+                                        <Span Text="*" TextColor="Red"/>
+                                        <Span Text=")"/>
+                                    </FormattedString>
+                            </Label.FormattedText>
+                             </Label>
+                             <Frame Style="{StaticResource Card}">
+                                 <Frame.Triggers>
+                                    <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference txtLastName}, Path=IsFocused}" Value="True">
+                                        <Setter Property="BorderColor" Value="{StaticResource ThemeMainColor}"/>
+                                    </DataTrigger>
+                                </Frame.Triggers>
+                                 <Grid Style="{StaticResource gridContent}">
+                                     <Label Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=USer_Circle,Text='{0}'}" Style="{StaticResource Icon}"/>
+                                     <controls:CTEntry  x:Name="txtLastName" Grid.Column="1"  Placeholder="Nhập tên" Style="{StaticResource EntryCustom}"
+                                                            Text="{Binding Ten}"/>
+                                 </Grid>
+                             </Frame>
+                          </StackLayout>
+                     </Grid>
+
+                    <StackLayout Spacing="10">
+                        <Label  Style="{StaticResource Title}">
+                              <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Số điện thoại"/>
+                                        <Span Text=" ("/>
+                                        <Span Text="*" TextColor="Red"/>
+                                        <Span Text=")"/>
+                                    </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Frame Style="{StaticResource Card}">
+                            <Frame.Triggers>
+                                <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference txtPhone}, Path=IsFocused}" Value="True">
+                                    <Setter Property="BorderColor" Value="{StaticResource ThemeMainColor}"/>
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            <Grid Style="{StaticResource gridContent}">
+                                <Label Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=Mobile,Text='{0}'}" Style="{StaticResource Icon}"/>
+                                <controls:CTEntry  Grid.Column="1" x:Name="txtPhone" Placeholder="Nhập số điện thoại" Style="{StaticResource EntryCustom}" Keyboard="Numeric"
+                                                                     Text="{Binding SoDienThoai}"/>
+                            </Grid>
+                         </Frame>
+                    </StackLayout>
+
+                     <StackLayout Spacing="10" >
+                        <Label Style="{StaticResource Title}">
+                             <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Số tài khoản ngân hàng" />
+                                        <Span Text=" ("/>
+                                        <Span Text="*" TextColor="Red"/>
+                                        <Span Text=")"/>
+                                    </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Frame Style="{StaticResource Card}">
+                            <Frame.Triggers>
+                                <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference txtSTKNganHang}, Path=IsFocused}" Value="True">
+                                    <Setter Property="BorderColor" Value="{StaticResource ThemeMainColor}"/>
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            <Grid Style="{StaticResource gridContent}">
+                                <Label Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=Mobile,Text='{0}'}" Style="{StaticResource Icon}"/>
+                                <controls:CTEntry  Grid.Column="1" x:Name="txtSTKNganHang" Placeholder="Nhập số tài khoản ngân hàng" Style="{StaticResource EntryCustom}" Keyboard="Numeric"
+                                                                     Text="{Binding SoTKNganHang}"/>
+                            </Grid>
+                         </Frame>
+                    </StackLayout>
+
+                    <StackLayout Spacing="10" Padding="0,0,0,10" >
+                        <Label  Style="{StaticResource Title}">
+                            <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Tên ngân hàng"/>
+                                        <Span Text=" ("/>
+                                        <Span Text="*" TextColor="Red"/>
+                                        <Span Text=")"/>
+                                    </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Frame Style="{StaticResource Card}">
+                            <Frame.Triggers>
+                                <DataTrigger TargetType="Frame" Binding="{Binding Source={Reference txtTenNganHang}, Path=IsFocused}" Value="True">
+                                    <Setter Property="BorderColor" Value="{StaticResource ThemeMainColor}"/>
+                                </DataTrigger>
+                            </Frame.Triggers>
+                            <Grid Style="{StaticResource gridContent}">
+                                <Label Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=Mobile,Text='{0}'}" Style="{StaticResource Icon}"/>
+                                <controls:CTEntry  Grid.Column="1" x:Name="txtTenNganHang" Placeholder="Nhập tên ngân hàng" Style="{StaticResource EntryCustom}" Keyboard="Default"
+                                                                     Text="{Binding TenNganHang}"/>
+                            </Grid>
+                         </Frame>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+            <Button Grid.Row="3" Text="Đăng ký" TextColor="White" Margin="10" CornerRadius="5" Command="{Binding DangKy}"
+                    BackgroundColor="{StaticResource ThemeMainColor}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DemoApp.Models.Broker;
+using Xamarin.CommunityToolkit.ObjectModel;
 using Xamarin.Forms;
 
 namespace DemoApp.ViewModels.Broker
@@ -27,7 +28,7 @@ namespace DemoApp.ViewModels.Broker
 
         #region Commands
         public ICommand Refresh { get; set; }
-        public ICommand ChonDuyet { get; set; }
+        public ICommand ChiTiet { get; set; }
         public ICommand DangKyBroker { get; set; }
         #endregion
 
@@ -47,6 +48,15 @@ namespace DemoApp.ViewModels.Broker
             var page = new Views.Broker.RegistratBrokerPage();
             await App.Current.MainPage.Navigation.PushAsync(page);
         }
+
+        async Task ChitietAction(MBorker borker)
+        {
+            if(borker != null)
+            {
+                var page = new Views.Broker.DetailBrokerPage(borker);
+                await App.Current.MainPage.Navigation.PushAsync(page);
+            }
+        }
         #endregion
 
         #region Methods
@@ -55,6 +65,7 @@ namespace DemoApp.ViewModels.Broker
             _list = new ObservableCollection<MBorker>();
             Refresh = new Command<RefreshView>(RefreshAction);
             DangKyBroker = new Command(DangKyBrokerAction);
+            ChiTiet = new AsyncCommand<MBorker>(ChitietAction);
             RequetData();
         }
 

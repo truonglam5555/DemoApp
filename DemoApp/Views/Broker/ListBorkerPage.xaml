@@ -46,9 +46,8 @@
                     <CollectionView  SelectionMode="None" ItemsSource="{Binding List}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
-                                <!--xct:TouchEffect.Command="{Binding Source={Reference CurrentPage},Path=BindingContext.ChonDuyet}" xct:TouchEffect.CommandParameter="{Binding .}"-->
                                 <StackLayout Padding="10,10,10,0" >
-                                    <Frame Padding="10" CornerRadius="5" Margin="0,0,0,3" >
+                                    <Frame Padding="10" CornerRadius="5" Margin="0,0,0,3"  xct:TouchEffect.Command="{Binding Source={Reference CurrentPage},Path=BindingContext.ChiTiet}" xct:TouchEffect.CommandParameter="{Binding .}" >
                                         <Grid ColumnDefinitions="30,*" RowDefinitions="Auto">
                                             <Label Style="{StaticResource Icon}" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=USer_Circle,Text='{0}'}" FontSize="30"
                                                    HorizontalOptions="Center"/>

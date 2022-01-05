@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:markup="clr-namespace:DemoApp.Common.MarkupExtension" x:Name="CurrentPage"
+    xmlns:font="clr-namespace:DemoApp.Resources.Fonts" NavigationPage.HasNavigationBar="False"
+    x:Class="DemoApp.Views.Broker.DetailBrokerPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="Title">
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="TextColor" Value="#4F4F4F"/>
+                <Setter Property="FontFamily" Value="{x:Static font:FontAssembly.NunitoSemiBold}"/>
+            </Style>
+
+            <Style TargetType="Frame" x:Key="Card">
+                <Setter Property="HasShadow" Value="{OnPlatform Android=True,iOS=False}"/>
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="Padding" Value="10,0"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="BorderColor" Value="{OnPlatform Android=White,iOS=#eaeaea}"/>
+                <Setter Property="Margin" Value="2,0"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+         <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="1" BackgroundColor="{StaticResource ThemeMainColor}" ColumnDefinitions="Auto,*,Auto" >
+                <Button  x:Name="btnNavBarBack"  Grid.Column="0"  Margin="0" Padding="0"  BackgroundColor="Transparent" Clicked="btnNavBarBack_Clicked" FontFamily="{x:Static  font:FontAssembly.SolidStyle}"
+                         FontSize="18" Text="{markup:PlatformAwesomeFontFamilyMarkup Icon=ChevronLeft, Text='{0}'}" TextColor="White" VerticalOptions="Center" WidthRequest="45"  />
+                <Label x:Name="lblNavTitle" Grid.Column="1"  TextColor="White" FontFamily="{x:Static font:FontAssembly.NunitoSemiBold}"  FontSize="16"
+                       Text="Chi tiết cộng tác viên" VerticalOptions="Center" />
+            </Grid>
+            <ScrollView Grid.Row="2" Padding="15,20">
+                <StackLayout Spacing="20">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Tên" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Style="{StaticResource Title}">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding HoDem}"/>
+                                    <Span Text=" "/>
+                                    <Span Text="{Binding Ten}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Số điện thoại" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding SoDienThoai}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Tài khoản ngân hàng" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding TaiKhoanNganHang}" Style="{StaticResource Title}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Tên ngân hàng" Style="{StaticResource Title}" Opacity="0.7" HorizontalOptions="StartAndExpand"/>
+                        <Label Text="{Binding TenNganHang}" Style="{StaticResource Title}" TextColor="Red"/>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
